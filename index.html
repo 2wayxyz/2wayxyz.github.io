@@ -3,190 +3,195 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>2Way.xyz | Coquette Gallery</title>
+  <title>2Way.xyz | Merry Christmas</title>
 
   <link rel="icon" type="image/png" href="https://img5.pic.in.th/file/secure-sv1/64x64-removebg-preview.png">
 
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Great+Vibes&family=Taviraj:wght@200;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Mountains+of+Christmas:wght@700&family=Taviraj:wght@300;400;600&display=swap" rel="stylesheet">
 
   <style>
     body { 
       box-sizing: border-box; 
       font-family: 'Taviraj', serif;
-      background: #fffcfb; /* สีขาวนวล */
+      background: #f8f1f1;
+      overflow-x: hidden;
     }
     
-    /* พื้นหลังนวลๆ แบบละมุน */
-    .bg-soft-gradient {
-      background: radial-gradient(circle at top right, #fff5f7 0%, #fdfbfb 100%);
+    /* หิมะตกเบาๆ */
+    .snowflake {
+      position: fixed; top: -10%; z-index: 9999;
+      color: #fff; font-size: 1em; pointer-events: none;
+      animation: fall linear infinite;
+    }
+    @keyframes fall {
+      to { transform: translateY(105vh); }
+    }
+
+    /* Background Gradient */
+    .bg-xmas {
+      background: radial-gradient(circle at center, #ffffff 0%, #fce4ec 100%);
       position: fixed; width: 100%; height: 100%; z-index: -1;
     }
 
-    /* ตกแต่งด้วยโบว์หรือหัวใจฟุ้งๆ (Pseudo-elements) */
-    .bg-decoration {
-      position: absolute;
-      font-size: 150px;
-      opacity: 0.05;
-      filter: blur(2px);
-      z-index: -1;
-    }
-
-    /* Logo Container - หรูแบบสะอาดๆ */
-    .logo-container-coquette {
-      width: 260px; height: 260px;
-      display: flex; align-items: center; justify-content: center;
-      background: #ffffff;
+    /* Logo - คริสต์มาสลูกคุณ */
+    .logo-xmas-container {
+      width: 240px; height: 240px;
+      background: #fff;
       border-radius: 50%;
-      border: 8px solid #fff;
-      box-shadow: 0 15px 35px rgba(255, 182, 193, 0.2);
+      display: flex; align-items: center; justify-content: center;
+      border: 4px dashed #d42426; /* เส้นประสีแดง */
       position: relative;
-      transition: 0.5s;
+      box-shadow: 0 10px 30px rgba(212, 36, 38, 0.15);
     }
-    .logo-container-coquette::after {
-      content: '🎀'; /* เพิ่มความน่ารัก */
-      position: absolute;
-      top: -10px; right: -10px;
-      font-size: 40px;
+    .logo-xmas-container::before {
+      content: '🎄'; position: absolute; top: -10px; font-size: 40px;
     }
-    .logo-container-coquette:hover { transform: scale(1.03); }
 
-    /* หัวข้อ Gallery */
-    .title-luxury {
+    /* หัวข้อ */
+    .title-xmas {
       font-family: 'Cinzel', serif;
-      color: #d4af37; /* สีทองแชมเปญ */
-      letter-spacing: 0.3em;
+      color: #d42426; /* แดงคริสต์มาส */
+      letter-spacing: 0.2em;
     }
-    .subtitle-cute {
-      font-family: 'Great Vibes', cursive;
-      color: #ff9fb2;
-      font-size: 2.5rem;
-      margin-top: -15px;
-    }
-
-    /* Card Styling - ฟีลลูกคุณหนู Clean & Classy */
-    .card-coquette {
-      background: #ffffff;
-      border-radius: 40px;
-      padding: 40px 30px;
-      border: 1px solid rgba(255, 192, 203, 0.3);
-      box-shadow: 0 10px 30px rgba(255, 182, 193, 0.1);
-      transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      position: relative;
-    }
-    .card-coquette:hover {
-      transform: translateY(-15px);
-      box-shadow: 0 20px 40px rgba(255, 182, 193, 0.25);
-      border-color: #ffb6c1;
+    .subtitle-xmas {
+      font-family: 'Mountains of Christmas', cursive;
+      color: #2f5233; /* เขียวสน */
+      font-size: 3rem;
+      margin-top: -10px;
     }
 
-    /* ปุ่มกดสีชมพูแชมเปญ */
-    .btn-coquette {
-      background: linear-gradient(135deg, #ffb6c1 0%, #ff9fb2 100%);
+    /* Card Styling */
+    .card-xmas {
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(10px);
+      border-radius: 30px;
+      padding: 35px 25px;
+      border: 2px solid transparent;
+      transition: 0.4s;
+      box-shadow: 0 8px 25px rgba(47, 82, 51, 0.08);
+    }
+    .card-xmas:hover {
+      transform: translateY(-10px) rotate(2deg);
+      border-color: #d42426;
+      background: #fff;
+    }
+
+    /* ปุ่มกด */
+    .btn-xmas {
+      background: #d42426;
       color: white;
       padding: 12px 0;
-      border-radius: 50px;
-      font-weight: 600;
-      letter-spacing: 1px;
+      border-radius: 15px;
+      font-weight: 700;
       transition: 0.3s;
       width: 100%;
-      box-shadow: 0 5px 15px rgba(255, 159, 178, 0.3);
+      text-transform: uppercase;
+      letter-spacing: 1px;
     }
-    .btn-coquette:hover {
-      box-shadow: 0 8px 25px rgba(255, 159, 178, 0.5);
-      transform: scale(1.02);
+    .btn-xmas:hover {
+      background: #2f5233;
+      box-shadow: 0 5px 15px rgba(47, 82, 51, 0.3);
     }
 
-    .fade-in { animation: fadeIn 1s ease-out forwards; }
-    @keyframes fadeIn { from{opacity:0; transform:translateY(15px)} to{opacity:1; transform:translateY(0)} }
+    .fade-in { animation: fadeIn 1s ease-out; }
+    @keyframes fadeIn { from{opacity:0; transform:translateY(20px)} to{opacity:1; transform:translateY(0)} }
   </style>
 </head>
 
 <body class="h-full">
-  <div class="bg-soft-gradient"></div>
-  
-  <div class="bg-decoration" style="top: 10%; left: 5%;">🌸</div>
-  <div class="bg-decoration" style="bottom: 10%; right: 5%;">🎀</div>
+  <div class="bg-xmas"></div>
 
   <div id="app" class="w-full h-full overflow-auto">
-    <div class="max-w-6xl mx-auto px-6 py-16 relative">
+    <div class="max-w-6xl mx-auto px-6 py-12 relative">
 
-      <div class="text-center mb-20 fade-in">
-        <div class="flex justify-center mb-10">
-          <div class="logo-container-coquette">
-            <img src="https://img5.pic.in.th/file/secure-sv1/2-removebg-preview972731f1a821c1c4.png" class="w-40 h-auto" alt="2WAY Logo">
+      <div class="text-center mb-16 fade-in">
+        <div class="flex justify-center mb-8">
+          <div class="logo-xmas-container">
+            <img src="https://img5.pic.in.th/file/secure-sv1/2-removebg-preview972731f1a821c1c4.png" class="w-36 h-auto" alt="2WAY Logo">
           </div>
         </div>
 
-        <h1 class="title-luxury text-2xl md:text-4xl font-bold uppercase">
-          Gallery
-        </h1>
-        <div class="subtitle-cute">2Way.xyz</div>
-        <div class="h-[1.5px] w-20 bg-[#ffb6c1] mx-auto mt-4"></div>
+        <h1 class="title-xmas text-xl md:text-3xl font-bold">THE HOLIDAY</h1>
+        <div class="subtitle-xmas">Gallery 2Way.xyz</div>
+        <p class="text-red-800 font-medium tracking-widest mt-2">MERRY CHRISTMAS 2025</p>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-10 mb-20">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20">
         
         <a href="https://drive.google.com/drive/folders/1b0pN4rgcnerd5DFi5lPQHMJyp-Pslpiq?usp=sharing" target="_blank" class="fade-in" style="animation-delay: 0.1s">
-          <div class="card-coquette text-center group">
-            <span class="absolute top-5 right-8 text-pink-200 text-3xl font-serif">01</span>
-            <div class="text-4xl mb-6">🩰</div>
-            <h3 class="text-lg font-bold mb-2 tracking-wide text-gray-700">PHOTOS 1</h3>
-            <p class="text-gray-400 text-sm mb-8 italic">English International Day</p>
-            <button class="btn-coquette">Enter Gallery</button>
+          <div class="card-xmas text-center">
+            <div class="text-5xl mb-4">🎁</div>
+            <h3 class="text-lg font-bold text-gray-800">PHOTOS 1</h3>
+            <p class="text-gray-500 text-sm mb-6 h-10">English International Day</p>
+            <button class="btn-xmas">Open Gift</button>
           </div>
         </a>
 
         <a href="https://drive.google.com/drive/folders/1eTO8RQqp250LG7Ow5BOOrd8mkiCJx0Yq?usp=sharing" target="_blank" class="fade-in" style="animation-delay: 0.2s">
-          <div class="card-coquette text-center group">
-            <span class="absolute top-5 right-8 text-pink-200 text-3xl font-serif">02</span>
-            <div class="text-4xl mb-6">🦢</div>
-            <h3 class="text-lg font-bold mb-2 tracking-wide text-gray-700">PHOTOS 2</h3>
-            <p class="text-gray-400 text-sm mb-8 italic">Day At PPW : 16/12/2025</p>
-            <button class="btn-coquette">Enter Gallery</button>
+          <div class="card-xmas text-center">
+            <div class="text-5xl mb-4">🦌</div>
+            <h3 class="text-lg font-bold text-gray-800">PHOTOS 2</h3>
+            <p class="text-gray-500 text-sm mb-6 h-10">Day At PPW : 16/12/2025</p>
+            <button class="btn-xmas">Open Gift</button>
           </div>
         </a>
 
         <a href="https://drive.google.com/drive/folders/1hxKpXYnQ_kJ1OWg7bPnOXUWAFsBNBc5B?usp=sharing" target="_blank" class="fade-in" style="animation-delay: 0.3s">
-          <div class="card-coquette text-center group">
-            <span class="absolute top-5 right-8 text-pink-200 text-3xl font-serif">03</span>
-            <div class="text-4xl mb-6">🍰</div>
-            <h3 class="text-lg font-bold mb-2 tracking-wide text-gray-700">PHOTOS 3</h3>
-            <p class="text-gray-400 text-sm mb-8 italic">Day At PPW : 17/12/2025</p>
-            <button class="btn-coquette">Enter Gallery</button>
+          <div class="card-xmas text-center">
+            <div class="text-5xl mb-4">🔔</div>
+            <h3 class="text-lg font-bold text-gray-800">PHOTOS 3</h3>
+            <p class="text-gray-500 text-sm mb-6 h-10">Day At PPW : 17/12/2025</p>
+            <button class="btn-xmas">Open Gift</button>
           </div>
         </a>
 
         <a href="https://drive.google.com/drive/folders/1-jCuNTxAlDgR7c3J3ogjCA7m4WZ8CUo9?usp=sharing" target="_blank" class="fade-in" style="animation-delay: 0.4s">
-          <div class="card-coquette text-center group">
-            <span class="absolute top-5 right-8 text-pink-200 text-3xl font-serif">04</span>
-            <div class="text-4xl mb-6">🧸</div>
-            <h3 class="text-lg font-bold mb-2 tracking-wide text-gray-700">PHOTOS 4</h3>
-            <p class="text-gray-400 text-sm mb-8 italic">Day At PPW : ก่อนกีฬาสี</p>
-            <button class="btn-coquette">Enter Gallery</button>
+          <div class="card-xmas text-center">
+            <div class="text-5xl mb-4">❄️</div>
+            <h3 class="text-lg font-bold text-gray-800">PHOTOS 4</h3>
+            <p class="text-gray-500 text-sm mb-6 h-10">Day At PPW : ก่อนกีฬาสี</p>
+            <button class="btn-xmas">Open Gift</button>
           </div>
         </a>
 
         <a href="https://drive.google.com/drive/folders/1B89pXjvvEyqvbDZlFeE2UNmYFyHxFeKE?usp=sharing" target="_blank" class="fade-in" style="animation-delay: 0.5s">
-          <div class="card-coquette text-center group">
-            <span class="absolute top-5 right-8 text-pink-200 text-3xl font-serif">05</span>
-            <div class="text-4xl mb-6">🌷</div>
-            <h3 class="text-lg font-bold mb-2 tracking-wide text-gray-700">PHOTOS 5</h3>
-            <p class="text-gray-400 text-sm mb-8 italic">Day At PPW : วันกีฬาสี</p>
-            <button class="btn-coquette">Enter Gallery</button>
+          <div class="card-xmas text-center">
+            <div class="text-5xl mb-4">🥂</div>
+            <h3 class="text-lg font-bold text-gray-800">PHOTOS 5</h3>
+            <p class="text-gray-500 text-sm mb-6 h-10">Day At PPW : วันกีฬาสี</p>
+            <button class="btn-xmas">Open Gift</button>
           </div>
         </a>
 
       </div>
 
-      <div class="text-center fade-in pb-10">
-        <p class="text-[11px] font-medium tracking-[0.3em] text-pink-300 uppercase">
-          &mdash; Made with love for 2Way.xyz &mdash;
-        </p>
+      <div class="text-center fade-in text-red-900 opacity-60">
+        <p class="text-xs tracking-[0.3em] font-bold">© 2025 2WAY.XYZ | SEASON'S GREETINGS</p>
       </div>
+
     </div>
   </div>
+
+  <script>
+    function createSnowflake() {
+      const snowflake = document.createElement('div');
+      snowflake.classList.add('snowflake');
+      snowflake.innerHTML = '❄';
+      snowflake.style.left = Math.random() * 100 + 'vw';
+      snowflake.style.animationDuration = Math.random() * 3 + 2 + 's';
+      snowflake.style.opacity = Math.random();
+      snowflake.style.fontSize = Math.random() * 10 + 10 + 'px';
+      
+      document.body.appendChild(snowflake);
+      
+      setTimeout(() => {
+        snowflake.remove();
+      }, 5000);
+    }
+    setInterval(createSnowflake, 200);
+  </script>
 </body>
 </html>
