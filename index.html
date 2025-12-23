@@ -33,7 +33,31 @@
     /* Background Gradient */
     .bg-xmas {
       background: radial-gradient(circle at center, #ffffff 0%, #fce4ec 100%);
-      position: fixed; width: 100%; height: 100%; z-index: -1;
+      position: fixed; width: 100%; height: 100%; z-index: -2;
+    }
+
+    /* Santa Animation - เพิ่มซานต้าข้างหลัง */
+    .santa-container {
+      position: fixed;
+      top: 15%;
+      left: -500px;
+      z-index: -1; /* อยู่หลังเนื้อหา */
+      pointer-events: none;
+      opacity: 0.6; /* ให้ดูฟุ้งๆ เป็นพื้นหลัง */
+      animation: fly 25s linear infinite;
+    }
+    .santa-img {
+      width: 400px;
+      height: auto;
+      filter: drop-shadow(0 10px 10px rgba(0,0,0,0.1));
+    }
+
+    @keyframes fly {
+      0% { left: -500px; transform: translateY(0) rotate(5deg); }
+      25% { transform: translateY(-30px) rotate(0deg); }
+      50% { transform: translateY(0) rotate(-5deg); }
+      75% { transform: translateY(30px) rotate(0deg); }
+      100% { left: 100%; transform: translateY(0) rotate(5deg); }
     }
 
     /* Logo - คริสต์มาสลูกคุณ */
@@ -42,7 +66,7 @@
       background: #fff;
       border-radius: 50%;
       display: flex; align-items: center; justify-content: center;
-      border: 4px dashed #d42426; /* เส้นประสีแดง */
+      border: 4px dashed #d42426;
       position: relative;
       box-shadow: 0 10px 30px rgba(212, 36, 38, 0.15);
     }
@@ -53,19 +77,19 @@
     /* หัวข้อ */
     .title-xmas {
       font-family: 'Cinzel', serif;
-      color: #d42426; /* แดงคริสต์มาส */
+      color: #d42426;
       letter-spacing: 0.2em;
     }
     .subtitle-xmas {
       font-family: 'Mountains of Christmas', cursive;
-      color: #2f5233; /* เขียวสน */
+      color: #2f5233;
       font-size: 3rem;
       margin-top: -10px;
     }
 
     /* Card Styling */
     .card-xmas {
-      background: rgba(255, 255, 255, 0.8);
+      background: rgba(255, 255, 255, 0.85);
       backdrop-filter: blur(10px);
       border-radius: 30px;
       padding: 35px 25px;
@@ -103,6 +127,10 @@
 
 <body class="h-full">
   <div class="bg-xmas"></div>
+
+  <div class="santa-container">
+    <img src="https://www.pngarts.com/files/1/Santa-Claus-Sleigh-PNG-Transparent-Image.png" alt="Santa Sleigh" class="santa-img">
+  </div>
 
   <div id="app" class="w-full h-full overflow-auto">
     <div class="max-w-6xl mx-auto px-6 py-12 relative">
