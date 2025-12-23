@@ -3,200 +3,187 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>2Way.xyz | Premium Gallery</title>
+  <title>2Way.xyz | Coquette Gallery</title>
 
   <link rel="icon" type="image/png" href="https://img5.pic.in.th/file/secure-sv1/64x64-removebg-preview.png">
 
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Taviraj:wght@200;400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Great+Vibes&family=Taviraj:wght@200;400;500&display=swap" rel="stylesheet">
 
   <style>
     body { 
       box-sizing: border-box; 
       font-family: 'Taviraj', serif;
-      background-color: #0f172a; /* พื้นหลังเข้มช่วยให้ดูหรูขึ้น */
+      background: #fffcfb; /* สีขาวนวล */
     }
     
-    /* Background Animation - แสงฟุ้งๆ ด้านหลัง */
-    .bg-gradient-custom {
-      background: radial-gradient(circle at top left, #1e293b 0%, #0f172a 100%);
-      position: fixed;
-      width: 100%;
-      height: 100%;
+    /* พื้นหลังนวลๆ แบบละมุน */
+    .bg-soft-gradient {
+      background: radial-gradient(circle at top right, #fff5f7 0%, #fdfbfb 100%);
+      position: fixed; width: 100%; height: 100%; z-index: -1;
+    }
+
+    /* ตกแต่งด้วยโบว์หรือหัวใจฟุ้งๆ (Pseudo-elements) */
+    .bg-decoration {
+      position: absolute;
+      font-size: 150px;
+      opacity: 0.05;
+      filter: blur(2px);
       z-index: -1;
     }
 
-    .bg-glow {
-      position: absolute;
-      width: 500px;
-      height: 500px;
-      background: radial-gradient(circle, rgba(38,175,255,0.1) 0%, rgba(0,0,0,0) 70%);
-      border-radius: 50%;
-      filter: blur(50px);
-      animation: drift 20s infinite alternate;
-    }
-
-    @keyframes drift {
-      from { transform: translate(-10%, -10%); }
-      to { transform: translate(20%, 20%); }
-    }
-
-    /* Logo & Title Styling */
-    .logo-container-luxury {
-      width: 280px; height: 280px;
+    /* Logo Container - หรูแบบสะอาดๆ */
+    .logo-container-coquette {
+      width: 260px; height: 260px;
       display: flex; align-items: center; justify-content: center;
-      position: relative;
-      background: rgba(255, 255, 255, 0.03);
-      backdrop-filter: blur(10px);
+      background: #ffffff;
       border-radius: 50%;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      box-shadow: 0 0 50px rgba(0,0,0,0.5), inset 0 0 20px rgba(255,255,255,0.05);
-      transition: 0.6s cubic-bezier(0.23, 1, 0.32, 1);
-    }
-    
-    .logo-container-luxury:hover {
-      transform: scale(1.02) rotate(2deg);
-      border-color: rgba(38,175,255,0.4);
-      box-shadow: 0 0 60px rgba(38,175,255,0.2);
-    }
-
-    .title-luxury {
-      font-family: 'Cinzel', serif;
-      background: linear-gradient(to bottom, #ffffff 30%, #94a3b8 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      letter-spacing: 0.2em;
-      text-shadow: 0 10px 20px rgba(0,0,0,0.3);
-    }
-
-    /* Card Styling - Glassmorphism */
-    .card-luxury {
-      background: rgba(255, 255, 255, 0.02);
-      backdrop-filter: blur(12px);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 24px;
-      padding: 40px 30px;
-      transition: 0.4s all ease;
+      border: 8px solid #fff;
+      box-shadow: 0 15px 35px rgba(255, 182, 193, 0.2);
       position: relative;
-      overflow: hidden;
-    }
-
-    .card-luxury:hover {
-      background: rgba(255, 255, 255, 0.05);
-      border-color: rgba(26, 175, 255, 0.5);
-      transform: translateY(-12px);
-    }
-
-    .card-luxury::before {
-      content: "";
-      position: absolute;
-      top: 0; left: -100%;
-      width: 100%; height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent);
       transition: 0.5s;
     }
-    .card-luxury:hover::before { left: 100%; }
+    .logo-container-coquette::after {
+      content: '🎀'; /* เพิ่มความน่ารัก */
+      position: absolute;
+      top: -10px; right: -10px;
+      font-size: 40px;
+    }
+    .logo-container-coquette:hover { transform: scale(1.03); }
 
-    /* Button Styling */
-    .btn-luxury {
-      background: transparent;
-      color: #fff;
-      border: 1px solid rgba(38,175,255,0.5);
+    /* หัวข้อ Gallery */
+    .title-luxury {
+      font-family: 'Cinzel', serif;
+      color: #d4af37; /* สีทองแชมเปญ */
+      letter-spacing: 0.3em;
+    }
+    .subtitle-cute {
+      font-family: 'Great Vibes', cursive;
+      color: #ff9fb2;
+      font-size: 2.5rem;
+      margin-top: -15px;
+    }
+
+    /* Card Styling - ฟีลลูกคุณหนู Clean & Classy */
+    .card-coquette {
+      background: #ffffff;
+      border-radius: 40px;
+      padding: 40px 30px;
+      border: 1px solid rgba(255, 192, 203, 0.3);
+      box-shadow: 0 10px 30px rgba(255, 182, 193, 0.1);
+      transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      position: relative;
+    }
+    .card-coquette:hover {
+      transform: translateY(-15px);
+      box-shadow: 0 20px 40px rgba(255, 182, 193, 0.25);
+      border-color: #ffb6c1;
+    }
+
+    /* ปุ่มกดสีชมพูแชมเปญ */
+    .btn-coquette {
+      background: linear-gradient(135deg, #ffb6c1 0%, #ff9fb2 100%);
+      color: white;
       padding: 12px 0;
-      border-radius: 12px;
-      font-weight: 500;
+      border-radius: 50px;
+      font-weight: 600;
       letter-spacing: 1px;
       transition: 0.3s;
       width: 100%;
-      text-transform: uppercase;
-      font-size: 0.85rem;
+      box-shadow: 0 5px 15px rgba(255, 159, 178, 0.3);
     }
-    .btn-luxury:hover {
-      background: #26AFFF;
-      box-shadow: 0 0 20px rgba(38,175,255,0.4);
-      border-color: #26AFFF;
+    .btn-coquette:hover {
+      box-shadow: 0 8px 25px rgba(255, 159, 178, 0.5);
+      transform: scale(1.02);
     }
 
-    .fade-in { animation: fadeIn 1.2s ease-out forwards; }
-    @keyframes fadeIn { from{opacity:0; transform:translateY(20px)} to{opacity:1; transform:translateY(0)} }
+    .fade-in { animation: fadeIn 1s ease-out forwards; }
+    @keyframes fadeIn { from{opacity:0; transform:translateY(15px)} to{opacity:1; transform:translateY(0)} }
   </style>
 </head>
 
-<body class="h-full text-slate-200">
-  <div class="bg-gradient-custom"></div>
-  <div class="bg-glow" style="top: 10%; left: 10%;"></div>
-  <div class="bg-glow" style="bottom: 10%; right: 10%; background: radial-gradient(circle, rgba(255,200,0,0.05) 0%, rgba(0,0,0,0) 70%);"></div>
+<body class="h-full">
+  <div class="bg-soft-gradient"></div>
+  
+  <div class="bg-decoration" style="top: 10%; left: 5%;">🌸</div>
+  <div class="bg-decoration" style="bottom: 10%; right: 5%;">🎀</div>
 
   <div id="app" class="w-full h-full overflow-auto">
-    <div class="max-w-6xl mx-auto px-6 py-20 relative">
+    <div class="max-w-6xl mx-auto px-6 py-16 relative">
 
-      <div class="text-center mb-24 fade-in">
+      <div class="text-center mb-20 fade-in">
         <div class="flex justify-center mb-10">
-          <div class="logo-container-luxury">
-            <img src="https://img5.pic.in.th/file/secure-sv1/2-removebg-preview972731f1a821c1c4.png" class="w-48 h-auto object-contain" alt="2WAY Logo">
+          <div class="logo-container-coquette">
+            <img src="https://img5.pic.in.th/file/secure-sv1/2-removebg-preview972731f1a821c1c4.png" class="w-40 h-auto" alt="2WAY Logo">
           </div>
         </div>
 
-        <h1 id="gallery-title" class="title-luxury text-3xl md:text-5xl font-bold uppercase">
-          Gallery 2Way.xyz
+        <h1 class="title-luxury text-2xl md:text-4xl font-bold uppercase">
+          Gallery
         </h1>
-        <div class="h-[1px] w-32 bg-gradient-to-r from-transparent via-blue-400 to-transparent mx-auto mt-6"></div>
-        <p class="mt-4 text-slate-400 font-light tracking-[0.3em] text-xs uppercase">Premium Digital Archive</p>
+        <div class="subtitle-cute">2Way.xyz</div>
+        <div class="h-[1.5px] w-20 bg-[#ffb6c1] mx-auto mt-4"></div>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-32">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-10 mb-20">
         
         <a href="https://drive.google.com/drive/folders/1b0pN4rgcnerd5DFi5lPQHMJyp-Pslpiq?usp=sharing" target="_blank" class="fade-in" style="animation-delay: 0.1s">
-          <div class="card-luxury text-center group">
-            <div class="text-4xl mb-6 opacity-80 group-hover:scale-110 transition-transform">💎</div>
-            <h3 class="text-lg font-semibold mb-2 tracking-wide text-white">COLLECTION I</h3>
-            <p class="text-slate-400 text-sm mb-8 font-light italic">English International Day - PPW</p>
-            <button class="btn-luxury">View Archive</button>
+          <div class="card-coquette text-center group">
+            <span class="absolute top-5 right-8 text-pink-200 text-3xl font-serif">01</span>
+            <div class="text-4xl mb-6">🩰</div>
+            <h3 class="text-lg font-bold mb-2 tracking-wide text-gray-700">PHOTOS 1</h3>
+            <p class="text-gray-400 text-sm mb-8 italic">English International Day</p>
+            <button class="btn-coquette">Enter Gallery</button>
           </div>
         </a>
 
         <a href="https://drive.google.com/drive/folders/1eTO8RQqp250LG7Ow5BOOrd8mkiCJx0Yq?usp=sharing" target="_blank" class="fade-in" style="animation-delay: 0.2s">
-          <div class="card-luxury text-center group">
-            <div class="text-4xl mb-6 opacity-80 group-hover:scale-110 transition-transform">✨</div>
-            <h3 class="text-lg font-semibold mb-2 tracking-wide text-white">COLLECTION II</h3>
-            <p class="text-slate-400 text-sm mb-8 font-light italic">Day At PPW : 16/12/2025</p>
-            <button class="btn-luxury">View Archive</button>
+          <div class="card-coquette text-center group">
+            <span class="absolute top-5 right-8 text-pink-200 text-3xl font-serif">02</span>
+            <div class="text-4xl mb-6">🦢</div>
+            <h3 class="text-lg font-bold mb-2 tracking-wide text-gray-700">PHOTOS 2</h3>
+            <p class="text-gray-400 text-sm mb-8 italic">Day At PPW : 16/12/2025</p>
+            <button class="btn-coquette">Enter Gallery</button>
           </div>
         </a>
 
         <a href="https://drive.google.com/drive/folders/1hxKpXYnQ_kJ1OWg7bPnOXUWAFsBNBc5B?usp=sharing" target="_blank" class="fade-in" style="animation-delay: 0.3s">
-          <div class="card-luxury text-center group">
-            <div class="text-4xl mb-6 opacity-80 group-hover:scale-110 transition-transform">🔱</div>
-            <h3 class="text-lg font-semibold mb-2 tracking-wide text-white">COLLECTION III</h3>
-            <p class="text-slate-400 text-sm mb-8 font-light italic">Day At PPW : 17/12/2025</p>
-            <button class="btn-luxury">View Archive</button>
+          <div class="card-coquette text-center group">
+            <span class="absolute top-5 right-8 text-pink-200 text-3xl font-serif">03</span>
+            <div class="text-4xl mb-6">🍰</div>
+            <h3 class="text-lg font-bold mb-2 tracking-wide text-gray-700">PHOTOS 3</h3>
+            <p class="text-gray-400 text-sm mb-8 italic">Day At PPW : 17/12/2025</p>
+            <button class="btn-coquette">Enter Gallery</button>
           </div>
         </a>
 
         <a href="https://drive.google.com/drive/folders/1-jCuNTxAlDgR7c3J3ogjCA7m4WZ8CUo9?usp=sharing" target="_blank" class="fade-in" style="animation-delay: 0.4s">
-          <div class="card-luxury text-center group">
-            <div class="text-4xl mb-6 opacity-80 group-hover:scale-110 transition-transform">⚜️</div>
-            <h3 class="text-lg font-semibold mb-2 tracking-wide text-white">COLLECTION IV</h3>
-            <p class="text-slate-400 text-sm mb-8 font-light italic">Day At PPW : Pre-Sports Day</p>
-            <button class="btn-luxury">View Archive</button>
+          <div class="card-coquette text-center group">
+            <span class="absolute top-5 right-8 text-pink-200 text-3xl font-serif">04</span>
+            <div class="text-4xl mb-6">🧸</div>
+            <h3 class="text-lg font-bold mb-2 tracking-wide text-gray-700">PHOTOS 4</h3>
+            <p class="text-gray-400 text-sm mb-8 italic">Day At PPW : ก่อนกีฬาสี</p>
+            <button class="btn-coquette">Enter Gallery</button>
           </div>
         </a>
 
         <a href="https://drive.google.com/drive/folders/1B89pXjvvEyqvbDZlFeE2UNmYFyHxFeKE?usp=sharing" target="_blank" class="fade-in" style="animation-delay: 0.5s">
-          <div class="card-luxury text-center group">
-            <div class="text-4xl mb-6 opacity-80 group-hover:scale-110 transition-transform">🏆</div>
-            <h3 class="text-lg font-semibold mb-2 tracking-wide text-white">COLLECTION V</h3>
-            <p class="text-slate-400 text-sm mb-8 font-light italic">Day At PPW : Sports Day</p>
-            <button class="btn-luxury">View Archive</button>
+          <div class="card-coquette text-center group">
+            <span class="absolute top-5 right-8 text-pink-200 text-3xl font-serif">05</span>
+            <div class="text-4xl mb-6">🌷</div>
+            <h3 class="text-lg font-bold mb-2 tracking-wide text-gray-700">PHOTOS 5</h3>
+            <p class="text-gray-400 text-sm mb-8 italic">Day At PPW : วันกีฬาสี</p>
+            <button class="btn-coquette">Enter Gallery</button>
           </div>
         </a>
+
       </div>
 
       <div class="text-center fade-in pb-10">
-        <p class="text-[10px] font-medium tracking-[0.4em] text-slate-500 uppercase">
-          &copy; 2025 2WAY.XYZ &mdash; Excellence in Every Frame
+        <p class="text-[11px] font-medium tracking-[0.3em] text-pink-300 uppercase">
+          &mdash; Made with love for 2Way.xyz &mdash;
         </p>
       </div>
     </div>
