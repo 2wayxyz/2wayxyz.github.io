@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>2Way.xyz | Merry Christmas</title>
+  <title>2Way.xyz | Christmas Magic</title>
 
   <link rel="icon" type="image/png" href="https://img5.pic.in.th/file/secure-sv1/64x64-removebg-preview.png">
 
@@ -13,163 +13,144 @@
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Mountains+of+Christmas:wght@700&family=Taviraj:wght@300;400;600&display=swap" rel="stylesheet">
 
   <style>
+    /* พื้นหลังแบบภาพวาดป่าสนและของขวัญ */
     body { 
       box-sizing: border-box; 
       font-family: 'Taviraj', serif;
-      background: #f8f1f1;
+      background-color: #06261a; /* เขียวเข้มสำรอง */
+      background-image: linear-gradient(rgba(6, 38, 26, 0.7), rgba(6, 38, 26, 0.7)), 
+                        url('https://img5.pic.in.th/file/secure-sv1/christmas-bg-landscape.jpg'); /* ใส่ URL รูปพื้นหลังกวาง/ซานต้าของคุณที่นี่ */
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
       overflow-x: hidden;
     }
-    
-    /* หิมะตกเบาๆ */
+
+    /* สร้างหิมะตกแบบละเอียด */
     .snowflake {
       position: fixed; top: -10%; z-index: 9999;
-      color: #fff; font-size: 1em; pointer-events: none;
+      color: #fff; pointer-events: none;
       animation: fall linear infinite;
+      text-shadow: 0 0 5px rgba(255,255,255,0.8);
     }
     @keyframes fall {
-      to { transform: translateY(105vh); }
+      to { transform: translateY(110vh) rotate(360deg); }
     }
 
-    /* Background Gradient */
-    .bg-xmas {
-      background: radial-gradient(circle at center, #ffffff 0%, #fce4ec 100%);
-      position: fixed; width: 100%; height: 100%; z-index: -1;
-    }
-
-    /* Logo - คริสต์มาสลูกคุณ */
-    .logo-xmas-container {
-      width: 240px; height: 240px;
-      background: #fff;
+    /* Logo Container หรูหราสีทอง */
+    .logo-outer {
+      width: 220px; height: 220px;
+      padding: 15px;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(5px);
       border-radius: 50%;
+      border: 3px solid #d4af37;
+      box-shadow: 0 0 30px rgba(212, 175, 55, 0.4), inset 0 0 20px rgba(212, 175, 55, 0.2);
       display: flex; align-items: center; justify-content: center;
-      border: 4px dashed #d42426; /* เส้นประสีแดง */
       position: relative;
-      box-shadow: 0 10px 30px rgba(212, 36, 38, 0.15);
     }
-    .logo-xmas-container::before {
-      content: '🎄'; position: absolute; top: -10px; font-size: 40px;
+    .logo-outer::after {
+      content: '🦌'; position: absolute; top: -15px; font-size: 40px; filter: drop-shadow(0 0 10px gold);
     }
 
-    /* หัวข้อ */
-    .title-xmas {
+    /* หัวข้อสีทองสว่าง */
+    .title-gold {
       font-family: 'Cinzel', serif;
-      color: #d42426; /* แดงคริสต์มาส */
-      letter-spacing: 0.2em;
-    }
-    .subtitle-xmas {
-      font-family: 'Mountains of Christmas', cursive;
-      color: #2f5233; /* เขียวสน */
-      font-size: 3rem;
-      margin-top: -10px;
+      color: #f3cf7a;
+      text-shadow: 0 4px 10px rgba(0,0,0,0.5), 0 0 20px rgba(212, 175, 55, 0.5);
+      letter-spacing: 0.1em;
     }
 
-    /* Card Styling */
-    .card-xmas {
-      background: rgba(255, 255, 255, 0.8);
-      backdrop-filter: blur(10px);
-      border-radius: 30px;
-      padding: 35px 25px;
-      border: 2px solid transparent;
-      transition: 0.4s;
-      box-shadow: 0 8px 25px rgba(47, 82, 51, 0.08);
+    /* การ์ดแบบกระจกเข้ม (Glassmorphism) */
+    .card-magic {
+      background: rgba(10, 45, 30, 0.85);
+      backdrop-filter: blur(15px);
+      border: 2px solid #d4af37;
+      border-radius: 25px;
+      padding: 30px;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.4);
     }
-    .card-xmas:hover {
-      transform: translateY(-10px) rotate(2deg);
-      border-color: #d42426;
-      background: #fff;
+    .card-magic:hover {
+      transform: translateY(-15px) scale(1.02);
+      background: rgba(15, 60, 40, 0.95);
+      box-shadow: 0 20px 50px rgba(212, 175, 55, 0.3);
     }
 
-    /* ปุ่มกด */
-    .btn-xmas {
-      background: #d42426;
-      color: white;
+    /* ปุ่มกดสีทองลูกคุณหนู */
+    .btn-gold {
+      background: linear-gradient(135deg, #d4af37 0%, #f3cf7a 50%, #d4af37 100%);
+      color: #06261a;
+      font-weight: 800;
       padding: 12px 0;
-      border-radius: 15px;
-      font-weight: 700;
-      transition: 0.3s;
+      border-radius: 50px;
       width: 100%;
+      transition: 0.3s;
+      box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
       text-transform: uppercase;
-      letter-spacing: 1px;
+      font-size: 14px;
     }
-    .btn-xmas:hover {
-      background: #2f5233;
-      box-shadow: 0 5px 15px rgba(47, 82, 51, 0.3);
+    .btn-gold:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 25px rgba(212, 175, 55, 0.6);
+      filter: brightness(1.1);
     }
 
-    .fade-in { animation: fadeIn 1s ease-out; }
-    @keyframes fadeIn { from{opacity:0; transform:translateY(20px)} to{opacity:1; transform:translateY(0)} }
+    .fade-in { animation: fadeIn 1.2s ease-out forwards; }
+    @keyframes fadeIn { from{opacity:0; transform:translateY(30px)} to{opacity:1; transform:translateY(0)} }
   </style>
 </head>
 
-<body class="h-full">
-  <div class="bg-xmas"></div>
+<body class="h-full text-white">
 
-  <div id="app" class="w-full h-full overflow-auto">
-    <div class="max-w-6xl mx-auto px-6 py-12 relative">
+  <div id="app" class="w-full h-full overflow-auto py-12">
+    <div class="max-w-6xl mx-auto px-6 relative">
 
       <div class="text-center mb-16 fade-in">
         <div class="flex justify-center mb-8">
-          <div class="logo-xmas-container">
+          <div class="logo-outer">
             <img src="https://img5.pic.in.th/file/secure-sv1/2-removebg-preview972731f1a821c1c4.png" class="w-36 h-auto" alt="2WAY Logo">
           </div>
         </div>
 
-        <h1 class="title-xmas text-xl md:text-3xl font-bold">THE HOLIDAY</h1>
-        <div class="subtitle-xmas">Gallery 2Way.xyz</div>
-        <p class="text-red-800 font-medium tracking-widest mt-2">MERRY CHRISTMAS 2025</p>
+        <h1 class="title-gold text-3xl md:text-5xl font-black mb-2">CHRISTMAS GALLERY</h1>
+        <p style="font-family: 'Mountains of Christmas', cursive;" class="text-3xl text-red-400">2Way.xyz</p>
+        <div class="h-1 w-24 bg-gradient-to-r from-transparent via-[#d4af37] to-transparent mx-auto mt-4"></div>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20">
         
         <a href="https://drive.google.com/drive/folders/1b0pN4rgcnerd5DFi5lPQHMJyp-Pslpiq?usp=sharing" target="_blank" class="fade-in" style="animation-delay: 0.1s">
-          <div class="card-xmas text-center">
+          <div class="card-magic text-center">
             <div class="text-5xl mb-4">🎁</div>
-            <h3 class="text-lg font-bold text-gray-800">PHOTOS 1</h3>
-            <p class="text-gray-500 text-sm mb-6 h-10">English International Day</p>
-            <button class="btn-xmas">Open Gift</button>
+            <h3 class="text-xl font-bold text-[#f3cf7a] mb-2">PHOTOS 1</h3>
+            <p class="text-gray-300 text-sm mb-8 h-10 font-light">English International Day - PPW</p>
+            <button class="btn-gold">Open Magic</button>
           </div>
         </a>
 
         <a href="https://drive.google.com/drive/folders/1eTO8RQqp250LG7Ow5BOOrd8mkiCJx0Yq?usp=sharing" target="_blank" class="fade-in" style="animation-delay: 0.2s">
-          <div class="card-xmas text-center">
-            <div class="text-5xl mb-4">🦌</div>
-            <h3 class="text-lg font-bold text-gray-800">PHOTOS 2</h3>
-            <p class="text-gray-500 text-sm mb-6 h-10">Day At PPW : 16/12/2025</p>
-            <button class="btn-xmas">Open Gift</button>
+          <div class="card-magic text-center">
+            <div class="text-5xl mb-4">🎅</div>
+            <h3 class="text-xl font-bold text-[#f3cf7a] mb-2">PHOTOS 2</h3>
+            <p class="text-gray-300 text-sm mb-8 h-10 font-light">Day At PPW : 16/12/2025</p>
+            <button class="btn-gold">Open Magic</button>
           </div>
         </a>
 
         <a href="https://drive.google.com/drive/folders/1hxKpXYnQ_kJ1OWg7bPnOXUWAFsBNBc5B?usp=sharing" target="_blank" class="fade-in" style="animation-delay: 0.3s">
-          <div class="card-xmas text-center">
-            <div class="text-5xl mb-4">🔔</div>
-            <h3 class="text-lg font-bold text-gray-800">PHOTOS 3</h3>
-            <p class="text-gray-500 text-sm mb-6 h-10">Day At PPW : 17/12/2025</p>
-            <button class="btn-xmas">Open Gift</button>
-          </div>
-        </a>
-
-        <a href="https://drive.google.com/drive/folders/1-jCuNTxAlDgR7c3J3ogjCA7m4WZ8CUo9?usp=sharing" target="_blank" class="fade-in" style="animation-delay: 0.4s">
-          <div class="card-xmas text-center">
-            <div class="text-5xl mb-4">❄️</div>
-            <h3 class="text-lg font-bold text-gray-800">PHOTOS 4</h3>
-            <p class="text-gray-500 text-sm mb-6 h-10">Day At PPW : ก่อนกีฬาสี</p>
-            <button class="btn-xmas">Open Gift</button>
-          </div>
-        </a>
-
-        <a href="https://drive.google.com/drive/folders/1B89pXjvvEyqvbDZlFeE2UNmYFyHxFeKE?usp=sharing" target="_blank" class="fade-in" style="animation-delay: 0.5s">
-          <div class="card-xmas text-center">
-            <div class="text-5xl mb-4">🥂</div>
-            <h3 class="text-lg font-bold text-gray-800">PHOTOS 5</h3>
-            <p class="text-gray-500 text-sm mb-6 h-10">Day At PPW : วันกีฬาสี</p>
-            <button class="btn-xmas">Open Gift</button>
+          <div class="card-magic text-center">
+            <div class="text-5xl mb-4">🎄</div>
+            <h3 class="text-xl font-bold text-[#f3cf7a] mb-2">PHOTOS 3</h3>
+            <p class="text-gray-300 text-sm mb-8 h-10 font-light">Day At PPW : 17/12/2025</p>
+            <button class="btn-gold">Open Magic</button>
           </div>
         </a>
 
       </div>
 
-      <div class="text-center fade-in text-red-900 opacity-60">
-        <p class="text-xs tracking-[0.3em] font-bold">© 2025 2WAY.XYZ | SEASON'S GREETINGS</p>
+      <div class="text-center fade-in pb-10">
+        <p class="text-sm font-bold tracking-[0.3em] text-[#d4af37]">© 2025 2WAY.XYZ | THE HOLIDAY SPIRIT</p>
       </div>
 
     </div>
@@ -179,19 +160,25 @@
     function createSnowflake() {
       const snowflake = document.createElement('div');
       snowflake.classList.add('snowflake');
-      snowflake.innerHTML = '❄';
+      
+      // สุ่มเลือกทรงหิมะ
+      const types = ['❄', '❅', '❆', '•'];
+      snowflake.innerHTML = types[Math.floor(Math.random() * types.length)];
+      
       snowflake.style.left = Math.random() * 100 + 'vw';
-      snowflake.style.animationDuration = Math.random() * 3 + 2 + 's';
-      snowflake.style.opacity = Math.random();
-      snowflake.style.fontSize = Math.random() * 10 + 10 + 'px';
+      snowflake.style.animationDuration = Math.random() * 3 + 4 + 's'; // ตกช้าๆ แบบนุ่มนวล
+      snowflake.style.opacity = Math.random() * 0.8 + 0.2;
+      snowflake.style.fontSize = Math.random() * 15 + 10 + 'px';
       
       document.body.appendChild(snowflake);
       
       setTimeout(() => {
         snowflake.remove();
-      }, 5000);
+      }, 7000);
     }
-    setInterval(createSnowflake, 200);
+    // สร้างหิมะทุกๆ 150 มิลลิวินาที
+    setInterval(createSnowflake, 150);
   </script>
+
 </body>
 </html>
