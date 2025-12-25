@@ -10,24 +10,19 @@
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Taviraj:wght@300;400;600&display=swap" rel="stylesheet">
 
   <style>
-    :root {
-      --soft-white: rgba(255, 255, 255, 0.9);
-    }
-
     body, html { 
       margin: 0; padding: 0;
       height: 100vh;
       font-family: 'Taviraj', serif;
       overflow: hidden; 
       color: white;
-      background-color: #1a1a1a; /* สีสำรองระหว่างรอรูปโหลด */
     }
 
+    /* พื้นหลังที่ดึงจากลิงก์ที่คุณส่งมา */
     .bg-canvas {
       position: fixed; 
       top: 0; left: 0; 
       width: 100%; height: 100%;
-      /* แก้ไขลิงก์รูปภาพใหม่ให้ดึงข้อมูลได้ชัวร์ขึ้น */
       background-image: url('https://i.postimg.cc/528nBPbf/d-sin-th-y-ngmi-di-t-ngch-x.png');
       background-size: cover;
       background-position: center;
@@ -35,39 +30,39 @@
       z-index: -5;
     }
 
-    /* ปรับจูนโลโก้ก้อนเมฆให้ละมุนเข้ากับฉากหลัง */
     .hero-logo {
-      width: clamp(200px, 25vw, 260px);
+      width: clamp(200px, 25vw, 280px);
       height: auto;
-      filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.4));
+      filter: drop-shadow(0 0 25px rgba(255, 255, 255, 0.4));
     }
 
-    /* การ์ดแบบใสพิเศษ (ไม่มีกรอบทอง) เพื่อให้เห็น Background สวยๆ */
+    /* การ์ดแบบกระจกใส (Glassmorphism) ไม่ใส่กรอบทอง */
     .card-luxury {
-      background: rgba(0, 0, 0, 0.35); /* เข้มขึ้นเล็กน้อยเพื่อให้อ่านง่ายบนพื้นหลังสว่าง */
-      backdrop-filter: blur(15px);
-      -webkit-backdrop-filter: blur(15px);
+      background: rgba(0, 0, 0, 0.4); 
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
       border-radius: 40px;
-      padding: 35px 45px;
+      padding: 30px 45px;
       transition: all 0.4s ease;
       display: flex;
       flex-direction: column;
       align-items: center;
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.15);
       width: 100%;
     }
 
     .card-luxury:hover {
       transform: translateY(-8px);
-      background: rgba(0, 0, 0, 0.5);
-      border-color: rgba(255, 255, 255, 0.3);
+      background: rgba(0, 0, 0, 0.55);
+      border-color: rgba(255, 255, 255, 0.4);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.5);
     }
 
     .emoji-float {
-      font-size: 4rem;
-      margin-bottom: 1.2rem;
-      filter: drop-shadow(0 10px 10px rgba(0,0,0,0.3));
-      animation: floatIcon 3.5s ease-in-out infinite;
+      font-size: 4.5rem;
+      margin-bottom: 1rem;
+      filter: drop-shadow(0 8px 10px rgba(0,0,0,0.4));
+      animation: floatIcon 3s ease-in-out infinite;
     }
 
     @keyframes floatIcon {
@@ -76,33 +71,32 @@
     }
 
     .btn-action {
-      background: linear-gradient(135deg, #e63946 0%, #9b1a1a 100%);
+      background: linear-gradient(135deg, #e63946 0%, #a81d1d 100%);
       color: white;
       font-weight: 800;
-      font-size: 1rem;
+      font-size: 1.1rem;
       padding: 12px 0;
       width: 100%;
       border-radius: 20px;
       border: none;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-      cursor: pointer;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
       transition: 0.3s;
     }
     
     .btn-action:hover {
       filter: brightness(1.2);
-      box-shadow: 0 0 20px rgba(230, 57, 70, 0.4);
+      transform: scale(1.02);
     }
 
     .text-title {
       font-size: 1.6rem;
       font-weight: 700;
       margin-bottom: 4px;
-      letter-spacing: 1px;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.8);
     }
 
     .text-subtitle {
-      color: rgba(255,255,255,0.7);
+      color: rgba(255,255,255,0.8);
       font-size: 0.85rem;
       margin-bottom: 22px;
       text-align: center;
@@ -119,7 +113,6 @@
       justify-content: center;
       align-items: center;
       padding: 20px;
-      position: relative;
     }
   </style>
 </head>
@@ -129,16 +122,16 @@
 
   <div class="main-wrapper relative z-20">
     
-    <div class="text-center mb-6">
+    <div class="text-center mb-8">
       <div class="flex justify-center mb-2">
         <img src="https://i.postimg.cc/WzsZgnNK/unnamed-removebg-preview.png" class="hero-logo" alt="Logo">
       </div>
-      <p class="text-white tracking-[0.5em] font-bold text-lg uppercase drop-shadow-md">
+      <p class="text-white tracking-[0.5em] font-bold text-lg uppercase drop-shadow-md opacity-90">
         Merry Christmas 2025
       </p>
     </div>
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 w-full max-w-7xl">
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 w-full max-w-7xl px-4">
       
       <a href="https://drive.google.com/drive/folders/1b0pN4rgcnerd5DFi5lPQHMJyp-Pslpiq?usp=sharing" target="_blank" class="block">
         <div class="card-luxury">
@@ -212,7 +205,7 @@
         elements.push({
           x: Math.random() * width,
           y: Math.random() * height,
-          size: Math.random() * 20 + 40, // อิโมจิใหญ่กำลังดี
+          size: Math.random() * 20 + 40,
           speed: Math.random() * 0.4 + 0.2,
           emoji: emojis[Math.floor(Math.random() * emojis.length)],
           swing: Math.random() * 1,
