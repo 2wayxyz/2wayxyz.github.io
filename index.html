@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="th" class="h-full">
+<html lang="th">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,10 +12,13 @@
   <style>
     body, html { 
       margin: 0; padding: 0;
-      height: 100vh;
+      /* แก้ไข: เปลี่ยนจาก overflow: hidden เป็น auto เพื่อให้เลื่อนได้ */
+      overflow-x: hidden; 
+      overflow-y: auto;
+      min-height: 100vh;
       font-family: 'Taviraj', serif;
-      overflow: hidden; 
       color: white;
+      background-color: #000;
     }
 
     .bg-canvas {
@@ -29,20 +32,16 @@
       z-index: -5;
     }
 
-    /* โลโก้สไตล์ก้อนเมฆ ขยายใหญ่และดันขึ้นสูง */
     .hero-logo {
       width: clamp(260px, 35vw, 380px);
       height: auto;
-      /* เอฟเฟกต์ก้อนเมฆฟุ้งๆ */
       filter: drop-shadow(0 0 45px rgba(255, 255, 255, 0.7)); 
       margin-bottom: 30px;
-      transition: 0.5s ease;
     }
 
-    /* ส่วนหัวที่ดันขึ้นห่างจากกรอบข้างล่าง */
     .header-section {
-      margin-top: -40px; /* ดันขึ้นด้านบน */
-      margin-bottom: 80px; /* เว้นระยะห่างจากกรอบข้างล่างให้มากขึ้น */
+      padding-top: 60px; /* ปรับแทน margin-top ติดลบ เพื่อให้ไม่โดนบังในมือถือ */
+      margin-bottom: 40px;
       text-align: center;
     }
 
@@ -57,14 +56,10 @@
       flex-direction: column;
       align-items: center;
       border: 1px solid rgba(255, 255, 255, 0.15);
-      min-width: 300px; /* กว้างพอให้ข้อความบรรทัดเดียว */
       width: 100%;
-    }
-
-    .card-luxury:hover {
-      transform: translateY(-8px);
-      background: rgba(0, 0, 0, 0.6);
-      border-color: rgba(255, 255, 255, 0.4);
+      /* ปรับให้กว้างในมือถือ */
+      max-width: 350px;
+      margin: 0 auto;
     }
 
     .emoji-float {
@@ -87,18 +82,11 @@
       width: 90%;
       border-radius: 20px;
       border: none;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
-      transition: 0.3s;
-    }
-    
-    .btn-action:hover {
-      filter: brightness(1.2);
     }
 
     .text-title {
       font-size: 1.7rem;
       font-weight: 700;
-      margin-bottom: 6px;
       white-space: nowrap;
     }
 
@@ -115,12 +103,15 @@
     }
 
     .main-wrapper {
-      height: 100vh;
+      position: relative;
+      z-index: 20;
+      width: 100%;
+      /* แก้ไข: ให้ความสูงยืดหยุ่นตามเนื้อหา */
+      min-height: 100vh;
       display: flex;
       flex-direction: column;
-      justify-content: center;
       align-items: center;
-      padding: 20px;
+      padding: 20px 20px 80px 20px;
     }
   </style>
 </head>
@@ -128,18 +119,18 @@
 
   <div class="bg-canvas"></div>
 
-  <div class="main-wrapper relative z-20">
+  <div class="main-wrapper">
     
     <div class="header-section">
       <div class="flex justify-center">
         <img src="https://i.postimg.cc/WzsZgnNK/unnamed-removebg-preview.png" class="hero-logo" alt="Cloud Logo">
       </div>
-      <p class="text-white tracking-[0.8em] font-bold text-2xl uppercase drop-shadow-2xl opacity-100">
+      <p class="text-white tracking-[0.5em] sm:tracking-[0.8em] font-bold text-xl sm:text-2xl uppercase drop-shadow-2xl">
         Merry Christmas 2025
       </p>
     </div>
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 w-full max-w-[1700px] px-10">
+    <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-8 w-full max-w-[1700px] px-4">
       
       <a href="https://drive.google.com/drive/folders/1b0pN4rgcnerd5DFi5lPQHMJyp-Pslpiq?usp=sharing" target="_blank" class="block">
         <div class="card-luxury">
