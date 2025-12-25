@@ -12,16 +12,16 @@
   <style>
     body, html { 
       margin: 0; padding: 0;
-      /* แก้ไข: เปลี่ยนจาก overflow: hidden เป็น auto เพื่อให้เลื่อนได้ */
-      overflow-x: hidden; 
-      overflow-y: auto;
       min-height: 100vh;
       font-family: 'Taviraj', serif;
       color: white;
-      background-color: #000;
+      /* อนุญาตให้เลื่อนได้ */
+      overflow-x: hidden;
+      overflow-y: auto;
     }
 
-    .bg-canvas {
+    /* แก้ไขพื้นหลังให้ล็อกติดหน้าจอ (ไม่เลื่อนตามเนื้อหา) */
+    .bg-fixed {
       position: fixed; 
       top: 0; left: 0; 
       width: 100%; height: 100%;
@@ -29,6 +29,15 @@
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
+      z-index: -10;
+    }
+
+    /* เลเยอร์มืดบางๆ เพื่อให้อ่านง่ายขึ้น */
+    .bg-overlay {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.2);
       z-index: -5;
     }
 
@@ -36,12 +45,12 @@
       width: clamp(260px, 35vw, 380px);
       height: auto;
       filter: drop-shadow(0 0 45px rgba(255, 255, 255, 0.7)); 
-      margin-bottom: 30px;
+      margin-bottom: 20px;
     }
 
     .header-section {
-      padding-top: 60px; /* ปรับแทน margin-top ติดลบ เพื่อให้ไม่โดนบังในมือถือ */
-      margin-bottom: 40px;
+      padding-top: 50px;
+      margin-bottom: 50px;
       text-align: center;
     }
 
@@ -50,21 +59,20 @@
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
       border-radius: 40px;
-      padding: 35px 30px;
+      padding: 35px 25px;
       transition: all 0.4s ease;
       display: flex;
       flex-direction: column;
       align-items: center;
       border: 1px solid rgba(255, 255, 255, 0.15);
       width: 100%;
-      /* ปรับให้กว้างในมือถือ */
       max-width: 350px;
       margin: 0 auto;
     }
 
     .emoji-float {
       font-size: 4.5rem;
-      margin-bottom: 1.5rem;
+      margin-bottom: 1rem;
       animation: floatIcon 3.5s ease-in-out infinite;
     }
 
@@ -82,6 +90,7 @@
       width: 90%;
       border-radius: 20px;
       border: none;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
     }
 
     .text-title {
@@ -92,12 +101,13 @@
 
     .text-subtitle {
       color: rgba(255,255,255,0.9);
-      font-size: 1.05rem;
+      font-size: 1rem;
       margin-bottom: 25px;
       text-align: center;
       white-space: nowrap;
     }
 
+    /* หิมะตกให้ล็อกติดหน้าจอเหมือนกัน */
     #fallingCanvas { 
       position: fixed; top: 0; left: 0; pointer-events: none; z-index: 10; 
     }
@@ -106,18 +116,18 @@
       position: relative;
       z-index: 20;
       width: 100%;
-      /* แก้ไข: ให้ความสูงยืดหยุ่นตามเนื้อหา */
       min-height: 100vh;
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 20px 20px 80px 20px;
+      padding: 20px 20px 100px 20px;
     }
   </style>
 </head>
 <body>
 
-  <div class="bg-canvas"></div>
+  <div class="bg-fixed"></div>
+  <div class="bg-overlay"></div>
 
   <div class="main-wrapper">
     
@@ -125,12 +135,12 @@
       <div class="flex justify-center">
         <img src="https://i.postimg.cc/WzsZgnNK/unnamed-removebg-preview.png" class="hero-logo" alt="Cloud Logo">
       </div>
-      <p class="text-white tracking-[0.5em] sm:tracking-[0.8em] font-bold text-xl sm:text-2xl uppercase drop-shadow-2xl">
+      <p class="text-white tracking-[0.6em] font-bold text-xl sm:text-2xl uppercase drop-shadow-2xl">
         Merry Christmas 2025
       </p>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-8 w-full max-w-[1700px] px-4">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 w-full max-w-[1700px] px-4">
       
       <a href="https://drive.google.com/drive/folders/1b0pN4rgcnerd5DFi5lPQHMJyp-Pslpiq?usp=sharing" target="_blank" class="block">
         <div class="card-luxury">
@@ -204,7 +214,7 @@
         elements.push({
           x: Math.random() * width,
           y: Math.random() * height,
-          size: Math.random() * 20 + 35,
+          size: Math.random() * 15 + 30,
           speed: Math.random() * 0.4 + 0.2,
           emoji: emojis[Math.floor(Math.random() * emojis.length)],
           swing: Math.random() * 1,
