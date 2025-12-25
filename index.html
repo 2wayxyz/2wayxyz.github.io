@@ -11,7 +11,6 @@
 
   <style>
     :root {
-      --gold: #ffd700;
       --soft-white: rgba(255, 255, 255, 0.8);
     }
 
@@ -19,57 +18,59 @@
       margin: 0; padding: 0;
       height: 100vh;
       font-family: 'Taviraj', serif;
-      overflow: hidden; /* ล็อกหน้าจอให้พอดีเป๊ะ */
+      overflow: hidden; 
       color: white;
       background: #000;
     }
 
+    /* เปลี่ยนพื้นหลังเป็นรูปใหม่ที่คุณส่งมา */
     .bg-canvas {
       position: fixed; 
       top: 0; left: 0; 
       width: 100%; height: 100%;
-      background-image: url('https://i.postimg.cc/FsQWn5Rq/bg-cm.png');
+      background-image: url('https://i.postimg.cc/528nBPbf/d-sin-th-y-ngmi-di-t-ngch-x.png');
       background-size: cover;
       background-position: center;
       z-index: -5;
     }
 
-    /* ปรับโลโก้ให้ขนาดพอดี ไม่ใหญ่เกินไป */
     .hero-logo {
-      width: clamp(220px, 30vw, 320px);
+      width: clamp(200px, 25vw, 280px);
       height: auto;
       filter: drop-shadow(0 0 30px rgba(255, 255, 255, 0.4));
     }
 
-    /* ปรับกรอบให้กว้างขึ้นเล็กน้อย แต่ยังคงความกะทัดรัด */
+    /* การ์ดแบบ Pure Glass - ลบกรอบทองออกทั้งหมด */
     .card-luxury {
-      background: rgba(255, 255, 255, 0.05);
-      backdrop-filter: blur(20px);
-      border-radius: 35px;
-      padding: 30px 35px; /* เพิ่มความกว้างด้านข้างตรงนี้ */
-      transition: all 0.4s ease;
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(25px);
+      border-radius: 40px;
+      padding: 30px 40px;
+      transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
       display: flex;
       flex-direction: column;
       align-items: center;
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      /* ใช้เส้นขอบขาวบางๆ แทนทอง หรือไม่ใส่เลย */
+      border: 1px solid rgba(255, 255, 255, 0.15);
       width: 100%;
     }
 
     .card-luxury:hover {
       transform: translateY(-10px);
-      background: rgba(255, 255, 255, 0.12);
-      box-shadow: 0 15px 30px rgba(0,0,0,0.6);
+      background: rgba(255, 255, 255, 0.15);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+      border-color: rgba(255, 255, 255, 0.4);
     }
 
     .emoji-float {
-      font-size: 4.5rem; /* ลดขนาดอิโมจิให้พอดีจอ */
+      font-size: 4.5rem;
       margin-bottom: 1rem;
-      animation: floatIcon 3s ease-in-out infinite;
+      animation: floatIcon 3.5s ease-in-out infinite;
     }
 
     @keyframes floatIcon {
       0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
+      50% { transform: translateY(-12px); }
     }
 
     .btn-action {
@@ -79,16 +80,22 @@
       font-size: 1rem;
       padding: 12px 0;
       width: 100%;
-      border-radius: 18px;
+      border-radius: 20px;
       border: none;
-      box-shadow: 0 5px 15px rgba(230, 57, 70, 0.2);
+      box-shadow: 0 8px 20px rgba(230, 57, 70, 0.3);
+      transition: 0.3s;
+    }
+    
+    .btn-action:hover {
+      filter: brightness(1.2);
+      transform: scale(1.02);
     }
 
     .text-title {
-      font-size: 1.5rem;
+      font-size: 1.6rem;
       font-weight: 700;
       margin-bottom: 4px;
-      text-shadow: 0 2px 8px rgba(0,0,0,0.8);
+      text-shadow: 0 2px 10px rgba(0,0,0,0.5);
     }
 
     .text-subtitle {
@@ -102,7 +109,6 @@
       position: fixed; top: 0; left: 0; pointer-events: none; z-index: 10; 
     }
 
-    /* Container หลักที่คุมทุกอย่างให้พอดีหน้าจอ */
     .main-wrapper {
       height: 100vh;
       display: flex;
@@ -119,11 +125,11 @@
 
   <div class="main-wrapper relative z-20">
     
-    <div class="text-center mb-8">
-      <div class="flex justify-center">
+    <div class="text-center mb-6">
+      <div class="flex justify-center mb-2">
         <img src="https://i.postimg.cc/WzsZgnNK/unnamed-removebg-preview.png" class="hero-logo" alt="2Way Logo">
       </div>
-      <p class="text-yellow-400 tracking-[0.6em] font-bold text-lg uppercase mt-[-10px] drop-shadow-md">
+      <p class="text-white tracking-[0.5em] font-bold text-lg uppercase drop-shadow-lg">
         Merry Christmas 2025
       </p>
     </div>
@@ -202,7 +208,7 @@
         elements.push({
           x: Math.random() * width,
           y: Math.random() * height,
-          size: Math.random() * 20 + 35,
+          size: Math.random() * 15 + 30,
           speed: Math.random() * 0.4 + 0.2,
           emoji: emojis[Math.floor(Math.random() * emojis.length)],
           swing: Math.random() * 1,
