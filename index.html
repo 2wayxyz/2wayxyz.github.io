@@ -12,15 +12,16 @@
   <style>
     :root {
       --gold: #ffd700;
-      --gold-bright: #fff5b7;
+      --soft-white: rgba(255, 255, 255, 0.8);
     }
 
     body, html { 
       margin: 0; padding: 0;
       height: 100%;
       font-family: 'Taviraj', serif;
-      overflow: hidden;
+      overflow-x: hidden;
       color: white;
+      background: #000;
     }
 
     .bg-canvas {
@@ -33,163 +34,164 @@
       z-index: -5;
     }
 
-    /* กรอบหรูล้อมรอบหน้าจอ */
-    .outer-border {
-      position: fixed;
-      top: 20px; left: 20px; right: 20px; bottom: 20px;
-      border: 3px solid var(--gold);
-      border-radius: 40px;
-      z-index: 50;
-      pointer-events: none;
-      box-shadow: inset 0 0 20px rgba(255, 215, 0, 0.3), 0 0 20px rgba(0,0,0,0.5);
-    }
-    .inner-border {
-      position: absolute;
-      top: 10px; left: 10px; right: 10px; bottom: 10px;
-      border: 1px solid rgba(255, 255, 255, 0.3);
-      border-radius: 30px;
-    }
-
-    /* โลโก้สไตล์ก้อนเมฆ */
-    .cloud-logo {
-      filter: drop-shadow(0 0 25px rgba(255,255,255,0.8));
-      background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0) 70%);
-      padding: 20px;
-      border-radius: 50%;
-    }
-
+    /* หัวข้อหลักแบบพรีเมียม ไม่มีกรอบ */
     .title-main {
       font-family: 'Cinzel', serif;
-      font-size: clamp(3rem, 7vw, 5rem);
-      background: linear-gradient(to bottom, #fff 30%, var(--gold) 100%);
+      font-size: clamp(3rem, 8vw, 5.5rem);
+      background: linear-gradient(to bottom, #fff 20%, var(--gold) 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      filter: drop-shadow(0 0 15px rgba(0,0,0,0.9));
+      filter: drop-shadow(0 10px 20px rgba(0,0,0,0.8));
       font-weight: 900;
+      margin-bottom: 0.5rem;
     }
 
-    .text-bordered {
-      text-shadow: 2px 2px 4px rgba(0,0,0,1), -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
-    }
-
-    .card-3d {
-      background: rgba(0, 0, 0, 0.6);
-      backdrop-filter: blur(15px);
-      border: 2px solid var(--gold);
-      border-radius: 35px;
-      padding: 30px 20px;
-      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    /* การ์ดแบบใหม่: เน้นความโปร่งใสและแสงเงา (ไม่มีเส้นขอบเหลือง) */
+    .card-luxury {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(20px);
+      border-radius: 40px;
+      padding: 40px 25px;
+      transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+      position: relative;
+      overflow: hidden;
       display: flex;
       flex-direction: column;
-      justify-content: center;
       align-items: center;
-    }
-    .card-3d:hover {
-      transform: scale(1.08) translateY(-10px);
-      background: rgba(0, 0, 0, 0.75);
-      box-shadow: 0 0 30px rgba(255, 215, 0, 0.4);
+      border: 1px solid rgba(255, 255, 255, 0.1);
     }
 
-    .btn-premium {
-      background: linear-gradient(135deg, #ff0000 0%, #8b0000 100%);
-      border-radius: 25px;
-      padding: 12px 0;
+    .card-luxury:hover {
+      transform: translateY(-15px) scale(1.02);
+      background: rgba(255, 255, 255, 0.12);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.6), 0 0 25px rgba(255, 215, 0, 0.2);
+    }
+
+    /* ลูกเล่น Emoji ขยับขึ้นลง */
+    .emoji-float {
+      font-size: 5.5rem;
+      margin-bottom: 1.5rem;
+      filter: drop-shadow(0 15px 15px rgba(0,0,0,0.4));
+      animation: floatIcon 3s ease-in-out infinite;
+    }
+
+    @keyframes floatIcon {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
+    }
+
+    /* ปุ่มแบบใหม่: Breathing Effect */
+    .btn-action {
+      background: linear-gradient(135deg, #e63946 0%, #a81d1d 100%);
+      color: white;
       font-weight: 800;
       font-size: 1.1rem;
-      border: 2px solid var(--gold-bright);
+      padding: 14px 0;
       width: 100%;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      border-radius: 20px;
       transition: 0.3s;
+      box-shadow: 0 5px 15px rgba(230, 57, 70, 0.3);
+      animation: breathe 2s infinite;
+      border: none;
     }
-    .btn-premium:hover {
-      filter: brightness(1.3);
-      letter-spacing: 1px;
+
+    @keyframes breathe {
+      0% { box-shadow: 0 0 0 0 rgba(230, 57, 70, 0.6); }
+      70% { box-shadow: 0 0 0 15px rgba(230, 57, 70, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(230, 57, 70, 0); }
+    }
+
+    .btn-action:hover {
+      filter: brightness(1.2);
+      transform: translateY(-2px);
+    }
+
+    /* ข้อความแบบสะอาดตา */
+    .text-title {
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: white;
+      margin-bottom: 5px;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.8);
+    }
+
+    .text-subtitle {
+      color: var(--soft-white);
+      font-size: 0.95rem;
+      margin-bottom: 25px;
+      text-shadow: 0 2px 5px rgba(0,0,0,0.5);
     }
 
     #fallingCanvas { 
       position: fixed; top: 0; left: 0; pointer-events: none; z-index: 10; 
-    }
-
-    .content-container {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      width: 100%;
-      padding: 60px;
     }
   </style>
 </head>
 <body>
 
   <div class="bg-canvas"></div>
-  
-  <div class="outer-border">
-    <div class="inner-border"></div>
-  </div>
 
-  <div class="content-container relative z-20">
+  <div class="relative z-20 min-h-screen flex flex-col items-center justify-center px-6 py-10">
     
-    <div class="text-center mb-10">
-      <div class="flex justify-center mb-2">
-        <img src="https://i.postimg.cc/WzsZgnNK/unnamed-removebg-preview.png" class="w-64 h-auto cloud-logo" alt="Logo">
+    <div class="text-center mb-16">
+      <div class="flex justify-center mb-4">
+        <img src="https://i.postimg.cc/WzsZgnNK/unnamed-removebg-preview.png" class="w-56 h-auto filter drop-shadow-[0_0_30px_rgba(255,255,255,0.4)]" alt="Logo">
       </div>
       <h1 class="title-main">2Way.xyz</h1>
-      <p class="text-yellow-400 tracking-[0.8em] font-bold text-lg mt-2 uppercase text-bordered">Merry Christmas 2025</p>
+      <p class="text-yellow-400 tracking-[0.6em] font-bold text-lg uppercase opacity-90">Merry Christmas 2025</p>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-8 w-full max-w-7xl">
       
-      <a href="https://drive.google.com/drive/folders/1b0pN4rgcnerd5DFi5lPQHMJyp-Pslpiq?usp=sharing" target="_blank">
-        <div class="card-3d">
-          <div class="text-7xl mb-4 drop-shadow-lg">🎁</div>
-          <h3 class="text-2xl font-bold mb-2 text-bordered">PHOTOS 1</h3>
-          <p class="text-gray-200 text-sm mb-6 text-center text-bordered">English International Day</p>
-          <button class="btn-premium text-white">กดเพื่อดูรูป</button>
+      <a href="https://drive.google.com/drive/folders/1b0pN4rgcnerd5DFi5lPQHMJyp-Pslpiq?usp=sharing" target="_blank" class="block">
+        <div class="card-luxury">
+          <div class="emoji-float">🎁</div>
+          <h3 class="text-title">PHOTOS 1</h3>
+          <p class="text-subtitle">English International Day</p>
+          <button class="btn-action">กดเพื่อดูรูป</button>
         </div>
       </a>
 
-      <a href="https://drive.google.com/drive/folders/1eTO8RQqp250LG7Ow5BOOrd8mkiCJx0Yq?usp=sharing" target="_blank">
-        <div class="card-3d">
-          <div class="text-7xl mb-4 drop-shadow-lg">🦌</div>
-          <h3 class="text-2xl font-bold mb-2 text-bordered">PHOTOS 2</h3>
-          <p class="text-gray-200 text-sm mb-6 text-center text-bordered">Day At PPW : 16/12/25</p>
-          <button class="btn-premium text-white">กดเพื่อดูรูป</button>
+      <a href="https://drive.google.com/drive/folders/1eTO8RQqp250LG7Ow5BOOrd8mkiCJx0Yq?usp=sharing" target="_blank" class="block">
+        <div class="card-luxury">
+          <div class="emoji-float" style="animation-delay: 0.2s;">🦌</div>
+          <h3 class="text-title">PHOTOS 2</h3>
+          <p class="text-subtitle">Day At PPW : 16/12/25</p>
+          <button class="btn-action">กดเพื่อดูรูป</button>
         </div>
       </a>
 
-      <a href="https://drive.google.com/drive/folders/1hxKpXYnQ_kJ1OWg7bPnOXUWAFsBNBc5B?usp=sharing" target="_blank">
-        <div class="card-3d">
-          <div class="text-7xl mb-4 drop-shadow-lg">🔔</div>
-          <h3 class="text-2xl font-bold mb-2 text-bordered">PHOTOS 3</h3>
-          <p class="text-gray-200 text-sm mb-6 text-center text-bordered">Day At PPW : 17/12/25</p>
-          <button class="btn-premium text-white">กดเพื่อดูรูป</button>
+      <a href="https://drive.google.com/drive/folders/1hxKpXYnQ_kJ1OWg7bPnOXUWAFsBNBc5B?usp=sharing" target="_blank" class="block">
+        <div class="card-luxury">
+          <div class="emoji-float" style="animation-delay: 0.4s;">🔔</div>
+          <h3 class="text-title">PHOTOS 3</h3>
+          <p class="text-subtitle">Day At PPW : 17/12/25</p>
+          <button class="btn-action">กดเพื่อดูรูป</button>
         </div>
       </a>
 
-      <a href="https://drive.google.com/drive/folders/1-jCuNTxAlDgR7c3J3ogjCA7m4WZ8CUo9?usp=sharing" target="_blank">
-        <div class="card-3d">
-          <div class="text-7xl mb-4 drop-shadow-lg">❄️</div>
-          <h3 class="text-2xl font-bold mb-2 text-bordered">PHOTOS 4</h3>
-          <p class="text-gray-200 text-sm mb-6 text-center text-bordered">ก่อนกีฬาสี</p>
-          <button class="btn-premium text-white">กดเพื่อดูรูป</button>
+      <a href="https://drive.google.com/drive/folders/1-jCuNTxAlDgR7c3J3ogjCA7m4WZ8CUo9?usp=sharing" target="_blank" class="block">
+        <div class="card-luxury">
+          <div class="emoji-float" style="animation-delay: 0.6s;">❄️</div>
+          <h3 class="text-title">PHOTOS 4</h3>
+          <p class="text-subtitle">PPW : ก่อนกีฬาสี</p>
+          <button class="btn-action">กดเพื่อดูรูป</button>
         </div>
       </a>
 
-      <a href="https://drive.google.com/drive/folders/1B89pXjvvEyqvbDZlFeE2UNmYFyHxFeKE?usp=sharing" target="_blank">
-        <div class="card-3d">
-          <div class="text-7xl mb-4 drop-shadow-lg">🥂</div>
-          <h3 class="text-2xl font-bold mb-2 text-bordered">PHOTOS 5</h3>
-          <p class="text-gray-200 text-sm mb-6 text-center text-bordered">วันกีฬาสี</p>
-          <button class="btn-premium text-white">กดเพื่อดูรูป</button>
+      <a href="https://drive.google.com/drive/folders/1B89pXjvvEyqvbDZlFeE2UNmYFyHxFeKE?usp=sharing" target="_blank" class="block">
+        <div class="card-luxury">
+          <div class="emoji-float" style="animation-delay: 0.8s;">🥂</div>
+          <h3 class="text-title">PHOTOS 5</h3>
+          <p class="text-subtitle">PPW : วันกีฬาสี</p>
+          <button class="btn-action">กดเพื่อดูรูป</button>
         </div>
       </a>
 
     </div>
 
-    <div class="mt-12 opacity-90">
-      <p class="text-sm tracking-[0.5em] text-bordered font-bold">© 2025 2WAY.XYZ</p>
+    <div class="mt-20 opacity-60">
+      <p class="text-sm tracking-[0.4em] font-medium">© 2025 2WAY.XYZ</p>
     </div>
 
   </div>
@@ -213,8 +215,8 @@
         elements.push({
           x: Math.random() * width,
           y: Math.random() * height,
-          size: Math.random() * 30 + 50, // อิโมจิใหญ่ขึ้น 50-80px
-          speed: Math.random() * 0.4 + 0.2, // ลอยเอื่อยๆ ดูดี
+          size: Math.random() * 30 + 50,
+          speed: Math.random() * 0.4 + 0.2,
           emoji: emojis[Math.floor(Math.random() * emojis.length)],
           swing: Math.random() * 1.5,
           opacity: Math.random() * 0.3 + 0.3
