@@ -10,181 +10,146 @@
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Taviraj:wght@300;400;600&display=swap" rel="stylesheet">
 
   <style>
+    /* ป้องกันการหายของพื้นหลังด้วยการตั้งค่าสีสำรองและขนาดที่แน่นอน */
     body, html { 
       margin: 0; padding: 0;
       height: 100vh;
+      width: 100vw;
       font-family: 'Taviraj', serif;
       overflow: hidden; 
       color: white;
-      background-color: #000;
+      background-color: #0f172a; /* สีน้ำเงินเข้มสำรองกรณีรูปไม่โหลด */
     }
 
     .bg-canvas {
       position: fixed; 
       top: 0; left: 0; 
       width: 100%; height: 100%;
+      /* ใช้ลิงก์ตรงที่เสถียรที่สุด */
       background-image: url('https://i.postimg.cc/528nBPbf/d-sin-th-y-ngmi-di-t-ngch-x.png');
       background-size: cover;
-      background-position: center;
+      background-position: center center;
       background-repeat: no-repeat;
+      z-index: -10;
+    }
+
+    /* เพิ่ม Overlay บางๆ เพื่อให้พื้นหลังดูสมูทขึ้นและช่วยให้รูปขึ้นง่ายในบาง Browser */
+    .bg-overlay {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.2);
       z-index: -5;
     }
 
-    /* หัวข้อและโลโก้ ดันขึ้นสูงและทำเอฟเฟกต์ก้อนเมฆ */
     .header-section {
-      margin-top: -60px; /* ดันขึ้นสูงกว่าเดิม */
-      margin-bottom: 60px;
+      margin-top: -80px; /* ดันขึ้นสูงตามต้องการ */
+      margin-bottom: 50px;
       text-align: center;
       position: relative;
-      z-index: 30;
     }
 
     .hero-logo {
-      width: clamp(260px, 35vw, 400px);
+      width: clamp(250px, 30vw, 360px);
       height: auto;
-      filter: drop-shadow(0 0 50px rgba(255, 255, 255, 0.75)); /* Cloud Glow */
-      margin-bottom: 25px;
+      filter: drop-shadow(0 0 40px rgba(255, 255, 255, 0.8)); /* เอฟเฟกต์ก้อนเมฆ */
+      margin-bottom: 20px;
     }
 
-    /* กรอบ Photos กว้างพิเศษ ตัวหนังสือบรรทัดเดียว */
     .card-luxury {
-      background: rgba(0, 0, 0, 0.5); 
-      backdrop-filter: blur(25px);
-      -webkit-backdrop-filter: blur(25px);
+      background: rgba(0, 0, 0, 0.55); 
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
       border-radius: 40px;
-      padding: 40px 30px;
-      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      padding: 40px 35px;
+      transition: all 0.4s ease;
       display: flex;
       flex-direction: column;
       align-items: center;
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      min-width: 310px; /* กว้างพอสำหรับประโยคยาว */
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      min-width: 320px; /* กว้างเพื่อให้ตัวหนังสือบรรทัดเดียว */
       width: 100%;
     }
 
     .card-luxury:hover {
-      transform: translateY(-12px) scale(1.02);
-      background: rgba(0, 0, 0, 0.65);
-      border-color: rgba(255, 255, 255, 0.4);
-      box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+      transform: translateY(-10px);
+      background: rgba(0, 0, 0, 0.7);
     }
 
-    .emoji-float {
-      font-size: 4.8rem;
-      margin-bottom: 1.5rem;
-      animation: floatIcon 3.5s ease-in-out infinite;
+    .text-title {
+      font-size: 1.8rem;
+      font-weight: 700;
+      white-space: nowrap;
     }
 
-    @keyframes floatIcon {
-      0%, 100% { transform: translateY(0) rotate(-2deg); }
-      50% { transform: translateY(-15px) rotate(2deg); }
+    .text-subtitle {
+      color: rgba(255,255,255,0.9);
+      font-size: 1.1rem;
+      margin-bottom: 25px;
+      white-space: nowrap; /* บังคับบรรทัดเดียว */
     }
 
     .btn-action {
       background: linear-gradient(135deg, #e63946 0%, #a81d1d 100%);
       color: white;
       font-weight: 800;
-      font-size: 1.1rem;
       padding: 14px 0;
-      width: 85%;
+      width: 80%;
       border-radius: 20px;
-      border: none;
-      box-shadow: 0 5px 15px rgba(230, 57, 70, 0.3);
       cursor: pointer;
-      transition: 0.3s;
-    }
-    
-    .btn-action:hover {
-      filter: brightness(1.2);
-      box-shadow: 0 8px 25px rgba(230, 57, 70, 0.5);
     }
 
-    .text-title {
-      font-size: 1.8rem;
-      font-weight: 700;
-      margin-bottom: 6px;
-      white-space: nowrap;
-    }
-
-    .text-subtitle {
-      color: rgba(255,255,255,0.9);
-      font-size: 1.05rem;
-      margin-bottom: 25px;
-      text-align: center;
-      white-space: nowrap; /* ตัวหนังสือบรรทัดเดียว */
-    }
-
-    /* ปุ่มควบคุมเพลง */
     #music-control {
       position: fixed;
-      bottom: 30px;
-      right: 30px;
+      bottom: 25px;
+      right: 25px;
       z-index: 100;
-      background: rgba(255,255,255,0.1);
+      background: rgba(0,0,0,0.5);
       backdrop-filter: blur(10px);
-      padding: 12px 20px;
+      padding: 10px 20px;
       border-radius: 50px;
       border: 1px solid rgba(255,255,255,0.2);
       cursor: pointer;
-      display: flex;
-      align-items: center;
-      transition: 0.3s;
-    }
-
-    #music-control:hover { background: rgba(255,255,255,0.2); }
-
-    #fallingCanvas { 
-      position: fixed; top: 0; left: 0; pointer-events: none; z-index: 10; 
-    }
-
-    .main-wrapper {
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      padding: 20px;
     }
   </style>
 </head>
 <body>
 
   <div class="bg-canvas"></div>
+  <div class="bg-overlay"></div>
 
-  <div id="youtube-player" style="position: absolute; top: -9999px; left: -9999px;">
-    <iframe id="player-iframe" width="100" height="100" src="https://www.youtube.com/embed/NhMtq7sLcCU?enablejsapi=1&loop=1&playlist=NhMtq7sLcCU" frameborder="0"></iframe>
+  <div style="display:none;">
+    <iframe id="player-iframe" src="https://www.youtube.com/embed/NhMtq7sLcCU?enablejsapi=1&loop=1&playlist=NhMtq7sLcCU" allow="autoplay"></iframe>
   </div>
 
   <div id="music-control" onclick="togglePlay()">
-    <span id="music-icon" class="mr-2">🎵</span>
-    <span id="music-text" class="text-xs font-bold uppercase tracking-widest">Tap to Play Music</span>
+    <span id="music-text" class="text-xs font-bold uppercase tracking-widest">🎵 Music: Off</span>
   </div>
 
-  <div class="main-wrapper relative z-20">
+  <div class="main-wrapper relative z-20 h-screen flex flex-col justify-center items-center px-10">
     
     <div class="header-section">
       <div class="flex justify-center">
-        <img src="https://i.postimg.cc/WzsZgnNK/unnamed-removebg-preview.png" class="hero-logo" alt="2Way Cloud Logo">
+        <img src="https://i.postimg.cc/WzsZgnNK/unnamed-removebg-preview.png" class="hero-logo" alt="Logo">
       </div>
-      <p class="text-white tracking-[0.8em] font-bold text-2xl uppercase drop-shadow-2xl">
+      <p class="text-white tracking-[0.8em] font-bold text-2xl uppercase drop-shadow-lg">
         Merry Christmas 2025
       </p>
     </div>
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-10 w-full max-w-[1750px] px-12">
-      
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 w-full max-w-[1700px]">
       <a href="https://drive.google.com/drive/folders/1b0pN4rgcnerd5DFi5lPQHMJyp-Pslpiq?usp=sharing" target="_blank" class="block">
         <div class="card-luxury">
-          <div class="emoji-float">🎁</div>
+          <div class="text-[5rem] mb-4">🎁</div>
           <h3 class="text-title">PHOTOS 1</h3>
           <p class="text-subtitle">English International Day</p>
           <button class="btn-action">กดเพื่อดูรูป</button>
         </div>
       </a>
-
+      
       <a href="https://drive.google.com/drive/folders/1eTO8RQqp250LG7Ow5BOOrd8mkiCJx0Yq?usp=sharing" target="_blank" class="block">
         <div class="card-luxury">
-          <div class="emoji-float" style="animation-delay: 0.2s;">🦌</div>
+          <div class="text-[5rem] mb-4">🦌</div>
           <h3 class="text-title">PHOTOS 2</h3>
           <p class="text-subtitle">Day At PPW : 16/12/25</p>
           <button class="btn-action">กดเพื่อดูรูป</button>
@@ -193,7 +158,7 @@
 
       <a href="https://drive.google.com/drive/folders/1hxKpXYnQ_kJ1OWg7bPnOXUWAFsBNBc5B?usp=sharing" target="_blank" class="block">
         <div class="card-luxury">
-          <div class="emoji-float" style="animation-delay: 0.4s;">🔔</div>
+          <div class="text-[5rem] mb-4">🔔</div>
           <h3 class="text-title">PHOTOS 3</h3>
           <p class="text-subtitle">Day At PPW : 17/12/25</p>
           <button class="btn-action">กดเพื่อดูรูป</button>
@@ -202,7 +167,7 @@
 
       <a href="https://drive.google.com/drive/folders/1-jCuNTxAlDgR7c3J3ogjCA7m4WZ8CUo9?usp=sharing" target="_blank" class="block">
         <div class="card-luxury">
-          <div class="emoji-float" style="animation-delay: 0.6s;">❄️</div>
+          <div class="text-[5rem] mb-4">❄️</div>
           <h3 class="text-title">PHOTOS 4</h3>
           <p class="text-subtitle">PPW : ก่อนกีฬาสี</p>
           <button class="btn-action">กดเพื่อดูรูป</button>
@@ -211,25 +176,19 @@
 
       <a href="https://drive.google.com/drive/folders/1B89pXjvvEyqvbDZlFeE2UNmYFyHxFeKE?usp=sharing" target="_blank" class="block">
         <div class="card-luxury">
-          <div class="emoji-float" style="animation-delay: 0.8s;">🥂</div>
+          <div class="text-[5rem] mb-4">🥂</div>
           <h3 class="text-title">PHOTOS 5</h3>
           <p class="text-subtitle">PPW : วันกีฬาสี</p>
           <button class="btn-action">กดเพื่อดูรูป</button>
         </div>
       </a>
-
     </div>
 
-    <div class="mt-16 opacity-40">
-      <p class="text-xs tracking-[0.4em]">© 2025 2WAY.XYZ</p>
-    </div>
-
+    <p class="mt-12 opacity-40 text-xs tracking-widest text-center">© 2025 2WAY.XYZ</p>
   </div>
 
-  <canvas id="fallingCanvas"></canvas>
-
   <script>
-    // YouTube API Logic
+    // YouTube API สำหรับเพลง
     var tag = document.createElement('script');
     tag.src = "https://www.youtube.com/iframe_api";
     var firstScriptTag = document.getElementsByTagName('script')[0];
@@ -245,80 +204,18 @@
     }
 
     function onPlayerReady(event) {
-      // เพลงพร้อมเล่นแต่รอคนคลิกหน้าเว็บก่อน
       document.body.addEventListener('click', function() {
         player.playVideo();
-        updateUI(true);
+        document.getElementById('music-text').innerText = "🎵 Music: Playing";
       }, { once: true });
     }
 
     let isPlaying = false;
     function togglePlay() {
-      if (isPlaying) {
-        player.pauseVideo();
-        updateUI(false);
-      } else {
-        player.playVideo();
-        updateUI(true);
-      }
+      if (isPlaying) { player.pauseVideo(); document.getElementById('music-text').innerText = "🎵 Music: Off"; }
+      else { player.playVideo(); document.getElementById('music-text').innerText = "🎵 Music: On"; }
+      isPlaying = !isPlaying;
     }
-
-    function updateUI(playing) {
-      isPlaying = playing;
-      document.getElementById('music-text').innerText = playing ? "Music: Playing" : "Music: Paused";
-      document.getElementById('music-icon').style.animation = playing ? "spin 3s linear infinite" : "none";
-    }
-
-    // Snow Effect
-    const canvas = document.getElementById('fallingCanvas');
-    const ctx = canvas.getContext('2d');
-    let width, height, elements = [];
-    const emojis = ['🎄', '🎁', '🎅', '🦌', '🔔', '✨', '❄️'];
-
-    function init() {
-      width = window.innerWidth;
-      height = window.innerHeight;
-      canvas.width = width;
-      canvas.height = height;
-      elements = [];
-      for (let i = 0; i < 20; i++) {
-        elements.push({
-          x: Math.random() * width,
-          y: Math.random() * height,
-          size: Math.random() * 20 + 35,
-          speed: Math.random() * 0.4 + 0.2,
-          emoji: emojis[Math.floor(Math.random() * emojis.length)],
-          swing: Math.random() * 1,
-          opacity: Math.random() * 0.3 + 0.2
-        });
-      }
-    }
-
-    function draw() {
-      ctx.clearRect(0, 0, width, height);
-      elements.forEach(el => {
-        ctx.globalAlpha = el.opacity;
-        ctx.font = `${el.size}px serif`;
-        ctx.fillText(el.emoji, el.x, el.y);
-        el.y += el.speed;
-        el.x += Math.sin(el.y / 120) * el.swing;
-        if (el.y > height + 80) {
-          el.y = -80;
-          el.x = Math.random() * width;
-        }
-      });
-      requestAnimationFrame(draw);
-    }
-    
-    window.addEventListener('resize', init);
-    init(); draw();
   </script>
-
-  <style>
-    @keyframes spin {
-      from { transform: rotate(0deg); }
-      to { transform: rotate(360deg); }
-    }
-  </style>
 </body>
 </html>
