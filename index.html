@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>2Way.xyz</title>
+  <title>2Way.xyz - Christmas 2025</title>
 
   <link rel="icon" type="image/png" href="https://img5.pic.in.th/file/secure-sv1/64x64-removebg-preview.png">
   <script src="https://cdn.tailwindcss.com"></script>
@@ -16,6 +16,7 @@
       font-family: 'Taviraj', serif;
       overflow: hidden; 
       color: white;
+      background-color: #000;
     }
 
     .bg-canvas {
@@ -29,53 +30,54 @@
       z-index: -5;
     }
 
-    /* โลโก้สไตล์ก้อนเมฆ ขยายใหญ่และดันขึ้นสูง */
-    .hero-logo {
-      width: clamp(260px, 35vw, 380px);
-      height: auto;
-      /* เอฟเฟกต์ก้อนเมฆฟุ้งๆ */
-      filter: drop-shadow(0 0 45px rgba(255, 255, 255, 0.7)); 
-      margin-bottom: 30px;
-      transition: 0.5s ease;
-    }
-
-    /* ส่วนหัวที่ดันขึ้นห่างจากกรอบข้างล่าง */
+    /* หัวข้อและโลโก้ ดันขึ้นสูงและทำเอฟเฟกต์ก้อนเมฆ */
     .header-section {
-      margin-top: -40px; /* ดันขึ้นด้านบน */
-      margin-bottom: 80px; /* เว้นระยะห่างจากกรอบข้างล่างให้มากขึ้น */
+      margin-top: -60px; /* ดันขึ้นสูงกว่าเดิม */
+      margin-bottom: 60px;
       text-align: center;
+      position: relative;
+      z-index: 30;
     }
 
+    .hero-logo {
+      width: clamp(260px, 35vw, 400px);
+      height: auto;
+      filter: drop-shadow(0 0 50px rgba(255, 255, 255, 0.75)); /* Cloud Glow */
+      margin-bottom: 25px;
+    }
+
+    /* กรอบ Photos กว้างพิเศษ ตัวหนังสือบรรทัดเดียว */
     .card-luxury {
-      background: rgba(0, 0, 0, 0.45); 
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
+      background: rgba(0, 0, 0, 0.5); 
+      backdrop-filter: blur(25px);
+      -webkit-backdrop-filter: blur(25px);
       border-radius: 40px;
-      padding: 35px 30px;
-      transition: all 0.4s ease;
+      padding: 40px 30px;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       display: flex;
       flex-direction: column;
       align-items: center;
       border: 1px solid rgba(255, 255, 255, 0.15);
-      min-width: 300px; /* กว้างพอให้ข้อความบรรทัดเดียว */
+      min-width: 310px; /* กว้างพอสำหรับประโยคยาว */
       width: 100%;
     }
 
     .card-luxury:hover {
-      transform: translateY(-8px);
-      background: rgba(0, 0, 0, 0.6);
+      transform: translateY(-12px) scale(1.02);
+      background: rgba(0, 0, 0, 0.65);
       border-color: rgba(255, 255, 255, 0.4);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.5);
     }
 
     .emoji-float {
-      font-size: 4.5rem;
+      font-size: 4.8rem;
       margin-bottom: 1.5rem;
       animation: floatIcon 3.5s ease-in-out infinite;
     }
 
     @keyframes floatIcon {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-12px); }
+      0%, 100% { transform: translateY(0) rotate(-2deg); }
+      50% { transform: translateY(-15px) rotate(2deg); }
     }
 
     .btn-action {
@@ -84,19 +86,21 @@
       font-weight: 800;
       font-size: 1.1rem;
       padding: 14px 0;
-      width: 90%;
+      width: 85%;
       border-radius: 20px;
       border: none;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+      box-shadow: 0 5px 15px rgba(230, 57, 70, 0.3);
+      cursor: pointer;
       transition: 0.3s;
     }
     
     .btn-action:hover {
       filter: brightness(1.2);
+      box-shadow: 0 8px 25px rgba(230, 57, 70, 0.5);
     }
 
     .text-title {
-      font-size: 1.7rem;
+      font-size: 1.8rem;
       font-weight: 700;
       margin-bottom: 6px;
       white-space: nowrap;
@@ -107,8 +111,27 @@
       font-size: 1.05rem;
       margin-bottom: 25px;
       text-align: center;
-      white-space: nowrap;
+      white-space: nowrap; /* ตัวหนังสือบรรทัดเดียว */
     }
+
+    /* ปุ่มควบคุมเพลง */
+    #music-control {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      z-index: 100;
+      background: rgba(255,255,255,0.1);
+      backdrop-filter: blur(10px);
+      padding: 12px 20px;
+      border-radius: 50px;
+      border: 1px solid rgba(255,255,255,0.2);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      transition: 0.3s;
+    }
+
+    #music-control:hover { background: rgba(255,255,255,0.2); }
 
     #fallingCanvas { 
       position: fixed; top: 0; left: 0; pointer-events: none; z-index: 10; 
@@ -128,18 +151,27 @@
 
   <div class="bg-canvas"></div>
 
+  <div id="youtube-player" style="position: absolute; top: -9999px; left: -9999px;">
+    <iframe id="player-iframe" width="100" height="100" src="https://www.youtube.com/embed/NhMtq7sLcCU?enablejsapi=1&loop=1&playlist=NhMtq7sLcCU" frameborder="0"></iframe>
+  </div>
+
+  <div id="music-control" onclick="togglePlay()">
+    <span id="music-icon" class="mr-2">🎵</span>
+    <span id="music-text" class="text-xs font-bold uppercase tracking-widest">Tap to Play Music</span>
+  </div>
+
   <div class="main-wrapper relative z-20">
     
     <div class="header-section">
       <div class="flex justify-center">
-        <img src="https://i.postimg.cc/WzsZgnNK/unnamed-removebg-preview.png" class="hero-logo" alt="Cloud Logo">
+        <img src="https://i.postimg.cc/WzsZgnNK/unnamed-removebg-preview.png" class="hero-logo" alt="2Way Cloud Logo">
       </div>
-      <p class="text-white tracking-[0.8em] font-bold text-2xl uppercase drop-shadow-2xl opacity-100">
+      <p class="text-white tracking-[0.8em] font-bold text-2xl uppercase drop-shadow-2xl">
         Merry Christmas 2025
       </p>
     </div>
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 w-full max-w-[1700px] px-10">
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-10 w-full max-w-[1750px] px-12">
       
       <a href="https://drive.google.com/drive/folders/1b0pN4rgcnerd5DFi5lPQHMJyp-Pslpiq?usp=sharing" target="_blank" class="block">
         <div class="card-luxury">
@@ -188,8 +220,8 @@
 
     </div>
 
-    <div class="mt-16 opacity-50">
-      <p class="text-sm tracking-[0.4em]">© 2025 2WAY.XYZ</p>
+    <div class="mt-16 opacity-40">
+      <p class="text-xs tracking-[0.4em]">© 2025 2WAY.XYZ</p>
     </div>
 
   </div>
@@ -197,6 +229,47 @@
   <canvas id="fallingCanvas"></canvas>
 
   <script>
+    // YouTube API Logic
+    var tag = document.createElement('script');
+    tag.src = "https://www.youtube.com/iframe_api";
+    var firstScriptTag = document.getElementsByTagName('script')[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+    var player;
+    function onYouTubeIframeAPIReady() {
+      player = new YT.Player('player-iframe', {
+        events: {
+          'onReady': onPlayerReady
+        }
+      });
+    }
+
+    function onPlayerReady(event) {
+      // เพลงพร้อมเล่นแต่รอคนคลิกหน้าเว็บก่อน
+      document.body.addEventListener('click', function() {
+        player.playVideo();
+        updateUI(true);
+      }, { once: true });
+    }
+
+    let isPlaying = false;
+    function togglePlay() {
+      if (isPlaying) {
+        player.pauseVideo();
+        updateUI(false);
+      } else {
+        player.playVideo();
+        updateUI(true);
+      }
+    }
+
+    function updateUI(playing) {
+      isPlaying = playing;
+      document.getElementById('music-text').innerText = playing ? "Music: Playing" : "Music: Paused";
+      document.getElementById('music-icon').style.animation = playing ? "spin 3s linear infinite" : "none";
+    }
+
+    // Snow Effect
     const canvas = document.getElementById('fallingCanvas');
     const ctx = canvas.getContext('2d');
     let width, height, elements = [];
@@ -207,7 +280,6 @@
       height = window.innerHeight;
       canvas.width = width;
       canvas.height = height;
-      
       elements = [];
       for (let i = 0; i < 20; i++) {
         elements.push({
@@ -237,10 +309,16 @@
       });
       requestAnimationFrame(draw);
     }
-
+    
     window.addEventListener('resize', init);
-    init();
-    draw();
+    init(); draw();
   </script>
+
+  <style>
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+  </style>
 </body>
 </html>
