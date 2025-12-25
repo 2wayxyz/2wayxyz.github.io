@@ -19,16 +19,13 @@
       font-family: 'Taviraj', serif;
       overflow-x: hidden;
       color: white;
-      background-color: #000; /* สีสำรองระหว่างโหลดภาพ */
+      background-color: #000;
     }
 
-    /* พื้นหลังแบบไม่ดรอปแสง */
     .bg-canvas {
       position: fixed; 
-      top: 0; 
-      left: 0; 
-      width: 100%; 
-      height: 100%;
+      top: 0; left: 0; 
+      width: 100%; height: 100%;
       background-image: url('https://i.postimg.cc/FsQWn5Rq/bg-cm.png');
       background-size: cover;
       background-position: center;
@@ -36,20 +33,10 @@
       z-index: -5;
     }
 
-    /* อิโมจิลอยไปมา */
-    .floating-emoji {
-      position: fixed; z-index: -3; pointer-events: none; opacity: 0.8;
-      animation: floatAround 8s ease-in-out infinite alternate;
-    }
-    @keyframes floatAround {
-      from { transform: translate(0, 0) rotate(0deg); }
-      to { transform: translate(30px, 40px) rotate(15deg); }
-    }
-
     /* การ์ดแบบ Glassmorphism */
     .card-3d {
-      background: rgba(0, 0, 0, 0.3); /* ปรับพื้นหลังการ์ดให้มืดนิดหน่อยเพื่อให้อ่านข้อความง่ายขึ้นบนภาพสว่าง */
-      backdrop-filter: blur(10px);
+      background: rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(12px);
       border: 1px solid rgba(255, 255, 255, 0.2);
       border-radius: 40px;
       padding: 35px 25px;
@@ -58,12 +45,11 @@
     }
     .card-3d:hover {
       transform: translateY(-20px) scale(1.05);
-      background: rgba(0, 0, 0, 0.5);
+      background: rgba(0, 0, 0, 0.6);
       border-color: var(--gold);
       box-shadow: 0 40px 80px rgba(0,0,0,0.6);
     }
 
-    /* ปุ่มกด */
     .btn-premium {
       background: linear-gradient(135deg, #d42426 0%, #8b0000 100%);
       border-radius: 20px;
@@ -78,7 +64,6 @@
       transform: scale(0.96);
     }
 
-    /* หัวข้อหลัก */
     .title-main {
       font-family: 'Cinzel', serif;
       font-size: clamp(2.5rem, 8vw, 4.5rem);
@@ -88,17 +73,18 @@
       filter: drop-shadow(0 5px 15px rgba(0,0,0,0.8));
     }
 
-    .snow-layer { position: fixed; top: 0; left: 0; pointer-events: none; z-index: 10; }
+    /* เลเยอร์สำหรับอิโมจิและหิมะ */
+    .falling-layer { 
+      position: fixed; 
+      top: 0; left: 0; 
+      pointer-events: none; 
+      z-index: 10; 
+    }
   </style>
 </head>
 <body>
 
   <div class="bg-canvas"></div>
-
-  <div class="floating-emoji" style="top: 15%; left: 8%; font-size: 5rem;">🎄</div>
-  <div class="floating-emoji" style="top: 70%; left: 12%; font-size: 4rem; animation-delay: 1s;">🎁</div>
-  <div class="floating-emoji" style="top: 40%; right: 10%; font-size: 6rem; animation-delay: 2s;">✨</div>
-  <div class="floating-emoji" style="bottom: 15%; right: 15%; font-size: 4rem; animation-delay: 3s;">🔔</div>
 
   <div id="app" class="relative z-20 w-full h-full overflow-auto">
     <div class="max-w-6xl mx-auto px-6 py-20">
@@ -112,7 +98,6 @@
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 mb-32">
-        
         <a href="https://drive.google.com/drive/folders/1b0pN4rgcnerd5DFi5lPQHMJyp-Pslpiq?usp=sharing" target="_blank">
           <div class="card-3d text-center">
             <div class="text-7xl mb-6 drop-shadow-2xl">🎁</div>
@@ -157,7 +142,6 @@
             <button class="btn-premium w-full text-white">OPEN GIFT</button>
           </div>
         </a>
-
       </div>
 
       <div class="text-center opacity-80 pb-10">
@@ -167,44 +151,61 @@
     </div>
   </div>
 
-  <canvas class="snow-layer" id="snowCanvas"></canvas>
+  <canvas class="falling-layer" id="fallingCanvas"></canvas>
 
   <script>
-    const canvas = document.getElementById('snowCanvas');
+    const canvas = document.getElementById('fallingCanvas');
     const ctx = canvas.getContext('2d');
-    let width, height, snowflakes = [];
+    let width, height, elements = [];
+    
+    // รายการอิโมจิที่จะให้ลอยลงมา
+    const emojis = ['🎄', '🎁', '🎅', '🦌', '✨', '🔔', '❄️', '🍭', '⭐️'];
 
-    function initSnow() {
+    function init() {
       width = window.innerWidth;
       height = window.innerHeight;
       canvas.width = width;
       canvas.height = height;
-      snowflakes = Array(120).fill().map(() => ({
-        x: Math.random() * width,
-        y: Math.random() * height,
-        r: Math.random() * 3 + 1,
-        s: Math.random() * 0.8 + 0.2,
-        o: Math.random() * 0.6 + 0.4
-      }));
+      
+      elements = [];
+      // สร้างอิโมจิและหิมะผสมกัน 150 ชิ้น
+      for (let i = 0; i < 150; i++) {
+        elements.push({
+          x: Math.random() * width,
+          y: Math.random() * height,
+          size: Math.random() * 20 + 10, // ขนาดอิโมจิ
+          speed: Math.random() * 1.5 + 0.5,
+          emoji: emojis[Math.floor(Math.random() * emojis.length)],
+          swing: Math.random() * 2,
+          opacity: Math.random() * 0.7 + 0.3
+        });
+      }
     }
 
-    function drawSnow() {
+    function draw() {
       ctx.clearRect(0, 0, width, height);
-      snowflakes.forEach(f => {
-        ctx.fillStyle = `rgba(255, 255, 255, ${f.o})`;
-        ctx.beginPath();
-        ctx.arc(f.x, f.y, f.r, 0, Math.PI * 2);
-        ctx.fill();
-        f.y += f.s;
-        f.x += Math.sin(f.y / 60) * 0.5;
-        if (f.y > height) f.y = -10;
+      
+      elements.forEach(el => {
+        ctx.globalAlpha = el.opacity;
+        ctx.font = `${el.size}px serif`;
+        ctx.fillText(el.emoji, el.x, el.y);
+        
+        el.y += el.speed;
+        el.x += Math.sin(el.y / 50) * el.swing; // ส่ายไปมาเบาๆ
+        
+        // ถ้าตกทะลุขอบจอให้กลับไปเริ่มข้างบนใหม่
+        if (el.y > height + 50) {
+          el.y = -50;
+          el.x = Math.random() * width;
+        }
       });
-      requestAnimationFrame(drawSnow);
+      
+      requestAnimationFrame(draw);
     }
 
-    window.addEventListener('resize', initSnow);
-    initSnow();
-    drawSnow();
+    window.addEventListener('resize', init);
+    init();
+    draw();
   </script>
 </body>
 </html>
