@@ -11,20 +11,18 @@
 
   <style>
     :root {
-      /* ปรับสีหลักให้เข้ากับภาพพื้นหลังใหม่ */
-      --primary-dark: #041a13;
       --gold: #ffd700;
     }
 
     body { 
       margin: 0; padding: 0;
-      background-color: var(--primary-dark);
       font-family: 'Taviraj', serif;
       overflow-x: hidden;
       color: white;
+      background-color: #000; /* สีสำรองระหว่างโหลดภาพ */
     }
 
-    /* เปลี่ยนพื้นหลังเป็นรูปภาพตามที่ระบุ */
+    /* พื้นหลังแบบไม่ดรอปแสง */
     .bg-canvas {
       position: fixed; 
       top: 0; 
@@ -38,37 +36,9 @@
       z-index: -5;
     }
 
-    /* เพิ่ม Overlay มืดๆ เพื่อให้ตัวหนังสืออ่านง่ายขึ้น */
-    .bg-overlay {
-      position: fixed; 
-      top: 0; 
-      left: 0; 
-      width: 100%; 
-      height: 100%;
-      background: rgba(0, 0, 0, 0.4); /* ปรับความเข้มได้ที่นี่ */
-      z-index: -4;
-    }
-
-    /* ซานต้าขี่กวางตัวใหญ่ */
-    .big-santa-layer {
-      position: fixed;
-      top: 10%;
-      width: 500px;
-      z-index: -2;
-      pointer-events: none;
-      animation: santaCruise 30s linear infinite;
-      filter: drop-shadow(0 20px 50px rgba(0,0,0,0.5));
-      opacity: 0.8;
-    }
-
-    @keyframes santaCruise {
-      0% { left: -600px; transform: scale(1) translateY(0) rotate(5deg); }
-      50% { transform: scale(1.2) translateY(-100px) rotate(-5deg); }
-      100% { left: 100vw; transform: scale(1) translateY(0) rotate(5deg); }
-    }
-
+    /* อิโมจิลอยไปมา */
     .floating-emoji {
-      position: fixed; z-index: -3; pointer-events: none; opacity: 0.6;
+      position: fixed; z-index: -3; pointer-events: none; opacity: 0.8;
       animation: floatAround 8s ease-in-out infinite alternate;
     }
     @keyframes floatAround {
@@ -76,9 +46,10 @@
       to { transform: translate(30px, 40px) rotate(15deg); }
     }
 
+    /* การ์ดแบบ Glassmorphism */
     .card-3d {
-      background: rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(15px);
+      background: rgba(0, 0, 0, 0.3); /* ปรับพื้นหลังการ์ดให้มืดนิดหน่อยเพื่อให้อ่านข้อความง่ายขึ้นบนภาพสว่าง */
+      backdrop-filter: blur(10px);
       border: 1px solid rgba(255, 255, 255, 0.2);
       border-radius: 40px;
       padding: 35px 25px;
@@ -87,11 +58,12 @@
     }
     .card-3d:hover {
       transform: translateY(-20px) scale(1.05);
-      background: rgba(255, 255, 255, 0.2);
+      background: rgba(0, 0, 0, 0.5);
       border-color: var(--gold);
       box-shadow: 0 40px 80px rgba(0,0,0,0.6);
     }
 
+    /* ปุ่มกด */
     .btn-premium {
       background: linear-gradient(135deg, #d42426 0%, #8b0000 100%);
       border-radius: 20px;
@@ -100,20 +72,20 @@
       letter-spacing: 2px;
       transition: 0.4s;
       border: 1px solid rgba(255,255,255,0.2);
-      box-shadow: 0 10px 20px rgba(212, 36, 38, 0.3);
     }
     .btn-premium:hover {
       filter: brightness(1.3);
       transform: scale(0.96);
     }
 
+    /* หัวข้อหลัก */
     .title-main {
       font-family: 'Cinzel', serif;
       font-size: clamp(2.5rem, 8vw, 4.5rem);
       background: linear-gradient(to bottom, #fff 40%, #ffd700 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      filter: drop-shadow(0 10px 20px rgba(0,0,0,0.6));
+      filter: drop-shadow(0 5px 15px rgba(0,0,0,0.8));
     }
 
     .snow-layer { position: fixed; top: 0; left: 0; pointer-events: none; z-index: 10; }
@@ -122,7 +94,6 @@
 <body>
 
   <div class="bg-canvas"></div>
-  <div class="bg-overlay"></div>
 
   <div class="floating-emoji" style="top: 15%; left: 8%; font-size: 5rem;">🎄</div>
   <div class="floating-emoji" style="top: 70%; left: 12%; font-size: 4rem; animation-delay: 1s;">🎁</div>
@@ -133,11 +104,11 @@
     <div class="max-w-6xl mx-auto px-6 py-20">
 
       <div class="text-center mb-24">
-        <div class="flex justify-center mb-10">
-          <img src="https://img5.pic.in.th/file/secure-sv1/2-removebg-preview972731f1a821c1c4.png" class="w-52 h-auto" alt="Logo">
+        <div class="flex justify-center mb-6">
+          <img src="https://i.postimg.cc/WzsZgnNK/unnamed-removebg-preview.png" class="w-64 h-auto drop-shadow-2xl" alt="Logo">
         </div>
         <h1 class="title-main font-bold mb-2">2Way.xyz</h1>
-        <p class="text-yellow-400 tracking-[0.6em] font-bold text-sm mt-6 uppercase">Merry Christmas 2025</p>
+        <p class="text-yellow-400 tracking-[0.6em] font-bold text-sm mt-6 uppercase drop-shadow-md">Merry Christmas 2025</p>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 mb-32">
@@ -189,8 +160,8 @@
 
       </div>
 
-      <div class="text-center opacity-60 pb-10">
-        <p class="text-xs tracking-[0.4em]">© 2025 2WAY.XYZ</p>
+      <div class="text-center opacity-80 pb-10">
+        <p class="text-xs tracking-[0.4em] drop-shadow-md">© 2025 2WAY.XYZ</p>
       </div>
 
     </div>
@@ -208,12 +179,12 @@
       height = window.innerHeight;
       canvas.width = width;
       canvas.height = height;
-      snowflakes = Array(100).fill().map(() => ({
+      snowflakes = Array(120).fill().map(() => ({
         x: Math.random() * width,
         y: Math.random() * height,
         r: Math.random() * 3 + 1,
         s: Math.random() * 0.8 + 0.2,
-        o: Math.random() * 0.5 + 0.3
+        o: Math.random() * 0.6 + 0.4
       }));
     }
 
