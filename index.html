@@ -4,12 +4,16 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>2Way.xyz</title>
+
   <link rel="icon" type="image/png" href="https://img5.pic.in.th/file/secure-sv1/64x64-removebg-preview.png">
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Taviraj:wght@300;400;600&display=swap" rel="stylesheet">
 
   <style>
-    :root { --gold: #ffd700; }
+    :root {
+      --gold: #ffd700;
+    }
+
     body { 
       margin: 0; padding: 0;
       font-family: 'Taviraj', serif;
@@ -18,33 +22,48 @@
       background-color: #041a13;
     }
 
+    /* พื้นหลังชัดเจนไม่ดรอปแสง */
     .bg-canvas {
-      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      position: fixed; 
+      top: 0; left: 0; 
+      width: 100%; height: 100%;
       background-image: url('https://i.postimg.cc/FsQWn5Rq/bg-cm.png');
-      background-size: cover; background-position: center;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
       z-index: -5;
-      /* เพิ่ม hardware acceleration */
       transform: translateZ(0);
     }
 
+    /* การ์ดแบบ Glassmorphism */
     .card-3d {
-      background: rgba(0, 0, 0, 0.45);
-      backdrop-filter: blur(8px); /* ลด blur ลงเล็กน้อยเพื่อเพิ่ม fps */
-      border: 1px solid rgba(255, 255, 255, 0.15);
+      background: rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
       border-radius: 40px;
       padding: 35px 25px;
-      transition: transform 0.3s ease;
+      transition: all 0.4s ease;
       height: 100%;
     }
     .card-3d:hover {
-      transform: translateY(-10px);
+      transform: translateY(-15px);
+      background: rgba(0, 0, 0, 0.6);
       border-color: var(--gold);
+      box-shadow: 0 30px 60px rgba(0,0,0,0.5);
     }
 
     .btn-premium {
       background: linear-gradient(135deg, #d42426 0%, #8b0000 100%);
-      border-radius: 20px; padding: 14px; font-weight: 800;
+      border-radius: 20px;
+      padding: 14px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      transition: 0.3s;
       border: 1px solid rgba(255,255,255,0.2);
+    }
+    .btn-premium:hover {
+      filter: brightness(1.2);
+      transform: scale(0.97);
     }
 
     .title-main {
@@ -53,13 +72,15 @@
       background: linear-gradient(to bottom, #fff 40%, #ffd700 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
+      filter: drop-shadow(0 5px 15px rgba(0,0,0,0.8));
     }
 
-    /* สั่งให้ Canvas ลื่นขึ้น */
+    /* เลเยอร์ Canvas สำหรับอิโมจิ */
     #fallingCanvas { 
-      position: fixed; top: 0; left: 0; 
-      pointer-events: none; z-index: 10;
-      will-change: transform;
+      position: fixed; 
+      top: 0; left: 0; 
+      pointer-events: none; 
+      z-index: 10; 
     }
   </style>
 </head>
@@ -69,24 +90,68 @@
 
   <div id="app" class="relative z-20 w-full h-full overflow-auto">
     <div class="max-w-6xl mx-auto px-6 py-20">
-      <div class="text-center mb-24">
+
+      <div class="text-center mb-20">
         <div class="flex justify-center mb-6">
-          <img src="https://i.postimg.cc/WzsZgnNK/unnamed-removebg-preview.png" class="w-64 h-auto" alt="Logo">
+          <img src="https://i.postimg.cc/WzsZgnNK/unnamed-removebg-preview.png" class="w-64 h-auto drop-shadow-2xl" alt="Logo">
         </div>
         <h1 class="title-main font-bold mb-2">2Way.xyz</h1>
-        <p class="text-yellow-400 tracking-[0.6em] font-bold text-sm mt-6 uppercase">Merry Christmas 2025</p>
+        <p class="text-yellow-400 tracking-[0.6em] font-bold text-sm mt-6 uppercase drop-shadow-md">Merry Christmas 2025</p>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 mb-32">
+        
         <a href="https://drive.google.com/drive/folders/1b0pN4rgcnerd5DFi5lPQHMJyp-Pslpiq?usp=sharing" target="_blank">
           <div class="card-3d text-center">
-            <div class="text-7xl mb-6">🎁</div>
+            <div class="text-7xl mb-6 drop-shadow-2xl">🎁</div>
             <h3 class="text-2xl font-bold mb-2">PHOTOS 1</h3>
-            <p class="text-gray-200 text-sm mb-8">English International Day</p>
+            <p class="text-gray-200 text-sm mb-8 h-10">English International Day</p>
             <button class="btn-premium w-full text-white">OPEN GIFT</button>
           </div>
         </a>
-        </div>
+
+        <a href="https://drive.google.com/drive/folders/1eTO8RQqp250LG7Ow5BOOrd8mkiCJx0Yq?usp=sharing" target="_blank">
+          <div class="card-3d text-center">
+            <div class="text-7xl mb-6 drop-shadow-2xl">🦌</div>
+            <h3 class="text-2xl font-bold mb-2">PHOTOS 2</h3>
+            <p class="text-gray-200 text-sm mb-8 h-10">Day At PPW : 16/12/2025</p>
+            <button class="btn-premium w-full text-white">OPEN GIFT</button>
+          </div>
+        </a>
+
+        <a href="https://drive.google.com/drive/folders/1hxKpXYnQ_kJ1OWg7bPnOXUWAFsBNBc5B?usp=sharing" target="_blank">
+          <div class="card-3d text-center">
+            <div class="text-7xl mb-6 drop-shadow-2xl">🔔</div>
+            <h3 class="text-2xl font-bold mb-2">PHOTOS 3</h3>
+            <p class="text-gray-200 text-sm mb-8 h-10">Day At PPW : 17/12/2025</p>
+            <button class="btn-premium w-full text-white">OPEN GIFT</button>
+          </div>
+        </a>
+
+        <a href="https://drive.google.com/drive/folders/1-jCuNTxAlDgR7c3J3ogjCA7m4WZ8CUo9?usp=sharing" target="_blank">
+          <div class="card-3d text-center">
+            <div class="text-7xl mb-6 drop-shadow-2xl">❄️</div>
+            <h3 class="text-2xl font-bold mb-2">PHOTOS 4</h3>
+            <p class="text-gray-200 text-sm mb-8 h-10">Day At PPW : ก่อนกีฬาสี</p>
+            <button class="btn-premium w-full text-white">OPEN GIFT</button>
+          </div>
+        </a>
+
+        <a href="https://drive.google.com/drive/folders/1B89pXjvvEyqvbDZlFeE2UNmYFyHxFeKE?usp=sharing" target="_blank">
+          <div class="card-3d text-center">
+            <div class="text-7xl mb-6 drop-shadow-2xl">🥂</div>
+            <h3 class="text-2xl font-bold mb-2">PHOTOS 5</h3>
+            <p class="text-gray-200 text-sm mb-8 h-10">Day At PPW : วันกีฬาสี</p>
+            <button class="btn-premium w-full text-white">OPEN GIFT</button>
+          </div>
+        </a>
+
+      </div>
+
+      <div class="text-center opacity-80 pb-10">
+        <p class="text-xs tracking-[0.4em] drop-shadow-md">© 2025 2WAY.XYZ</p>
+      </div>
+
     </div>
   </div>
 
@@ -94,9 +159,9 @@
 
   <script>
     const canvas = document.getElementById('fallingCanvas');
-    const ctx = canvas.getContext('2d', { alpha: true });
+    const ctx = canvas.getContext('2d');
     let width, height, elements = [];
-    const emojis = ['🎄', '🎁', '🎅', '🦌', '🔔', '❄️'];
+    const emojis = ['🎄', '🎁', '🎅', '🦌', '🔔', '✨', '❄️'];
 
     function init() {
       width = window.innerWidth;
@@ -105,37 +170,37 @@
       canvas.height = height;
       
       elements = [];
-      // ลดจำนวนเหลือ 60 ชิ้นเพื่อความลื่น
-      for (let i = 0; i < 60; i++) {
+      // ลดเหลือ 20 ชิ้นตามที่ต้องการ
+      for (let i = 0; i < 20; i++) {
         elements.push({
           x: Math.random() * width,
           y: Math.random() * height,
-          size: Math.random() * 15 + 15,
-          speed: Math.random() * 1 + 0.5,
+          size: Math.random() * 30 + 40, // ขนาดใหญ่ขึ้น (40px - 70px)
+          speed: Math.random() * 0.8 + 0.4, // ลอยช้าๆ ดูหรู
           emoji: emojis[Math.floor(Math.random() * emojis.length)],
-          angle: Math.random() * Math.PI * 2,
-          spin: Math.random() * 0.02
+          swing: Math.random() * 1.5,
+          opacity: Math.random() * 0.4 + 0.4
         });
       }
     }
 
     function draw() {
       ctx.clearRect(0, 0, width, height);
-      ctx.textAlign = 'center';
       
-      for (let i = 0; i < elements.length; i++) {
-        let el = elements[i];
+      elements.forEach(el => {
+        ctx.globalAlpha = el.opacity;
         ctx.font = `${el.size}px serif`;
         ctx.fillText(el.emoji, el.x, el.y);
         
         el.y += el.speed;
-        el.x += Math.sin(el.y / 60) * 0.5;
+        el.x += Math.sin(el.y / 100) * el.swing; // ลอยส่ายไปมาแบบนุ่มนวล
         
-        if (el.y > height + 50) {
-          el.y = -50;
+        if (el.y > height + 100) {
+          el.y = -100;
           el.x = Math.random() * width;
         }
-      }
+      });
+      
       requestAnimationFrame(draw);
     }
 
