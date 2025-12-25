@@ -12,14 +12,14 @@
   <style>
     :root {
       --gold: #ffd700;
-      --deep-red: #d42426;
+      --gold-bright: #fff5b7;
     }
 
     body, html { 
       margin: 0; padding: 0;
       height: 100%;
       font-family: 'Taviraj', serif;
-      overflow: hidden; /* ล็อกหน้าจอไม่ให้เลื่อน */
+      overflow: hidden;
       color: white;
     }
 
@@ -33,139 +33,163 @@
       z-index: -5;
     }
 
-    /* เน้นขอบตัวหนังสือให้ชัดเจน */
-    .text-bordered {
-      text-shadow: 
-        -1px -1px 0 #000,  
-         1px -1px 0 #000,
-        -1px  1px 0 #000,
-         1px  1px 0 #000,
-         0px  0px 10px rgba(0,0,0,1);
+    /* กรอบหรูล้อมรอบหน้าจอ */
+    .outer-border {
+      position: fixed;
+      top: 20px; left: 20px; right: 20px; bottom: 20px;
+      border: 3px solid var(--gold);
+      border-radius: 40px;
+      z-index: 50;
+      pointer-events: none;
+      box-shadow: inset 0 0 20px rgba(255, 215, 0, 0.3), 0 0 20px rgba(0,0,0,0.5);
+    }
+    .inner-border {
+      position: absolute;
+      top: 10px; left: 10px; right: 10px; bottom: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: 30px;
+    }
+
+    /* โลโก้สไตล์ก้อนเมฆ */
+    .cloud-logo {
+      filter: drop-shadow(0 0 25px rgba(255,255,255,0.8));
+      background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0) 70%);
+      padding: 20px;
+      border-radius: 50%;
     }
 
     .title-main {
       font-family: 'Cinzel', serif;
-      font-size: clamp(2rem, 5vw, 3.5rem);
-      background: linear-gradient(to bottom, #fff 40%, #ffd700 100%);
+      font-size: clamp(3rem, 7vw, 5rem);
+      background: linear-gradient(to bottom, #fff 30%, var(--gold) 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      /* เส้นขอบเงาสำหรับหัวข้อ */
-      filter: drop-shadow(0 0 5px rgba(0,0,0,0.8)) drop-shadow(0 0 15px rgba(0,0,0,0.5));
-      line-height: 1.2;
+      filter: drop-shadow(0 0 15px rgba(0,0,0,0.9));
+      font-weight: 900;
+    }
+
+    .text-bordered {
+      text-shadow: 2px 2px 4px rgba(0,0,0,1), -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
     }
 
     .card-3d {
-      background: rgba(0, 0, 0, 0.5);
-      backdrop-filter: blur(12px);
-      border: 2px solid rgba(255, 255, 255, 0.2);
-      border-radius: 30px;
-      padding: 20px 15px;
-      transition: all 0.3s ease;
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(15px);
+      border: 2px solid var(--gold);
+      border-radius: 35px;
+      padding: 30px 20px;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
     }
     .card-3d:hover {
-      transform: translateY(-8px);
-      border-color: var(--gold);
-      box-shadow: 0 15px 30px rgba(0,0,0,0.6);
+      transform: scale(1.08) translateY(-10px);
+      background: rgba(0, 0, 0, 0.75);
+      box-shadow: 0 0 30px rgba(255, 215, 0, 0.4);
     }
 
     .btn-premium {
-      background: linear-gradient(135deg, #d42426 0%, #8b0000 100%);
-      border-radius: 15px;
-      padding: 8px 0;
-      font-weight: 700;
-      font-size: 0.9rem;
-      border: 1px solid rgba(255,255,255,0.3);
+      background: linear-gradient(135deg, #ff0000 0%, #8b0000 100%);
+      border-radius: 25px;
+      padding: 12px 0;
+      font-weight: 800;
+      font-size: 1.1rem;
+      border: 2px solid var(--gold-bright);
       width: 100%;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      transition: 0.3s;
+    }
+    .btn-premium:hover {
+      filter: brightness(1.3);
+      letter-spacing: 1px;
     }
 
     #fallingCanvas { 
-      position: fixed; 
-      top: 0; left: 0; 
-      pointer-events: none; 
-      z-index: 10; 
+      position: fixed; top: 0; left: 0; pointer-events: none; z-index: 10; 
     }
 
-    /* Container ปรับให้พอดีจอ */
-    .main-wrapper {
+    .content-container {
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
       height: 100vh;
       width: 100%;
-      padding: 20px;
+      padding: 60px;
     }
   </style>
 </head>
 <body>
 
   <div class="bg-canvas"></div>
+  
+  <div class="outer-border">
+    <div class="inner-border"></div>
+  </div>
 
-  <div class="main-wrapper relative z-20">
+  <div class="content-container relative z-20">
     
-    <div class="text-center mb-8">
-      <div class="flex justify-center mb-4">
-        <img src="https://i.postimg.cc/WzsZgnNK/unnamed-removebg-preview.png" class="w-40 h-auto drop-shadow-2xl" alt="Logo">
+    <div class="text-center mb-10">
+      <div class="flex justify-center mb-2">
+        <img src="https://i.postimg.cc/WzsZgnNK/unnamed-removebg-preview.png" class="w-64 h-auto cloud-logo" alt="Logo">
       </div>
-      <h1 class="title-main font-bold">2Way.xyz</h1>
-      <p class="text-yellow-400 tracking-[0.4em] font-bold text-xs mt-2 uppercase text-bordered">Merry Christmas 2025</p>
+      <h1 class="title-main">2Way.xyz</h1>
+      <p class="text-yellow-400 tracking-[0.8em] font-bold text-lg mt-2 uppercase text-bordered">Merry Christmas 2025</p>
     </div>
 
-    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 w-full max-w-6xl">
+    <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-8 w-full max-w-7xl">
       
       <a href="https://drive.google.com/drive/folders/1b0pN4rgcnerd5DFi5lPQHMJyp-Pslpiq?usp=sharing" target="_blank">
         <div class="card-3d">
-          <div class="text-5xl mb-3">🎁</div>
-          <h3 class="text-lg font-bold mb-1 text-bordered">PHOTOS 1</h3>
-          <p class="text-gray-200 text-[10px] mb-4 text-center leading-tight text-bordered">English International Day</p>
-          <button class="btn-premium text-white">OPEN GIFT</button>
+          <div class="text-7xl mb-4 drop-shadow-lg">🎁</div>
+          <h3 class="text-2xl font-bold mb-2 text-bordered">PHOTOS 1</h3>
+          <p class="text-gray-200 text-sm mb-6 text-center text-bordered">English International Day</p>
+          <button class="btn-premium text-white">กดเพื่อดูรูป</button>
         </div>
       </a>
 
       <a href="https://drive.google.com/drive/folders/1eTO8RQqp250LG7Ow5BOOrd8mkiCJx0Yq?usp=sharing" target="_blank">
         <div class="card-3d">
-          <div class="text-5xl mb-3">🦌</div>
-          <h3 class="text-lg font-bold mb-1 text-bordered">PHOTOS 2</h3>
-          <p class="text-gray-200 text-[10px] mb-4 text-center leading-tight text-bordered">Day At PPW : 16/12/25</p>
-          <button class="btn-premium text-white">OPEN GIFT</button>
+          <div class="text-7xl mb-4 drop-shadow-lg">🦌</div>
+          <h3 class="text-2xl font-bold mb-2 text-bordered">PHOTOS 2</h3>
+          <p class="text-gray-200 text-sm mb-6 text-center text-bordered">Day At PPW : 16/12/25</p>
+          <button class="btn-premium text-white">กดเพื่อดูรูป</button>
         </div>
       </a>
 
       <a href="https://drive.google.com/drive/folders/1hxKpXYnQ_kJ1OWg7bPnOXUWAFsBNBc5B?usp=sharing" target="_blank">
         <div class="card-3d">
-          <div class="text-5xl mb-3">🔔</div>
-          <h3 class="text-lg font-bold mb-1 text-bordered">PHOTOS 3</h3>
-          <p class="text-gray-200 text-[10px] mb-4 text-center leading-tight text-bordered">Day At PPW : 17/12/25</p>
-          <button class="btn-premium text-white">OPEN GIFT</button>
+          <div class="text-7xl mb-4 drop-shadow-lg">🔔</div>
+          <h3 class="text-2xl font-bold mb-2 text-bordered">PHOTOS 3</h3>
+          <p class="text-gray-200 text-sm mb-6 text-center text-bordered">Day At PPW : 17/12/25</p>
+          <button class="btn-premium text-white">กดเพื่อดูรูป</button>
         </div>
       </a>
 
       <a href="https://drive.google.com/drive/folders/1-jCuNTxAlDgR7c3J3ogjCA7m4WZ8CUo9?usp=sharing" target="_blank">
         <div class="card-3d">
-          <div class="text-5xl mb-3">❄️</div>
-          <h3 class="text-lg font-bold mb-1 text-bordered">PHOTOS 4</h3>
-          <p class="text-gray-200 text-[10px] mb-4 text-center leading-tight text-bordered">ก่อนกีฬาสี</p>
-          <button class="btn-premium text-white">OPEN GIFT</button>
+          <div class="text-7xl mb-4 drop-shadow-lg">❄️</div>
+          <h3 class="text-2xl font-bold mb-2 text-bordered">PHOTOS 4</h3>
+          <p class="text-gray-200 text-sm mb-6 text-center text-bordered">ก่อนกีฬาสี</p>
+          <button class="btn-premium text-white">กดเพื่อดูรูป</button>
         </div>
       </a>
 
       <a href="https://drive.google.com/drive/folders/1B89pXjvvEyqvbDZlFeE2UNmYFyHxFeKE?usp=sharing" target="_blank">
         <div class="card-3d">
-          <div class="text-5xl mb-3">🥂</div>
-          <h3 class="text-lg font-bold mb-1 text-bordered">PHOTOS 5</h3>
-          <p class="text-gray-200 text-[10px] mb-4 text-center leading-tight text-bordered">วันกีฬาสี</p>
-          <button class="btn-premium text-white">OPEN GIFT</button>
+          <div class="text-7xl mb-4 drop-shadow-lg">🥂</div>
+          <h3 class="text-2xl font-bold mb-2 text-bordered">PHOTOS 5</h3>
+          <p class="text-gray-200 text-sm mb-6 text-center text-bordered">วันกีฬาสี</p>
+          <button class="btn-premium text-white">กดเพื่อดูรูป</button>
         </div>
       </a>
 
     </div>
 
-    <div class="mt-12 opacity-80">
-      <p class="text-[10px] tracking-[0.3em] text-bordered">© 2025 2WAY.XYZ</p>
+    <div class="mt-12 opacity-90">
+      <p class="text-sm tracking-[0.5em] text-bordered font-bold">© 2025 2WAY.XYZ</p>
     </div>
 
   </div>
@@ -189,11 +213,11 @@
         elements.push({
           x: Math.random() * width,
           y: Math.random() * height,
-          size: Math.random() * 20 + 35, // ขนาดใหญ่แต่ไม่บังตัวหนังสือเกินไป
-          speed: Math.random() * 0.5 + 0.3,
+          size: Math.random() * 30 + 50, // อิโมจิใหญ่ขึ้น 50-80px
+          speed: Math.random() * 0.4 + 0.2, // ลอยเอื่อยๆ ดูดี
           emoji: emojis[Math.floor(Math.random() * emojis.length)],
-          swing: Math.random() * 1.2,
-          opacity: Math.random() * 0.3 + 0.4
+          swing: Math.random() * 1.5,
+          opacity: Math.random() * 0.3 + 0.3
         });
       }
     }
@@ -205,9 +229,9 @@
         ctx.font = `${el.size}px serif`;
         ctx.fillText(el.emoji, el.x, el.y);
         el.y += el.speed;
-        el.x += Math.sin(el.y / 100) * el.swing;
-        if (el.y > height + 60) {
-          el.y = -60;
+        el.x += Math.sin(el.y / 120) * el.swing;
+        if (el.y > height + 100) {
+          el.y = -100;
           el.x = Math.random() * width;
         }
       });
