@@ -62,4 +62,179 @@
 
     .emoji-float {
       font-size: 4.5rem;
-      margin-bottom: 1.5
+      margin-bottom: 1.5rem;
+      animation: floatIcon 3.5s ease-in-out infinite;
+    }
+
+    @keyframes floatIcon {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-12px); }
+    }
+
+    .btn-action {
+      background: linear-gradient(135deg, #e63946 0%, #a81d1d 100%);
+      color: white;
+      font-weight: 800;
+      font-size: 1.1rem;
+      padding: 14px 0;
+      width: 90%; /* ปรับปุ่มให้ไม่ชิดขอบกรอบที่กว้างขึ้น */
+      border-radius: 20px;
+      border: none;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+      transition: 0.3s;
+    }
+    
+    .btn-action:hover {
+      filter: brightness(1.2);
+    }
+
+    .text-title {
+      font-size: 1.7rem;
+      font-weight: 700;
+      margin-bottom: 6px;
+      white-space: nowrap; /* ป้องกันการขึ้นบรรทัดใหม่ */
+    }
+
+    /* 3. ปรับตัวหนังสือให้อยู่บรรทัดเดียว */
+    .text-subtitle {
+      color: rgba(255,255,255,0.85);
+      font-size: 1rem;
+      margin-bottom: 25px;
+      text-align: center;
+      white-space: nowrap; /* บังคับให้อยู่บรรทัดเดียว */
+    }
+
+    #fallingCanvas { 
+      position: fixed; top: 0; left: 0; pointer-events: none; z-index: 10; 
+    }
+
+    .main-wrapper {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="bg-canvas"></div>
+
+  <div class="main-wrapper relative z-20">
+    
+    <div class="text-center mb-6">
+      <div class="flex justify-center">
+        <img src="https://i.postimg.cc/WzsZgnNK/unnamed-removebg-preview.png" class="hero-logo" alt="Logo">
+      </div>
+      <p class="text-white tracking-[0.6em] font-bold text-xl uppercase drop-shadow-xl opacity-95">
+        Merry Christmas 2025
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 w-full max-w-[1600px] px-10">
+      
+      <a href="https://drive.google.com/drive/folders/1b0pN4rgcnerd5DFi5lPQHMJyp-Pslpiq?usp=sharing" target="_blank" class="block">
+        <div class="card-luxury">
+          <div class="emoji-float">🎁</div>
+          <h3 class="text-title">PHOTOS 1</h3>
+          <p class="text-subtitle">English International Day</p>
+          <button class="btn-action">กดเพื่อดูรูป</button>
+        </div>
+      </a>
+
+      <a href="https://drive.google.com/drive/folders/1eTO8RQqp250LG7Ow5BOOrd8mkiCJx0Yq?usp=sharing" target="_blank" class="block">
+        <div class="card-luxury">
+          <div class="emoji-float" style="animation-delay: 0.2s;">🦌</div>
+          <h3 class="text-title">PHOTOS 2</h3>
+          <p class="text-subtitle">Day At PPW : 16/12/25</p>
+          <button class="btn-action">กดเพื่อดูรูป</button>
+        </div>
+      </a>
+
+      <a href="https://drive.google.com/drive/folders/1hxKpXYnQ_kJ1OWg7bPnOXUWAFsBNBc5B?usp=sharing" target="_blank" class="block">
+        <div class="card-luxury">
+          <div class="emoji-float" style="animation-delay: 0.4s;">🔔</div>
+          <h3 class="text-title">PHOTOS 3</h3>
+          <p class="text-subtitle">Day At PPW : 17/12/25</p>
+          <button class="btn-action">กดเพื่อดูรูป</button>
+        </div>
+      </a>
+
+      <a href="https://drive.google.com/drive/folders/1-jCuNTxAlDgR7c3J3ogjCA7m4WZ8CUo9?usp=sharing" target="_blank" class="block">
+        <div class="card-luxury">
+          <div class="emoji-float" style="animation-delay: 0.6s;">❄️</div>
+          <h3 class="text-title">PHOTOS 4</h3>
+          <p class="text-subtitle">PPW : ก่อนกีฬาสี</p>
+          <button class="btn-action">กดเพื่อดูรูป</button>
+        </div>
+      </a>
+
+      <a href="https://drive.google.com/drive/folders/1B89pXjvvEyqvbDZlFeE2UNmYFyHxFeKE?usp=sharing" target="_blank" class="block">
+        <div class="card-luxury">
+          <div class="emoji-float" style="animation-delay: 0.8s;">🥂</div>
+          <h3 class="text-title">PHOTOS 5</h3>
+          <p class="text-subtitle">PPW : วันกีฬาสี</p>
+          <button class="btn-action">กดเพื่อดูรูป</button>
+        </div>
+      </a>
+
+    </div>
+
+    <div class="mt-12 opacity-50">
+      <p class="text-sm tracking-[0.4em]">© 2025 2WAY.XYZ</p>
+    </div>
+
+  </div>
+
+  <canvas id="fallingCanvas"></canvas>
+
+  <script>
+    const canvas = document.getElementById('fallingCanvas');
+    const ctx = canvas.getContext('2d');
+    let width, height, elements = [];
+    const emojis = ['🎄', '🎁', '🎅', '🦌', '🔔', '✨', '❄️'];
+
+    function init() {
+      width = window.innerWidth;
+      height = window.innerHeight;
+      canvas.width = width;
+      canvas.height = height;
+      
+      elements = [];
+      for (let i = 0; i < 20; i++) {
+        elements.push({
+          x: Math.random() * width,
+          y: Math.random() * height,
+          size: Math.random() * 20 + 35,
+          speed: Math.random() * 0.4 + 0.2,
+          emoji: emojis[Math.floor(Math.random() * emojis.length)],
+          swing: Math.random() * 1,
+          opacity: Math.random() * 0.3 + 0.2
+        });
+      }
+    }
+
+    function draw() {
+      ctx.clearRect(0, 0, width, height);
+      elements.forEach(el => {
+        ctx.globalAlpha = el.opacity;
+        ctx.font = `${el.size}px serif`;
+        ctx.fillText(el.emoji, el.x, el.y);
+        el.y += el.speed;
+        el.x += Math.sin(el.y / 120) * el.swing;
+        if (el.y > height + 80) {
+          el.y = -80;
+          el.x = Math.random() * width;
+        }
+      });
+      requestAnimationFrame(draw);
+    }
+
+    window.addEventListener('resize', init);
+    init();
+    draw();
+  </script>
+</body>
+</html>
