@@ -18,7 +18,6 @@
       color: white;
     }
 
-    /* พื้นหลังที่ดึงจากลิงก์ที่คุณส่งมา */
     .bg-canvas {
       position: fixed; 
       top: 0; left: 0; 
@@ -30,209 +29,37 @@
       z-index: -5;
     }
 
+    /* 1. ปรับโลโก้ให้ใหญ่ขึ้นและขยับขึ้นห่างจากตัวหนังสือ */
     .hero-logo {
-      width: clamp(200px, 25vw, 280px);
+      width: clamp(250px, 35vw, 350px); /* ใหญ่ขึ้น */
       height: auto;
-      filter: drop-shadow(0 0 25px rgba(255, 255, 255, 0.4));
+      filter: drop-shadow(0 0 30px rgba(255, 255, 255, 0.4));
+      margin-bottom: 35px; /* เพิ่มระยะห่างจากตัวหนังสือด้านล่าง */
     }
 
-    /* การ์ดแบบกระจกใส (Glassmorphism) ไม่ใส่กรอบทอง */
+    /* 2. ปรับกรอบ Photos ให้กว้างขึ้นเพื่อให้ตัวหนังสือบรรทัดเดียว */
     .card-luxury {
-      background: rgba(0, 0, 0, 0.4); 
+      background: rgba(0, 0, 0, 0.45); 
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
       border-radius: 40px;
-      padding: 30px 45px;
+      padding: 35px 25px;
       transition: all 0.4s ease;
       display: flex;
       flex-direction: column;
       align-items: center;
       border: 1px solid rgba(255, 255, 255, 0.15);
+      /* กำหนดความกว้างที่กว้างพอสำหรับข้อความยาว */
+      min-width: 280px; 
       width: 100%;
     }
 
     .card-luxury:hover {
       transform: translateY(-8px);
-      background: rgba(0, 0, 0, 0.55);
+      background: rgba(0, 0, 0, 0.6);
       border-color: rgba(255, 255, 255, 0.4);
-      box-shadow: 0 15px 30px rgba(0,0,0,0.5);
     }
 
     .emoji-float {
       font-size: 4.5rem;
-      margin-bottom: 1rem;
-      filter: drop-shadow(0 8px 10px rgba(0,0,0,0.4));
-      animation: floatIcon 3s ease-in-out infinite;
-    }
-
-    @keyframes floatIcon {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-12px); }
-    }
-
-    .btn-action {
-      background: linear-gradient(135deg, #e63946 0%, #a81d1d 100%);
-      color: white;
-      font-weight: 800;
-      font-size: 1.1rem;
-      padding: 12px 0;
-      width: 100%;
-      border-radius: 20px;
-      border: none;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
-      transition: 0.3s;
-    }
-    
-    .btn-action:hover {
-      filter: brightness(1.2);
-      transform: scale(1.02);
-    }
-
-    .text-title {
-      font-size: 1.6rem;
-      font-weight: 700;
-      margin-bottom: 4px;
-      text-shadow: 0 2px 10px rgba(0,0,0,0.8);
-    }
-
-    .text-subtitle {
-      color: rgba(255,255,255,0.8);
-      font-size: 0.85rem;
-      margin-bottom: 22px;
-      text-align: center;
-    }
-
-    #fallingCanvas { 
-      position: fixed; top: 0; left: 0; pointer-events: none; z-index: 10; 
-    }
-
-    .main-wrapper {
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      padding: 20px;
-    }
-  </style>
-</head>
-<body>
-
-  <div class="bg-canvas"></div>
-
-  <div class="main-wrapper relative z-20">
-    
-    <div class="text-center mb-8">
-      <div class="flex justify-center mb-2">
-        <img src="https://i.postimg.cc/WzsZgnNK/unnamed-removebg-preview.png" class="hero-logo" alt="Logo">
-      </div>
-      <p class="text-white tracking-[0.5em] font-bold text-lg uppercase drop-shadow-md opacity-90">
-        Merry Christmas 2025
-      </p>
-    </div>
-
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 w-full max-w-7xl px-4">
-      
-      <a href="https://drive.google.com/drive/folders/1b0pN4rgcnerd5DFi5lPQHMJyp-Pslpiq?usp=sharing" target="_blank" class="block">
-        <div class="card-luxury">
-          <div class="emoji-float">🎁</div>
-          <h3 class="text-title">PHOTOS 1</h3>
-          <p class="text-subtitle">English International Day</p>
-          <button class="btn-action">กดเพื่อดูรูป</button>
-        </div>
-      </a>
-
-      <a href="https://drive.google.com/drive/folders/1eTO8RQqp250LG7Ow5BOOrd8mkiCJx0Yq?usp=sharing" target="_blank" class="block">
-        <div class="card-luxury">
-          <div class="emoji-float" style="animation-delay: 0.2s;">🦌</div>
-          <h3 class="text-title">PHOTOS 2</h3>
-          <p class="text-subtitle">Day At PPW : 16/12/25</p>
-          <button class="btn-action">กดเพื่อดูรูป</button>
-        </div>
-      </a>
-
-      <a href="https://drive.google.com/drive/folders/1hxKpXYnQ_kJ1OWg7bPnOXUWAFsBNBc5B?usp=sharing" target="_blank" class="block">
-        <div class="card-luxury">
-          <div class="emoji-float" style="animation-delay: 0.4s;">🔔</div>
-          <h3 class="text-title">PHOTOS 3</h3>
-          <p class="text-subtitle">Day At PPW : 17/12/25</p>
-          <button class="btn-action">กดเพื่อดูรูป</button>
-        </div>
-      </a>
-
-      <a href="https://drive.google.com/drive/folders/1-jCuNTxAlDgR7c3J3ogjCA7m4WZ8CUo9?usp=sharing" target="_blank" class="block">
-        <div class="card-luxury">
-          <div class="emoji-float" style="animation-delay: 0.6s;">❄️</div>
-          <h3 class="text-title">PHOTOS 4</h3>
-          <p class="text-subtitle">PPW : ก่อนกีฬาสี</p>
-          <button class="btn-action">กดเพื่อดูรูป</button>
-        </div>
-      </a>
-
-      <a href="https://drive.google.com/drive/folders/1B89pXjvvEyqvbDZlFeE2UNmYFyHxFeKE?usp=sharing" target="_blank" class="block">
-        <div class="card-luxury">
-          <div class="emoji-float" style="animation-delay: 0.8s;">🥂</div>
-          <h3 class="text-title">PHOTOS 5</h3>
-          <p class="text-subtitle">PPW : วันกีฬาสี</p>
-          <button class="btn-action">กดเพื่อดูรูป</button>
-        </div>
-      </a>
-
-    </div>
-
-    <div class="mt-10 opacity-40">
-      <p class="text-xs tracking-[0.4em]">© 2025 2WAY.XYZ</p>
-    </div>
-
-  </div>
-
-  <canvas id="fallingCanvas"></canvas>
-
-  <script>
-    const canvas = document.getElementById('fallingCanvas');
-    const ctx = canvas.getContext('2d');
-    let width, height, elements = [];
-    const emojis = ['🎄', '🎁', '🎅', '🦌', '🔔', '✨', '❄️'];
-
-    function init() {
-      width = window.innerWidth;
-      height = window.innerHeight;
-      canvas.width = width;
-      canvas.height = height;
-      
-      elements = [];
-      for (let i = 0; i < 20; i++) {
-        elements.push({
-          x: Math.random() * width,
-          y: Math.random() * height,
-          size: Math.random() * 20 + 40,
-          speed: Math.random() * 0.4 + 0.2,
-          emoji: emojis[Math.floor(Math.random() * emojis.length)],
-          swing: Math.random() * 1,
-          opacity: Math.random() * 0.3 + 0.2
-        });
-      }
-    }
-
-    function draw() {
-      ctx.clearRect(0, 0, width, height);
-      elements.forEach(el => {
-        ctx.globalAlpha = el.opacity;
-        ctx.font = `${el.size}px serif`;
-        ctx.fillText(el.emoji, el.x, el.y);
-        el.y += el.speed;
-        el.x += Math.sin(el.y / 120) * el.swing;
-        if (el.y > height + 80) {
-          el.y = -80;
-          el.x = Math.random() * width;
-        }
-      });
-      requestAnimationFrame(draw);
-    }
-
-    window.addEventListener('resize', init);
-    init();
-    draw();
-  </script>
-</body>
-</html>
+      margin-bottom: 1.5
