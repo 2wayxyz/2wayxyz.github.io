@@ -11,31 +11,50 @@
 
   <style>
     :root {
-      --primary-green: #043927;
+      /* ปรับสีหลักให้เข้ากับภาพพื้นหลังใหม่ */
+      --primary-dark: #041a13;
       --gold: #ffd700;
     }
 
     body { 
       margin: 0; padding: 0;
-      background: var(--primary-green);
+      background-color: var(--primary-dark);
       font-family: 'Taviraj', serif;
       overflow-x: hidden;
       color: white;
     }
 
-    /* พื้นหลังไล่เฉดเข้มพรีเมียม */
+    /* เปลี่ยนพื้นหลังเป็นรูปภาพตามที่ระบุ */
     .bg-canvas {
-      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-      background: radial-gradient(circle at 50% 50%, #0a5d3c 0%, #043927 100%);
+      position: fixed; 
+      top: 0; 
+      left: 0; 
+      width: 100%; 
+      height: 100%;
+      background-image: url('https://i.postimg.cc/FsQWn5Rq/bg-cm.png');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
       z-index: -5;
     }
 
-    /* ซานต้าขี่กวางตัวใหญ่ (บินวนทั่วพื้นหลัง) */
+    /* เพิ่ม Overlay มืดๆ เพื่อให้ตัวหนังสืออ่านง่ายขึ้น */
+    .bg-overlay {
+      position: fixed; 
+      top: 0; 
+      left: 0; 
+      width: 100%; 
+      height: 100%;
+      background: rgba(0, 0, 0, 0.4); /* ปรับความเข้มได้ที่นี่ */
+      z-index: -4;
+    }
+
+    /* ซานต้าขี่กวางตัวใหญ่ */
     .big-santa-layer {
       position: fixed;
       top: 10%;
-      width: 500px; /* ขยายขนาดให้ตัวใหญ่ */
-      z-index: -2; /* อยู่หลังการ์ดแต่หน้าพื้นหลัง */
+      width: 500px;
+      z-index: -2;
       pointer-events: none;
       animation: santaCruise 30s linear infinite;
       filter: drop-shadow(0 20px 50px rgba(0,0,0,0.5));
@@ -48,9 +67,8 @@
       100% { left: 100vw; transform: scale(1) translateY(0) rotate(5deg); }
     }
 
-    /* อิโมจิของตกแต่งลอยไปมา */
     .floating-emoji {
-      position: fixed; z-index: -3; pointer-events: none; opacity: 0.5;
+      position: fixed; z-index: -3; pointer-events: none; opacity: 0.6;
       animation: floatAround 8s ease-in-out infinite alternate;
     }
     @keyframes floatAround {
@@ -58,11 +76,10 @@
       to { transform: translate(30px, 40px) rotate(15deg); }
     }
 
-    /* การ์ดแบบ Glassmorphism หรูๆ */
     .card-3d {
-      background: rgba(255, 255, 255, 0.07);
-      backdrop-filter: blur(20px);
-      border: 1px solid rgba(255, 255, 255, 0.15);
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(15px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
       border-radius: 40px;
       padding: 35px 25px;
       transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -70,12 +87,11 @@
     }
     .card-3d:hover {
       transform: translateY(-20px) scale(1.05);
-      background: rgba(255, 255, 255, 0.15);
+      background: rgba(255, 255, 255, 0.2);
       border-color: var(--gold);
-      box-shadow: 0 40px 80px rgba(0,0,0,0.5);
+      box-shadow: 0 40px 80px rgba(0,0,0,0.6);
     }
 
-    /* ปุ่มกด */
     .btn-premium {
       background: linear-gradient(135deg, #d42426 0%, #8b0000 100%);
       border-radius: 20px;
@@ -91,29 +107,27 @@
       transform: scale(0.96);
     }
 
-    /* หัวข้อหลัก */
     .title-main {
       font-family: 'Cinzel', serif;
       font-size: clamp(2.5rem, 8vw, 4.5rem);
       background: linear-gradient(to bottom, #fff 40%, #ffd700 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      filter: drop-shadow(0 10px 20px rgba(0,0,0,0.4));
+      filter: drop-shadow(0 10px 20px rgba(0,0,0,0.6));
     }
 
-    /* หิมะตกช้าๆ */
     .snow-layer { position: fixed; top: 0; left: 0; pointer-events: none; z-index: 10; }
   </style>
 </head>
 <body>
 
   <div class="bg-canvas"></div>
+  <div class="bg-overlay"></div>
 
   <div class="floating-emoji" style="top: 15%; left: 8%; font-size: 5rem;">🎄</div>
   <div class="floating-emoji" style="top: 70%; left: 12%; font-size: 4rem; animation-delay: 1s;">🎁</div>
   <div class="floating-emoji" style="top: 40%; right: 10%; font-size: 6rem; animation-delay: 2s;">✨</div>
   <div class="floating-emoji" style="bottom: 15%; right: 15%; font-size: 4rem; animation-delay: 3s;">🔔</div>
-  <div class="floating-emoji" style="top: 5%; right: 30%; font-size: 3rem; animation-delay: 4s;">❄️</div>
 
   <div id="app" class="relative z-20 w-full h-full overflow-auto">
     <div class="max-w-6xl mx-auto px-6 py-20">
@@ -132,7 +146,7 @@
           <div class="card-3d text-center">
             <div class="text-7xl mb-6 drop-shadow-2xl">🎁</div>
             <h3 class="text-2xl font-bold mb-2">PHOTOS 1</h3>
-            <p class="text-gray-300 text-sm mb-8 h-10">English International Day</p>
+            <p class="text-gray-200 text-sm mb-8 h-10">English International Day</p>
             <button class="btn-premium w-full text-white">OPEN GIFT</button>
           </div>
         </a>
@@ -141,7 +155,7 @@
           <div class="card-3d text-center">
             <div class="text-7xl mb-6 drop-shadow-2xl">🦌</div>
             <h3 class="text-2xl font-bold mb-2">PHOTOS 2</h3>
-            <p class="text-gray-300 text-sm mb-8 h-10">Day At PPW : 16/12/2025</p>
+            <p class="text-gray-200 text-sm mb-8 h-10">Day At PPW : 16/12/2025</p>
             <button class="btn-premium w-full text-white">OPEN GIFT</button>
           </div>
         </a>
@@ -150,7 +164,7 @@
           <div class="card-3d text-center">
             <div class="text-7xl mb-6 drop-shadow-2xl">🔔</div>
             <h3 class="text-2xl font-bold mb-2">PHOTOS 3</h3>
-            <p class="text-gray-300 text-sm mb-8 h-10">Day At PPW : 17/12/2025</p>
+            <p class="text-gray-200 text-sm mb-8 h-10">Day At PPW : 17/12/2025</p>
             <button class="btn-premium w-full text-white">OPEN GIFT</button>
           </div>
         </a>
@@ -159,7 +173,7 @@
           <div class="card-3d text-center">
             <div class="text-7xl mb-6 drop-shadow-2xl">❄️</div>
             <h3 class="text-2xl font-bold mb-2">PHOTOS 4</h3>
-            <p class="text-gray-300 text-sm mb-8 h-10">Day At PPW : ก่อนกีฬาสี</p>
+            <p class="text-gray-200 text-sm mb-8 h-10">Day At PPW : ก่อนกีฬาสี</p>
             <button class="btn-premium w-full text-white">OPEN GIFT</button>
           </div>
         </a>
@@ -168,14 +182,14 @@
           <div class="card-3d text-center">
             <div class="text-7xl mb-6 drop-shadow-2xl">🥂</div>
             <h3 class="text-2xl font-bold mb-2">PHOTOS 5</h3>
-            <p class="text-gray-300 text-sm mb-8 h-10">Day At PPW : วันกีฬาสี</p>
+            <p class="text-gray-200 text-sm mb-8 h-10">Day At PPW : วันกีฬาสี</p>
             <button class="btn-premium w-full text-white">OPEN GIFT</button>
           </div>
         </a>
 
       </div>
 
-      <div class="text-center opacity-40 pb-10">
+      <div class="text-center opacity-60 pb-10">
         <p class="text-xs tracking-[0.4em]">© 2025 2WAY.XYZ</p>
       </div>
 
@@ -194,12 +208,11 @@
       height = window.innerHeight;
       canvas.width = width;
       canvas.height = height;
-      // ปรับจำนวนหิมะให้พอดี
       snowflakes = Array(100).fill().map(() => ({
         x: Math.random() * width,
         y: Math.random() * height,
         r: Math.random() * 3 + 1,
-        s: Math.random() * 0.8 + 0.2, // ความเร็วช้าลงมาก (0.2 - 1.0)
+        s: Math.random() * 0.8 + 0.2,
         o: Math.random() * 0.5 + 0.3
       }));
     }
@@ -212,7 +225,7 @@
         ctx.arc(f.x, f.y, f.r, 0, Math.PI * 2);
         ctx.fill();
         f.y += f.s;
-        f.x += Math.sin(f.y / 60) * 0.5; // ให้ปลิวไหวเบาๆ
+        f.x += Math.sin(f.y / 60) * 0.5;
         if (f.y > height) f.y = -10;
       });
       requestAnimationFrame(drawSnow);
