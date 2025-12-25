@@ -7,7 +7,7 @@
 
   <link rel="icon" type="image/png" href="https://img5.pic.in.th/file/secure-sv1/64x64-removebg-preview.png">
   <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Taviraj:wght@300;400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Taviraj:wght@300;400;600&display=swap" rel="stylesheet">
 
   <style>
     body, html { 
@@ -15,12 +15,11 @@
       min-height: 100vh;
       font-family: 'Taviraj', serif;
       color: white;
-      /* อนุญาตให้เลื่อนได้ */
       overflow-x: hidden;
       overflow-y: auto;
+      background-color: #000;
     }
 
-    /* แก้ไขพื้นหลังให้ล็อกติดหน้าจอ (ไม่เลื่อนตามเนื้อหา) */
     .bg-fixed {
       position: fixed; 
       top: 0; left: 0; 
@@ -28,98 +27,100 @@
       background-image: url('https://i.postimg.cc/528nBPbf/d-sin-th-y-ngmi-di-t-ngch-x.png');
       background-size: cover;
       background-position: center;
-      background-repeat: no-repeat;
       z-index: -10;
     }
 
-    /* เลเยอร์มืดบางๆ เพื่อให้อ่านง่ายขึ้น */
     .bg-overlay {
-      position: fixed;
-      top: 0; left: 0;
+      position: fixed; top: 0; left: 0;
       width: 100%; height: 100%;
       background: rgba(0, 0, 0, 0.2);
       z-index: -5;
     }
 
-    .hero-logo {
-      width: clamp(260px, 35vw, 380px);
-      height: auto;
-      filter: drop-shadow(0 0 45px rgba(255, 255, 255, 0.7)); 
-      margin-bottom: 20px;
-    }
-
+    /* --- Responsive Header --- */
     .header-section {
-      padding-top: 50px;
-      margin-bottom: 50px;
+      padding-top: 40px;
+      margin-bottom: 30px;
       text-align: center;
     }
 
+    .hero-logo {
+      width: 200px; /* ขนาดมือถือ */
+      height: auto;
+      filter: drop-shadow(0 0 35px rgba(255, 255, 255, 0.6));
+      margin-bottom: 15px;
+    }
+
+    .christmas-text {
+      font-weight: 700;
+      letter-spacing: 0.3em;
+      font-size: 1.1rem;
+      text-transform: uppercase;
+    }
+
+    @media (min-width: 768px) {
+      .hero-logo { width: 350px; } /* ขนาดคอม */
+      .christmas-text { font-size: 1.8rem; letter-spacing: 0.8em; }
+      .header-section { padding-top: 60px; margin-bottom: 60px; }
+    }
+
+    /* --- Responsive Cards --- */
     .card-luxury {
       background: rgba(0, 0, 0, 0.45); 
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border-radius: 40px;
-      padding: 35px 25px;
-      transition: all 0.4s ease;
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+      border-radius: 30px;
+      padding: 25px 20px;
       display: flex;
       flex-direction: column;
       align-items: center;
       border: 1px solid rgba(255, 255, 255, 0.15);
       width: 100%;
-      max-width: 350px;
-      margin: 0 auto;
+      transition: transform 0.3s ease;
     }
 
     .emoji-float {
-      font-size: 4.5rem;
-      margin-bottom: 1rem;
+      font-size: 3.5rem; /* เล็กลงในมือถือ */
+      margin-bottom: 0.8rem;
       animation: floatIcon 3.5s ease-in-out infinite;
     }
 
-    @keyframes floatIcon {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-12px); }
-    }
-
-    .btn-action {
-      background: linear-gradient(135deg, #e63946 0%, #a81d1d 100%);
-      color: white;
-      font-weight: 800;
-      font-size: 1.1rem;
-      padding: 14px 0;
-      width: 90%;
-      border-radius: 20px;
-      border: none;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
-    }
-
     .text-title {
-      font-size: 1.7rem;
+      font-size: 1.4rem;
       font-weight: 700;
       white-space: nowrap;
     }
 
     .text-subtitle {
       color: rgba(255,255,255,0.9);
-      font-size: 1rem;
-      margin-bottom: 25px;
-      text-align: center;
+      font-size: 0.9rem; /* เล็กลงในมือถือเพื่อให้อยู่บรรทัดเดียว */
+      margin-bottom: 20px;
       white-space: nowrap;
     }
 
-    /* หิมะตกให้ล็อกติดหน้าจอเหมือนกัน */
-    #fallingCanvas { 
-      position: fixed; top: 0; left: 0; pointer-events: none; z-index: 10; 
+    @media (min-width: 768px) {
+      .card-luxury { padding: 40px 30px; border-radius: 40px; }
+      .emoji-float { font-size: 4.8rem; }
+      .text-title { font-size: 1.8rem; }
+      .text-subtitle { font-size: 1.05rem; }
     }
+
+    .btn-action {
+      background: linear-gradient(135deg, #e63946 0%, #a81d1d 100%);
+      color: white;
+      font-weight: 800;
+      font-size: 1rem;
+      padding: 12px 0;
+      width: 100%;
+      border-radius: 18px;
+    }
+
+    #fallingCanvas { position: fixed; top: 0; left: 0; pointer-events: none; z-index: 10; }
 
     .main-wrapper {
       position: relative;
       z-index: 20;
       width: 100%;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
       padding: 20px 20px 100px 20px;
     }
   </style>
@@ -129,20 +130,20 @@
   <div class="bg-fixed"></div>
   <div class="bg-overlay"></div>
 
-  <div class="main-wrapper">
+  <div class="main-wrapper flex flex-col items-center">
     
     <div class="header-section">
       <div class="flex justify-center">
         <img src="https://i.postimg.cc/WzsZgnNK/unnamed-removebg-preview.png" class="hero-logo" alt="Cloud Logo">
       </div>
-      <p class="text-white tracking-[0.6em] font-bold text-xl sm:text-2xl uppercase drop-shadow-2xl">
+      <p class="christmas-text text-white drop-shadow-2xl">
         Merry Christmas 2025
       </p>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 w-full max-w-[1700px] px-4">
+    <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6 w-full max-w-[1600px]">
       
-      <a href="https://drive.google.com/drive/folders/1b0pN4rgcnerd5DFi5lPQHMJyp-Pslpiq?usp=sharing" target="_blank" class="block">
+      <a href="https://drive.google.com/drive/folders/1b0pN4rgcnerd5DFi5lPQHMJyp-Pslpiq?usp=sharing" target="_blank">
         <div class="card-luxury">
           <div class="emoji-float">🎁</div>
           <h3 class="text-title">PHOTOS 1</h3>
@@ -151,7 +152,7 @@
         </div>
       </a>
 
-      <a href="https://drive.google.com/drive/folders/1eTO8RQqp250LG7Ow5BOOrd8mkiCJx0Yq?usp=sharing" target="_blank" class="block">
+      <a href="https://drive.google.com/drive/folders/1eTO8RQqp250LG7Ow5BOOrd8mkiCJx0Yq?usp=sharing" target="_blank">
         <div class="card-luxury">
           <div class="emoji-float" style="animation-delay: 0.2s;">🦌</div>
           <h3 class="text-title">PHOTOS 2</h3>
@@ -160,7 +161,7 @@
         </div>
       </a>
 
-      <a href="https://drive.google.com/drive/folders/1hxKpXYnQ_kJ1OWg7bPnOXUWAFsBNBc5B?usp=sharing" target="_blank" class="block">
+      <a href="https://drive.google.com/drive/folders/1hxKpXYnQ_kJ1OWg7bPnOXUWAFsBNBc5B?usp=sharing" target="_blank">
         <div class="card-luxury">
           <div class="emoji-float" style="animation-delay: 0.4s;">🔔</div>
           <h3 class="text-title">PHOTOS 3</h3>
@@ -169,7 +170,7 @@
         </div>
       </a>
 
-      <a href="https://drive.google.com/drive/folders/1-jCuNTxAlDgR7c3J3ogjCA7m4WZ8CUo9?usp=sharing" target="_blank" class="block">
+      <a href="https://drive.google.com/drive/folders/1-jCuNTxAlDgR7c3J3ogjCA7m4WZ8CUo9?usp=sharing" target="_blank">
         <div class="card-luxury">
           <div class="emoji-float" style="animation-delay: 0.6s;">❄️</div>
           <h3 class="text-title">PHOTOS 4</h3>
@@ -178,7 +179,7 @@
         </div>
       </a>
 
-      <a href="https://drive.google.com/drive/folders/1B89pXjvvEyqvbDZlFeE2UNmYFyHxFeKE?usp=sharing" target="_blank" class="block">
+      <a href="https://drive.google.com/drive/folders/1B89pXjvvEyqvbDZlFeE2UNmYFyHxFeKE?usp=sharing" target="_blank">
         <div class="card-luxury">
           <div class="emoji-float" style="animation-delay: 0.8s;">🥂</div>
           <h3 class="text-title">PHOTOS 5</h3>
@@ -189,8 +190,8 @@
 
     </div>
 
-    <div class="mt-16 opacity-50">
-      <p class="text-sm tracking-[0.4em]">© 2025 2WAY.XYZ</p>
+    <div class="mt-12 opacity-40">
+      <p class="text-xs tracking-[0.4em]">© 2025 2WAY.XYZ</p>
     </div>
 
   </div>
@@ -208,14 +209,14 @@
       height = window.innerHeight;
       canvas.width = width;
       canvas.height = height;
-      
       elements = [];
-      for (let i = 0; i < 20; i++) {
+      const count = width < 768 ? 15 : 25; // หิมะในมือถือน้อยลง
+      for (let i = 0; i < count; i++) {
         elements.push({
           x: Math.random() * width,
           y: Math.random() * height,
-          size: Math.random() * 15 + 30,
-          speed: Math.random() * 0.4 + 0.2,
+          size: width < 768 ? (Math.random() * 10 + 20) : (Math.random() * 15 + 30),
+          speed: Math.random() * 0.3 + 0.1,
           emoji: emojis[Math.floor(Math.random() * emojis.length)],
           swing: Math.random() * 1,
           opacity: Math.random() * 0.3 + 0.2
@@ -231,17 +232,13 @@
         ctx.fillText(el.emoji, el.x, el.y);
         el.y += el.speed;
         el.x += Math.sin(el.y / 120) * el.swing;
-        if (el.y > height + 80) {
-          el.y = -80;
-          el.x = Math.random() * width;
-        }
+        if (el.y > height + 50) { el.y = -50; el.x = Math.random() * width; }
       });
       requestAnimationFrame(draw);
     }
 
     window.addEventListener('resize', init);
-    init();
-    draw();
+    init(); draw();
   </script>
 </body>
 </html>
