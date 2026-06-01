@@ -1,275 +1,160 @@
 <!doctype html>
 <html lang="th">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>2Way.xyz</title>
-
-  <link rel="icon" type="image/png" href="https://img5.pic.in.th/file/secure-sv1/64x64-removebg-preview.png">
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Taviraj:wght@300;400;600&display=swap" rel="stylesheet">
-
-  <style>
-    /* แก้ไขพื้นหลังด้วยวิธีที่เสถียรที่สุดสำหรับมือถือ */
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: 'Taviraj', serif;
-      color: white;
-      background-color: #000; /* สีสำรอง */
-      overflow-x: hidden;
-    }
-
-    /* ใช้ fixed ทับทั้งหน้าจอเพื่อป้องกันพื้นหลังดำเวลาเลื่อน */
-    body::before {
-      content: "";
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-image: url('https://i.postimg.cc/528nBPbf/d-sin-th-y-ngmi-di-t-ngch-x.png');
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      z-index: -10;
-      /* บังคับให้พื้นหลังคงที่ใน iOS/Android */
-      transform: translateZ(0);
-      -webkit-transform: translateZ(0);
-    }
-
-    /* เลเยอร์ Overlay กันภาพสว่างเกินไป */
-    .bg-overlay {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0, 0, 0, 0.2);
-      z-index: -5;
-      pointer-events: none;
-    }
-
-    /* --- Responsive Header --- */
-    .header-section {
-      padding-top: 50px;
-      margin-bottom: 30px;
-      text-align: center;
-    }
-
-    .hero-logo {
-      width: 220px;
-      height: auto;
-      filter: drop-shadow(0 0 35px rgba(255, 255, 255, 0.7));
-      margin: 0 auto 15px;
-    }
-
-    .christmas-text {
-      font-weight: 700;
-      letter-spacing: 0.3em;
-      font-size: 1.2rem;
-      text-transform: uppercase;
-      padding: 0 10px;
-    }
-
-    @media (min-width: 768px) {
-      .hero-logo { width: 360px; }
-      .christmas-text { font-size: 2rem; letter-spacing: 0.8em; }
-      .header-section { padding-top: 70px; margin-bottom: 60px; }
-    }
-
-    /* --- Cards Configuration --- */
-    .card-luxury {
-      background: rgba(0, 0, 0, 0.5); 
-      backdrop-filter: blur(15px);
-      -webkit-backdrop-filter: blur(15px);
-      border-radius: 35px;
-      padding: 30px 20px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      width: 100%;
-      max-width: 340px;
-      margin: 0 auto;
-    }
-
-    .emoji-float {
-      font-size: 4rem;
-      margin-bottom: 1rem;
-      animation: floatIcon 3.5s ease-in-out infinite;
-    }
-
-    @keyframes floatIcon {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-15px); }
-    }
-
-    .text-title {
-      font-size: 1.6rem;
-      font-weight: 700;
-      white-space: nowrap;
-    }
-
-    .text-subtitle {
-      color: rgba(255,255,255,0.9);
-      font-size: 0.95rem;
-      margin-bottom: 25px;
-      white-space: nowrap;
-      text-align: center;
-    }
-
-    .btn-action {
-      background: linear-gradient(135deg, #e63946 0%, #a81d1d 100%);
-      color: white;
-      font-weight: 800;
-      font-size: 1.1rem;
-      padding: 14px 0;
-      width: 100%;
-      border-radius: 20px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-    }
-
-    /* Canvas หิมะตก */
-    #fallingCanvas { 
-      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-      pointer-events: none; z-index: 10; 
-    }
-
-    .main-wrapper {
-      position: relative;
-      z-index: 20;
-      padding-bottom: 100px;
-    }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>2WAY Memories</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+font-family:'Cormorant Garamond',serif;
+background:
+radial-gradient(circle at top left,#5a0f3a 0%,transparent 30%),
+radial-gradient(circle at bottom right,#2d1363 0%,transparent 35%),
+#090909;
+color:#fff;
+overflow-x:hidden;
+}
+body:before{
+content:"";
+position:fixed;inset:0;
+background:
+radial-gradient(circle at 30% 20%,rgba(255,255,255,.05),transparent 25%),
+radial-gradient(circle at 70% 80%,rgba(255,255,255,.04),transparent 25%);
+pointer-events:none;
+}
+.hero{
+min-height:100vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
+padding:40px;
+}
+.logo{width:180px;filter:drop-shadow(0 0 30px rgba(255,255,255,.25));}
+.title{
+font-size:clamp(4rem,10vw,9rem);
+font-weight:300;
+letter-spacing:.15em;
+text-shadow:0 0 40px rgba(255,255,255,.15);
+}
+.subtitle{
+margin-top:10px;
+letter-spacing:.4em;
+opacity:.7;
+}
+.book{
+max-width:1100px;
+margin:0 auto 100px;
+padding:20px;
+}
+.paper{
+background:rgba(255,255,255,.05);
+backdrop-filter:blur(20px);
+border:1px solid rgba(255,255,255,.08);
+border-radius:40px;
+overflow:hidden;
+box-shadow:0 30px 80px rgba(0,0,0,.4);
+position:relative;
+}
+.paper:before{
+content:"";
+position:absolute;
+left:120px;top:0;bottom:0;
+width:3px;
+background:linear-gradient(transparent,rgba(255,255,255,.25),transparent);
+}
+.page{
+display:flex;
+gap:40px;
+padding:55px;
+border-bottom:1px solid rgba(255,255,255,.08);
+transition:.4s;
+}
+.page:hover{
+background:rgba(255,255,255,.03);
+transform:scale(1.01);
+}
+.chapter{
+width:140px;
+font-size:1rem;
+letter-spacing:.25em;
+opacity:.5;
+flex-shrink:0;
+}
+.content h2{
+font-size:2.5rem;
+margin-bottom:10px;
+}
+.content p{
+opacity:.75;
+font-size:1.1rem;
+margin-bottom:20px;
+}
+.btn{
+display:inline-block;
+padding:14px 24px;
+border-radius:999px;
+text-decoration:none;
+color:#fff;
+font-weight:bold;
+background:linear-gradient(135deg,#ff4f8b,#7b61ff);
+box-shadow:0 10px 30px rgba(123,97,255,.3);
+}
+.quote{
+text-align:center;
+padding:100px 20px;
+font-size:2rem;
+opacity:.7;
+font-style:italic;
+}
+footer{
+text-align:center;
+padding:50px;
+opacity:.45;
+}
+@media(max-width:768px){
+.page{display:block;padding:30px}
+.paper:before{display:none}
+.chapter{margin-bottom:10px}
+.content h2{font-size:2rem}
+}
+</style>
 </head>
 <body>
 
-  <div class="bg-overlay"></div>
+<section class="hero">
+<img class="logo" src="https://i.postimg.cc/WzsZgnNK/unnamed-removebg-preview.png">
+<div class="title">MEMORIES</div>
+<div class="subtitle">THE DAYS WE REMEMBER</div>
+</section>
 
-  <div class="main-wrapper flex flex-col items-center px-4">
-    
-    <div class="header-section">
-      <img src="https://i.postimg.cc/WzsZgnNK/unnamed-removebg-preview.png" class="hero-logo" alt="2Way Cloud Logo">
-      <p class="christmas-text text-white drop-shadow-2xl">
-        Merry Christmas 2025
-      </p>
-    </div>
+<div class="quote">
+“ A collection of moments we never want to forget. ”
+</div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 w-full max-w-[1700px]">
-      
-      <a href="https://drive.google.com/drive/folders/1b0pN4rgcnerd5DFi5lPQHMJyp-Pslpiq?usp=sharing" target="_blank">
-        <div class="card-luxury">
-          <div class="emoji-float">🎁</div>
-          <h3 class="text-title">PHOTOS 1</h3>
-          <p class="text-subtitle">English International Day</p>
-          <button class="btn-action">กดเพื่อดูรูป</button>
-        </div>
-      </a>
+<div class="book">
+<div class="paper">
 
-      <a href="https://drive.google.com/drive/folders/1eTO8RQqp250LG7Ow5BOOrd8mkiCJx0Yq?usp=sharing" target="_blank">
-        <div class="card-luxury">
-          <div class="emoji-float" style="animation-delay: 0.2s;">🦌</div>
-          <h3 class="text-title">PHOTOS 2</h3>
-          <p class="text-subtitle">Day At PPW : 16/12/25</p>
-          <button class="btn-action">กดเพื่อดูรูป</button>
-        </div>
-      </a>
+<div class="page"><div class="chapter">CHAPTER I</div><div class="content"><h2>English International Day</h2><p>The beginning of a memorable story.</p><a class="btn" target="_blank" href="https://drive.google.com/drive/folders/1b0pN4rgcnerd5DFi5lPQHMJyp-Pslpiq?usp=sharing">OPEN PAGE</a></div></div>
 
-      <a href="https://drive.google.com/drive/folders/1hxKpXYnQ_kJ1OWg7bPnOXUWAFsBNBc5B?usp=sharing" target="_blank">
-        <div class="card-luxury">
-          <div class="emoji-float" style="animation-delay: 0.4s;">🔔</div>
-          <h3 class="text-title">PHOTOS 3</h3>
-          <p class="text-subtitle">Day At PPW : 17/12/25</p>
-          <button class="btn-action">กดเพื่อดูรูป</button>
-        </div>
-      </a>
+<div class="page"><div class="chapter">CHAPTER II</div><div class="content"><h2>Day At PPW • Dec 16</h2><p>Simple moments, timeless memories.</p><a class="btn" target="_blank" href="https://drive.google.com/drive/folders/1eTO8RQqp250LG7Ow5BOOrd8mkiCJx0Yq?usp=sharing">OPEN PAGE</a></div></div>
 
-      <a href="https://drive.google.com/drive/folders/1-jCuNTxAlDgR7c3J3ogjCA7m4WZ8CUo9?usp=sharing" target="_blank">
-        <div class="card-luxury">
-          <div class="emoji-float" style="animation-delay: 0.6s;">❄️</div>
-          <h3 class="text-title">PHOTOS 4</h3>
-          <p class="text-subtitle">PPW : ก่อนกีฬาสี</p>
-          <button class="btn-action">กดเพื่อดูรูป</button>
-        </div>
-      </a>
+<div class="page"><div class="chapter">CHAPTER III</div><div class="content"><h2>Day At PPW • Dec 17</h2><p>Another beautiful page in our archive.</p><a class="btn" target="_blank" href="https://drive.google.com/drive/folders/1hxKpXYnQ_kJ1OWg7bPnOXUWAFsBNBc5B?usp=sharing">OPEN PAGE</a></div></div>
 
-      <a href="https://drive.google.com/drive/folders/1B89pXjvvEyqvbDZlFeE2UNmYFyHxFeKE?usp=sharing" target="_blank">
-        <div class="card-luxury">
-          <div class="emoji-float" style="animation-delay: 0.8s;">🥂</div>
-          <h3 class="text-title">PHOTOS 5</h3>
-          <p class="text-subtitle">PPW : วันกีฬาสี</p>
-          <button class="btn-action">กดเพื่อดูรูป</button>
-        </div>
-      </a>
+<div class="page"><div class="chapter">CHAPTER IV</div><div class="content"><h2>Before Sports Day</h2><p>The anticipation before the celebration.</p><a class="btn" target="_blank" href="https://drive.google.com/drive/folders/1-jCuNTxAlDgR7c3J3ogjCA7m4WZ8CUo9?usp=sharing">OPEN PAGE</a></div></div>
 
-     <a href="https://drive.google.com/drive/folders/1CXBKXep3nwNxPdSWGU9Vm8oWhOzxlxD9?usp=sharing" target="_blank">
-        <div class="card-luxury">
-          <div class="emoji-float" style="animation-delay: 1.2s;">📟</div>
-          <h3 class="text-title">PHOTOS 6</h3>
-          <p class="text-subtitle">PPW : กล้องดิจิตอล</p>
-          <button class="btn-action">กดเพื่อดูรูป</button>
-        </div>
-      </a>
+<div class="page"><div class="chapter">CHAPTER V</div><div class="content"><h2>Sports Day 2025</h2><p>Energy, friendship and unforgettable cheers.</p><a class="btn" target="_blank" href="https://drive.google.com/drive/folders/1B89pXjvvEyqvbDZlFeE2UNmYFyHxFeKE?usp=sharing">OPEN PAGE</a></div></div>
 
-      <a href="https://drive.google.com/drive/folders/1HkuLjY5-h7VIT_rWovjI-oOA_43akMmG?usp=sharing" target="_blank">
-        <div class="card-luxury">
-          <div class="emoji-float" style="animation-delay: 1.6s;">🌻</div>
-          <h3 class="text-title">PHOTOS 7</h3>
-          <p class="text-subtitle">New Collection ! | 30/12/2568</p>
-          <button class="btn-action">กดเพื่อดูรูป</button>
-        </div>
-      </a>
+<div class="page"><div class="chapter">CHAPTER VI</div><div class="content"><h2>Digital Camera Collection</h2><p>Captured through a different lens.</p><a class="btn" target="_blank" href="https://drive.google.com/drive/folders/1CXBKXep3nwNxPdSWGU9Vm8oWhOzxlxD9?usp=sharing">OPEN PAGE</a></div></div>
 
-    </div>
+<div class="page"><div class="chapter">CHAPTER VII</div><div class="content"><h2>New Collection</h2><p>The latest chapter of our story.</p><a class="btn" target="_blank" href="https://drive.google.com/drive/folders/1HkuLjY5-h7VIT_rWovjI-oOA_43akMmG?usp=sharing">OPEN PAGE</a></div></div>
 
-    <div class="mt-20 opacity-40">
-      <p class="text-xs tracking-[0.5em]">© 2025 2WAY.XYZ</p>
-    </div>
+</div>
+</div>
 
-  </div>
-
-  <canvas id="fallingCanvas"></canvas>
-
-  <script>
-    const canvas = document.getElementById('fallingCanvas');
-    const ctx = canvas.getContext('2d');
-    let width, height, elements = [];
-    const emojis = ['🎄', '🎁', '🎅', '🦌', '🔔', '✨', '❄️'];
-
-    function init() {
-      width = window.innerWidth;
-      height = window.innerHeight;
-      canvas.width = width;
-      canvas.height = height;
-      elements = [];
-      const count = width < 768 ? 12 : 25;
-      for (let i = 0; i < count; i++) {
-        elements.push({
-          x: Math.random() * width,
-          y: Math.random() * height,
-          size: width < 768 ? (Math.random() * 10 + 20) : (Math.random() * 15 + 30),
-          speed: Math.random() * 0.3 + 0.15,
-          emoji: emojis[Math.floor(Math.random() * emojis.length)],
-          swing: Math.random() * 1,
-          opacity: Math.random() * 0.3 + 0.2
-        });
-      }
-    }
-
-    function draw() {
-      ctx.clearRect(0, 0, width, height);
-      elements.forEach(el => {
-        ctx.globalAlpha = el.opacity;
-        ctx.font = `${el.size}px serif`;
-        ctx.fillText(el.emoji, el.x, el.y);
-        el.y += el.speed;
-        el.x += Math.sin(el.y / 120) * el.swing;
-        if (el.y > height + 50) { el.y = -50; el.x = Math.random() * width; }
-      });
-      requestAnimationFrame(draw);
-    }
-
-    window.addEventListener('resize', init);
-    init(); draw();
-  </script>
+<footer>© 2025–2026 2WAY Memories Archive</footer>
 </body>
 </html>
