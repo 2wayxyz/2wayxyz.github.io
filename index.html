@@ -5,79 +5,79 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>2WAY MEMORIES</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Montserrat:wght@300;400;500;600;700&family=Reenie+Beanie&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Montserrat:wght@300;400;600;700&family=Reenie+Beanie&display=swap" rel="stylesheet">
 </head>
 <body>
 
 <div class="hero">
     <div class="overlay"></div>
-    <div class="shadow-overlay"></div>
-    <div class="sun-flare"></div>
-    <div class="light-ray"></div>
+
+    <nav class="navbar">
+        <div class="logo">2WAY MEMORIES</div>
+        <ul>
+            <li><a href="#">HOME</a></li>
+            <li><a href="#">ALBUMS</a></li>
+            <li><a href="#">ABOUT US</a></li>
+            <li><a href="#">MUSIC</a></li>
+            <li><a href="#" class="music-btn">🎵</a></li>
+        </ul>
+    </nav>
+
+    <div class="side-nav">
+        <a href="#" class="side-item active"><span>🏠</span><p>Home</p></a>
+        <a href="#" class="side-item"><span>🖼️</span><p>Albums</p></a>
+        <a href="#" class="side-item"><span>🤍</span><p>About Us</p></a>
+        <a href="#" class="side-item"><span>🎵</span><p>Music</p></a>
+    </div>
 
     <div class="left-content">
         <h1>2WAY<br>MEMORIES</h1>
-        <div class="year">— 2025 —</div>
-        <p class="description">
+        <div class="year">2025</div>
+        <p>
             Every moment.<br>
             Every smile.<br>
             Every memory.<br>
             Forever in our hearts.
         </p>
-        <div class="scroll-wrapper">
-            <span class="scroll-text">Scroll Down</span>
+        <div class="scroll-text">
+            Scroll Down
             <div class="arrow-down-css"></div>
         </div>
     </div>
 
-    <div class="board-wrapper">
-        <div class="rope left-rope"></div>
-        <div class="rope right-rope"></div>
+    <div class="board">
+        <div class="board-tag">2WAY</div>
+        <div class="my">MY</div>
         
-        <div class="board">
-            <div class="board-tag">2WAY</div>
-            <div class="my">MY</div>
-            
-            <div class="precious">
-                <span class="p">P</span>
-                <span class="r">R</span>
-                <span class="e">E</span>
-                <span class="c">C</span>
-                <span class="i">I</span>
-                <span class="o">O</span>
-                <span class="u">U</span>
-                <span class="s">S</span>
-            </div>
-            
-            <div class="board-sub">— 2WAY MEMORIES —</div>
-            
-            <div class="sticky-note">
-                <p>Good friends</p>
-                <p>Good memories</p>
-                <p>Good times ♡</p>
-            </div>
-
-            <div class="polaroid-wrapper">
-                <div class="premium-flower">
-                    <div class="flower-center"></div>
-                    <div class="petal pt1"></div>
-                    <div class="petal pt2"></div>
-                    <div class="petal pt3"></div>
-                    <div class="petal pt4"></div>
-                    <div class="petal pt5"></div>
-                    <div class="petal pt6"></div>
-                    <div class="petal pt7"></div>
-                    <div class="petal pt8"></div>
-                </div>
-                <div class="polaroid-frame">
-                    <div class="inner-photo"></div>
-                </div>
-            </div>
+        <div class="precious">
+            <span class="p">P</span>
+            <span class="r">R</span>
+            <span class="e">E</span>
+            <span class="c">C</span>
+            <span class="i">I</span>
+            <span class="o">O</span>
+            <span class="u">U</span>
+            <span class="s">S</span>
         </div>
+        
+        <div class="board-sub">— 2WAY MEMORIES —</div>
+        
+        <div class="sticky-note">
+            <p>Good friends</p>
+            <p>Good memories</p>
+            <p>Good times ♡</p>
+        </div>
+
+        <div class="polaroid-frame">
+            <div class="inner-photo"></div>
+            <div class="polaroid-flower"></div>
+        </div>
+
+        <div class="board-flowers-decor"></div>
     </div>
 
-    <div class="graphic-camera-zone">
-        <div class="retro-camera">
+    <div class="camera-zone-wrapper">
+        <div class="retro-camera-css">
             <div class="cam-top">
                 <div class="btn-shutter"></div>
                 <div class="dial-wheel"></div>
@@ -95,66 +95,64 @@
             </div>
         </div>
         <div class="vintage-film-roll">
-            <div class="roll-cap-top"></div>
-            <div class="roll-core">
+            <div class="roll-cap"></div>
+            <div class="roll-body">
                 <div class="roll-stripe"></div>
-                <span class="roll-text">35mm</span>
+                <span class="roll-label">35mm</span>
             </div>
-            <div class="roll-cap-bottom"></div>
+            <div class="roll-cap"></div>
         </div>
     </div>
 
-    <div class="film-slider-container">
-        <button class="slider-arrow prev-arrow" aria-label="Previous">❮</button>
+    <div class="film-strip-container">
+        <div class="film-arrow prev-arrow">❮</div>
         
-        <div class="cinematic-strip">
-            <div class="sprocket-holes holes-top"></div>
-            
+        <div class="film-strip">
             <div class="film-track" id="filmTrack">
                 <a class="film-card" href="#">
-                    <span class="card-id">01</span>
+                    <span class="card-num">01</span>
                     <h3>English International Day</h3>
-                    <p class="card-meta">DEC 2025</p>
+                    <p class="card-date">DEC 2025</p>
                 </a>
                 <a class="film-card" href="#">
-                    <span class="card-id">02</span>
+                    <span class="card-num">02</span>
                     <h3>Day At PPW</h3>
-                    <p class="card-meta">16/12/25</p>
+                    <p class="card-date">16/12/25</p>
                 </a>
                 <a class="film-card" href="#">
-                    <span class="card-id">03</span>
+                    <span class="card-num">03</span>
                     <h3>Day At PPW</h3>
-                    <p class="card-meta">17/12/25</p>
+                    <p class="card-date">17/12/25</p>
                 </a>
                 <a class="film-card" href="#">
-                    <span class="card-id">04</span>
+                    <span class="card-num">04</span>
                     <h3>Before Sports Day</h3>
-                    <p class="card-meta">COMING SOON</p>
+                    <p class="card-date">COMING SOON</p>
                 </a>
                 <a class="film-card" href="#">
-                    <span class="card-id">05</span>
+                    <span class="card-num">05</span>
                     <h3>Sports Day</h3>
-                    <p class="card-meta">COMING SOON</p>
+                    <p class="card-date">COMING SOON</p>
                 </a>
                 <a class="film-card" href="#">
-                    <span class="card-id">06</span>
+                    <span class="card-num">06</span>
                     <h3>Digital Camera</h3>
-                    <p class="card-meta">GALLERY</p>
+                    <p class="card-date">GALLERY</p>
                 </a>
                 <a class="film-card" href="#">
-                    <span class="card-id">07</span>
+                    <span class="card-num">07</span>
                     <h3>New Collection</h3>
-                    <p class="card-meta">NEW</p>
+                    <p class="card-date">NEW</p>
                 </a>
             </div>
-
-            <div class="sprocket-holes holes-bottom"></div>
         </div>
 
-        <button class="slider-arrow next-arrow" aria-label="Next">❯</button>
+        <div class="film-arrow next-arrow">❯</div>
     </div>
 
-    <div class="gold-particles"></div>
+    <div class="particles"></div>
+    
+    <div class="footer-credits">FOLLOW US</div>
 </div>
 
 <audio id="bgMusic" loop>
