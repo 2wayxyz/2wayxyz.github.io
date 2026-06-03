@@ -1,79 +1,52 @@
-/* LEAVES */
+document.addEventListener("DOMContentLoaded", () => {
+    
+    // === 1. ระบบควบคุมแถบม้วนฟิล์มสไลเดอร์ (Film Slider Controls) ===
+    const filmTrack = document.getElementById('filmTrack');
+    const prevBtn = document.querySelector('.prev-btn');
+    const nextBtn = document.querySelector('.next-btn');
 
-.leaf-container{
-position:fixed;
-inset:0;
-pointer-events:none;
-z-index:5;
-overflow:hidden;
-}
+    if (filmTrack && prevBtn && nextBtn) {
+        const scrollStep = 320; // ระยะการเลื่อนพิกเซลต่อการกด 1 ครั้ง
 
-.leaf{
-position:absolute;
-top:-100px;
-animation:leafFall linear infinite;
-opacity:.7;
-}
+        // คลิกเลื่อนไปทางซ้าย
+        prevBtn.addEventListener('click', () => {
+            filmTrack.scrollBy({ left: -scrollStep, behavior: 'smooth' });
+        });
 
-@keyframes leafFall{
+        // คลิกเลื่อนไปทางขวา
+        nextBtn.addEventListener('click', () => {
+            filmTrack.scrollBy({ left: scrollStep, behavior: 'smooth' });
+        });
 
-0%{
-transform:
-translateY(-100px)
-translateX(0)
-rotate(0deg);
-}
+        // === 2. ฟังก์ชันคลิกเมาส์ค้างแล้วลากซ้าย-ขวาเพื่อเลื่อน (Drag-to-Scroll) ===
+        let isPressed = false;
+        let startXPosition;
+        let initialScrollLeft;
 
-100%{
-transform:
-translateY(120vh)
-translateX(200px)
-rotate(360deg);
-}
+        filmTrack.addEventListener('mousedown', (e) => {
+            isPressed = true;
+            filmTrack.style.cursor = 'grabbing';
+            startXPosition = e.pageX - filmTrack.offsetLeft;
+            initialScrollLeft = filmTrack.scrollLeft;
+        });
 
-}
+        filmTrack.addEventListener('mouseleave', () => {
+            isPressed = false;
+            filmTrack.style.cursor = 'grab';
+        });
 
-/* REVEAL */
+        filmTrack.addEventListener('mouseup', () => {
+            isPressed = false;
+            filmTrack.style.cursor = 'grab';
+        });
 
-.hidden{
-opacity:0;
-transform:translateY(50px);
-transition:all 1s ease;
-}
+        filmTrack.addEventListener('mousemove', (e) => {
+            if (!isPressed) return;
+            e.preventDefault();
+            const currentX = e.pageX - filmTrack.offsetLeft;
+            const distanceMoved = (currentX - startXPosition) * 1.5; // ปรับความเร็วลากตรงคูณตัวเลขท้าย
+            filmTrack.scrollLeft = initialScrollLeft - distanceMoved;
+        });
+    }
 
-.show{
-opacity:1;
-transform:translateY(0);
-}
-
-/* SPARKLES */
-
-.sparkle{
-position:fixed;
-width:4px;
-height:4px;
-
-background:white;
-
-border-radius:50%;
-
-pointer-events:none;
-
-opacity:.5;
-
-animation:sparkle 5s infinite;
-}
-
-@keyframes sparkle{
-
-0%,100%{
-opacity:0;
-transform:scale(0);
-}
-
-50%{
-opacity:1;
-transform:scale(1.5);
-}
-
-}
+});
