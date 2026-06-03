@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>2WAY Memories</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+
+<script src="https://cdn.jsdelivr.net/npm/page-flip/dist/js/page-flip.browser.min.js"></script>
 
 <style>
 
@@ -16,52 +19,97 @@ padding:0;
 box-sizing:border-box;
 }
 
-html,body{
+html,
+body{
 width:100%;
 height:100%;
 overflow:hidden;
-font-family:'Cormorant Garamond',serif;
 }
 
 body{
+
+font-family:'Playfair Display',serif;
+
+background:
+linear-gradient(
+135deg,
+#e8dcc6,
+#d7c7ad
+);
+
 display:flex;
 justify-content:center;
 align-items:center;
 
-background:
-radial-gradient(circle at top left,#7b1e4d 0%,transparent 35%),
-radial-gradient(circle at bottom right,#412066 0%,transparent 35%),
-#080808;
-
-color:white;
+position:relative;
 }
 
-/* Ambient Glow */
+/* Film Grain */
 
 body::before{
+
 content:"";
+
 position:fixed;
 inset:0;
 
-background:
+background-image:
 radial-gradient(
-circle at 20% 20%,
-rgba(255,255,255,.04),
-transparent 30%
-),
-
-radial-gradient(
-circle at 80% 80%,
-rgba(255,255,255,.03),
-transparent 30%
+rgba(0,0,0,.05) 1px,
+transparent 1px
 );
+
+background-size:4px 4px;
+
+opacity:.15;
 
 pointer-events:none;
 }
 
-/* COVER */
+/* Ambient Light */
 
-#cover{
+body::after{
+
+content:"";
+
+position:fixed;
+width:1200px;
+height:1200px;
+
+background:
+radial-gradient(
+circle,
+rgba(255,255,255,.25),
+transparent 70%
+);
+
+top:-400px;
+left:-400px;
+
+animation:
+lightMove 18s infinite alternate ease-in-out;
+
+pointer-events:none;
+}
+
+@keyframes lightMove{
+
+0%{
+transform:
+translate(0,0);
+}
+
+100%{
+transform:
+translate(350px,250px);
+}
+
+}
+
+/* Intro Cover */
+
+#intro{
+
 position:absolute;
 inset:0;
 
@@ -72,91 +120,76 @@ align-items:center;
 z-index:100;
 }
 
-.cover-card{
+.cover{
 
-width:min(550px,90vw);
+width:min(700px,90vw);
 
-padding:70px 40px;
-
-text-align:center;
-
-border-radius:30px;
-
-background:
-rgba(255,255,255,.08);
-
-backdrop-filter:blur(20px);
-
-border:1px solid
-rgba(255,255,255,.08);
-
-box-shadow:
-0 40px 120px rgba(0,0,0,.55);
-}
-
-.logo{
-width:180px;
-
-margin-bottom:25px;
-
-filter:
-drop-shadow(
-0 0 25px rgba(255,255,255,.25)
-);
-}
-
-.cover-title{
-
-font-size:
-clamp(4rem,10vw,7rem);
-
-font-weight:300;
-
-letter-spacing:.15em;
-}
-
-.cover-sub{
-
-margin-top:15px;
-
-letter-spacing:.35em;
-
-opacity:.75;
-}
-
-.open-btn{
-
-margin-top:40px;
-
-padding:14px 28px;
-
-border:none;
-
-border-radius:999px;
-
-cursor:pointer;
-
-color:white;
-
-font-weight:bold;
+aspect-ratio:1.5;
 
 background:
 linear-gradient(
 135deg,
-#ff4e8c,
-#6f61ff
+#7a5c3e,
+#5b442e
 );
 
-transition:.3s;
+border-radius:18px;
+
+box-shadow:
+0 40px 120px rgba(0,0,0,.4);
+
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+
+color:white;
+
+cursor:pointer;
+
+transition:.5s;
 }
 
-.open-btn:hover{
+.cover:hover{
 
 transform:
-translateY(-3px);
+scale(1.02);
 }
 
-/* APP */
+.cover img{
+
+width:180px;
+
+margin-bottom:25px;
+}
+
+.cover h1{
+
+font-size:
+clamp(3rem,7vw,5rem);
+
+letter-spacing:.08em;
+}
+
+.cover p{
+
+margin-top:10px;
+
+opacity:.8;
+
+letter-spacing:.3em;
+}
+
+.openText{
+
+margin-top:40px;
+
+font-family:'Caveat',cursive;
+
+font-size:2rem;
+}
+
+/* Book Area */
 
 #app{
 
@@ -168,60 +201,51 @@ height:100%;
 justify-content:center;
 align-items:center;
 
-flex-direction:column;
 }
 
-/* BOOK */
-
-.book-scene{
-
-perspective:3000px;
-}
-
-.book{
-
-width:min(1200px,95vw);
-
-height:min(760px,82vh);
+.book-wrapper{
 
 position:relative;
 
-transform-style:preserve-3d;
-}
-
-.spread{
-
-width:100%;
-height:100%;
+width:min(1400px,95vw);
+height:min(850px,90vh);
 
 display:flex;
+justify-content:center;
+align-items:center;
 
-overflow:hidden;
-
-border-radius:20px;
-
-box-shadow:
-0 40px 120px rgba(0,0,0,.6);
 }
+
+/* Scrapbook */
+
+#book{
+
+width:1200px;
+height:760px;
+
+filter:
+drop-shadow(
+0 40px 80px rgba(0,0,0,.25)
+);
+
+}
+
+/* Pages */
 
 .page{
 
-width:50%;
-height:100%;
+background:
+#f8f1e5;
 
 position:relative;
 
-padding:60px;
+overflow:hidden;
 
-background:
-linear-gradient(
-to bottom,
-#f9f1de,
-#efe3ca
-);
+padding:50px;
 
-color:#222;
 }
+
+/* Paper Texture */
 
 .page::before{
 
@@ -231,8 +255,9 @@ position:absolute;
 inset:0;
 
 background-image:
+
 radial-gradient(
-rgba(0,0,0,.02) 1px,
+rgba(0,0,0,.03) 1px,
 transparent 1px
 );
 
@@ -241,210 +266,220 @@ background-size:4px 4px;
 pointer-events:none;
 }
 
-.left{
+/* Tape */
 
-border-right:
-4px solid rgba(0,0,0,.05);
-}
-
-.spine{
+.tape{
 
 position:absolute;
 
-left:50%;
-top:0;
+width:120px;
+height:30px;
+
+background:
+rgba(255,255,255,.5);
+
+backdrop-filter:
+blur(3px);
 
 transform:
-translateX(-50%);
+rotate(-8deg);
 
-width:18px;
-height:100%;
+top:35px;
+left:50%;
+
+margin-left:-60px;
+
+box-shadow:
+0 4px 10px rgba(0,0,0,.1);
+
+}
+
+/* Polaroid */
+
+.polaroid{
+
+width:280px;
+
+background:white;
+
+padding:12px;
+
+box-shadow:
+0 12px 25px rgba(0,0,0,.15);
+
+transform:
+rotate(-2deg);
+
+margin-bottom:25px;
+}
+
+.polaroid-photo{
+
+height:260px;
 
 background:
 linear-gradient(
-to right,
-rgba(0,0,0,.2),
-rgba(255,255,255,.15),
-rgba(0,0,0,.2)
+135deg,
+#d8d8d8,
+#efefef
 );
 
-z-index:5;
-}
-
-.chapter{
-
-letter-spacing:.25em;
+display:flex;
+justify-content:center;
+align-items:center;
 
 color:#777;
 
-font-size:.95rem;
+font-size:1rem;
 }
 
-.page h2{
+.polaroid-caption{
 
-margin-top:20px;
+text-align:center;
 
-font-size:2.5rem;
-}
+margin-top:10px;
 
-.page p{
+font-family:'Caveat',cursive;
 
-margin-top:15px;
-
-line-height:1.7;
+font-size:1.4rem;
 
 color:#555;
 }
 
-.memory-btn{
+/* Typography */
+
+.chapter{
+
+font-size:.8rem;
+
+letter-spacing:.25em;
+
+color:#999;
+
+margin-top:15px;
+}
+
+.title{
+
+font-size:2.2rem;
+
+margin-top:10px;
+
+color:#2f2f2f;
+}
+
+.desc{
+
+margin-top:15px;
+
+line-height:1.8;
+
+color:#666;
+}
+
+/* Album Button */
+
+.album-btn{
 
 display:inline-block;
 
-margin-top:35px;
+margin-top:30px;
 
-padding:14px 24px;
+padding:14px 28px;
 
 border-radius:999px;
 
 text-decoration:none;
 
-background:#222;
-
-color:white;
-}
-
-.polaroid{
-
-width:180px;
-
-height:220px;
-
-background:white;
-
-padding:10px;
-
-border-radius:6px;
-
-margin-bottom:30px;
-
-transform:rotate(-3deg);
-
-box-shadow:
-0 15px 30px rgba(0,0,0,.15);
-}
-
-.polaroid::before{
-
-content:"MEMORY";
-
-display:flex;
-
-justify-content:center;
-align-items:center;
-
-width:100%;
-height:160px;
-
 background:
 linear-gradient(
 135deg,
-#ececec,
-#d8d8d8
+#7a5c3e,
+#5b442e
 );
 
-color:#888;
+color:white;
+
+font-weight:600;
+
+transition:.3s;
 }
 
-.polaroid span{
+.album-btn:hover{
 
-display:block;
+transform:
+translateY(-2px);
 
-text-align:center;
-
-margin-top:12px;
-
-color:#666;
+box-shadow:
+0 10px 20px rgba(0,0,0,.15);
 }
+
+/* Page Number */
+
+.page-number{
+
+position:absolute;
+
+bottom:20px;
+right:30px;
+
+color:#999;
+
+font-size:.9rem;
+}
+
+/* Controls */
 
 .controls{
 
-margin-top:25px;
+position:fixed;
+
+bottom:25px;
+
+left:50%;
+
+transform:
+translateX(-50%);
 
 display:flex;
 
 gap:12px;
+
+z-index:200;
 }
 
 .ctrl{
 
-padding:12px 20px;
-
 border:none;
+
+padding:12px 22px;
 
 border-radius:999px;
 
+background:
+rgba(255,255,255,.85);
+
 cursor:pointer;
 
-color:white;
+font-weight:600;
 
-background:
-rgba(255,255,255,.08);
-
-backdrop-filter:blur(12px);
+box-shadow:
+0 8px 20px rgba(0,0,0,.12);
 }
 
 .ctrl:hover{
 
-background:
-rgba(255,255,255,.14);
-}
-
-.flip{
-
-animation:
-flipBook .9s ease;
-}
-
-@keyframes flipBook{
-
-0%{
-transform:rotateY(0deg);
-}
-
-50%{
-transform:rotateY(-18deg);
-}
-
-100%{
-transform:rotateY(0deg);
-}
-
+transform:
+translateY(-2px);
 }
 
 @media(max-width:900px){
 
-.spread{
-flex-direction:column;
-}
+#book{
 
-.page{
+width:100vw;
+height:80vh;
 
-width:100%;
-height:50%;
-
-padding:35px;
-}
-
-.left{
-
-border-right:none;
-
-border-bottom:
-3px solid rgba(0,0,0,.06);
-}
-
-.spine{
-display:none;
 }
 
 }
@@ -454,53 +489,483 @@ display:none;
 
 <body>
 
-<div id="cover">
+<!-- COVER -->
 
-<div class="cover-card">
+<div id="intro">
+
+<div class="cover" onclick="openBook()">
 
 <img
-class="logo"
 src="https://i.postimg.cc/WzsZgnNK/unnamed-removebg-preview.png"
-alt="2WAY">
+alt="2WAY Logo">
 
-<div class="cover-title">
-MEMORIES
+<h1>MEMORIES</h1>
+
+<p>THE SCRAPBOOK OF 2025</p>
+
+<div class="openText">
+📖 Tap To Open
 </div>
-
-<div class="cover-sub">
-THE DAYS WE REMEMBER
-</div>
-
-<button
-class="open-btn"
-onclick="openBook()">
-OPEN BOOK
-</button>
 
 </div>
 
 </div>
+
+<!-- BOOK -->
 
 <div id="app">
 
-<div class="book-scene">
+<div class="book-wrapper">
 
-<div
-class="book"
-id="book">
+<div id="book">
 
-<div class="spread">
+<!-- COVER PAGE -->
 
-<div
-class="page left"
-id="leftPage">
+<div class="page">
+
+<div class="tape"></div>
+
+<h1
+style="
+font-size:4rem;
+margin-top:120px;
+text-align:center;
+color:#5b442e;
+">
+
+2WAY
+
+</h1>
+
+<h2
+style="
+font-size:2rem;
+text-align:center;
+margin-top:20px;
+">
+
+MEMORIES
+
+</h2>
+
+<p
+style="
+text-align:center;
+margin-top:30px;
+font-size:1.2rem;
+color:#777;
+">
+
+A Scrapbook Of School Memories
+
+</p>
+
+<div class="page-number">
+01
 </div>
 
-<div class="spine"></div>
+</div>
+
+<!-- PAGE 2 -->
+
+<div class="page">
+
+<div class="tape"></div>
+
+<div class="polaroid">
+
+<div class="polaroid-photo">
+
+📸 English Day
+
+</div>
+
+<div class="polaroid-caption">
+
+December 2025
+
+</div>
+
+</div>
+
+<div class="chapter">
+CHAPTER I
+</div>
+
+<div class="title">
+English International Day
+</div>
+
+<div class="desc">
+
+The beginning of unforgettable memories.
+
+</div>
+
+<a
+class="album-btn"
+target="_blank"
+href="https://drive.google.com/drive/folders/1b0pN4rgcnerd5DFi5lPQHMJyp-Pslpiq?usp=sharing">
+
+OPEN ALBUM
+
+</a>
+
+<div class="page-number">
+02
+</div>
+
+</div>
+
+<!-- PAGE 3 -->
+
+<div class="page">
+
+<div class="tape"></div>
+
+<div class="polaroid">
+
+<div class="polaroid-photo">
+
+📸 PPW 16/12
+
+</div>
+
+<div class="polaroid-caption">
+
+Day At PPW
+
+</div>
+
+</div>
+
+<div class="chapter">
+CHAPTER II
+</div>
+
+<div class="title">
+Day At PPW • 16/12/25
+</div>
+
+<div class="desc">
+
+Small moments become lifelong stories.
+
+</div>
+
+<a
+class="album-btn"
+target="_blank"
+href="https://drive.google.com/drive/folders/1eTO8RQqp250LG7Ow5BOOrd8mkiCJx0Yq?usp=sharing">
+
+OPEN ALBUM
+
+</a>
+
+<div class="page-number">
+03
+</div>
+
+</div>
+
+<!-- PAGE 4 -->
+
+<div class="page">
+
+<div class="tape"></div>
+
+<div class="polaroid">
+
+<div class="polaroid-photo">
+
+📸 PPW 17/12
+
+</div>
+
+<div class="polaroid-caption">
+
+Day At PPW
+
+</div>
+
+</div>
+
+<div class="chapter">
+CHAPTER III
+</div>
+
+<div class="title">
+Day At PPW • 17/12/25
+</div>
+
+<div class="desc">
+
+Another chapter filled with laughter.
+
+</div>
+
+<a
+class="album-btn"
+target="_blank"
+href="https://drive.google.com/drive/folders/1hxKpXYnQ_kJ1OWg7bPnOXUWAFsBNBc5B?usp=sharing">
+
+OPEN ALBUM
+
+</a>
+
+<div class="page-number">
+04
+</div>
+
+</div>
+
+<!-- PAGE 5 -->
+
+<div class="page">
+
+<div class="tape"></div>
+
+<div class="polaroid">
+
+<div class="polaroid-photo">
+
+🏃 Sports Preparation
+
+</div>
+
+<div class="polaroid-caption">
+
+Before Sports Day
+
+</div>
+
+</div>
+
+<div class="chapter">
+CHAPTER IV
+</div>
+
+<div class="title">
+Before Sports Day
+</div>
+
+<div class="desc">
+
+The calm before the excitement. Everyone was preparing for one of the most memorable events of the year.
+
+</div>
+
+<a
+class="album-btn"
+target="_blank"
+href="https://drive.google.com/drive/folders/1-jCuNTxAlDgR7c3J3ogjCA7m4WZ8CUo9?usp=sharing">
+
+OPEN ALBUM
+
+</a>
+
+<div class="page-number">
+05
+</div>
+
+</div>
+
+<!-- PAGE 6 -->
+
+<div class="page">
+
+<div class="tape"></div>
+
+<div class="polaroid">
+
+<div class="polaroid-photo">
+
+🏆 Sports Day
+
+</div>
+
+<div class="polaroid-caption">
+
+School Festival
+
+</div>
+
+</div>
+
+<div class="chapter">
+CHAPTER V
+</div>
+
+<div class="title">
+Sports Day
+</div>
+
+<div class="desc">
+
+A day filled with cheers, competition, friendship and unforgettable memories shared together.
+
+</div>
+
+<a
+class="album-btn"
+target="_blank"
+href="https://drive.google.com/drive/folders/1B89pXjvvEyqvbDZlFeE2UNmYFyHxFeKE?usp=sharing">
+
+OPEN ALBUM
+
+</a>
+
+<div class="page-number">
+06
+</div>
+
+</div>
+
+<!-- PAGE 7 -->
+
+<div class="page">
+
+<div class="tape"></div>
+
+<div class="polaroid">
+
+<div class="polaroid-photo">
+
+📷 Digital Camera
+
+</div>
+
+<div class="polaroid-caption">
+
+Captured Moments
+
+</div>
+
+</div>
+
+<div class="chapter">
+CHAPTER VI
+</div>
+
+<div class="title">
+Digital Camera Collection
+</div>
+
+<div class="desc">
+
+Special memories captured through another lens. Different perspective, same beautiful moments.
+
+</div>
+
+<a
+class="album-btn"
+target="_blank"
+href="https://drive.google.com/drive/folders/1CXBKXep3nwNxPdSWGU9Vm8oWhOzxlxD9?usp=sharing">
+
+OPEN ALBUM
+
+</a>
+
+<div class="page-number">
+07
+</div>
+
+</div>
+
+<!-- PAGE 8 -->
+
+<div class="page">
+
+<div class="tape"></div>
+
+<div class="polaroid">
+
+<div class="polaroid-photo">
+
+🌻 New Collection
+
+</div>
+
+<div class="polaroid-caption">
+
+Latest Memories
+
+</div>
+
+</div>
+
+<div class="chapter">
+CHAPTER VII
+</div>
+
+<div class="title">
+New Collection
+</div>
+
+<div class="desc">
+
+A fresh collection of moments added to our scrapbook. Every page continues the story.
+
+</div>
+
+<a
+class="album-btn"
+target="_blank"
+href="https://drive.google.com/drive/folders/1HkuLjY5-h7VIT_rWovjI-oOA_43akMmG?usp=sharing">
+
+OPEN ALBUM
+
+</a>
+
+<div class="page-number">
+08
+</div>
+
+</div>
+
+<!-- LAST PAGE -->
+
+<div class="page">
+
+<div class="tape"></div>
+
+<h1
+style="
+margin-top:180px;
+text-align:center;
+font-size:4rem;
+color:#5b442e;
+">
+
+THE END
+
+</h1>
+
+<p
+style="
+text-align:center;
+margin-top:30px;
+font-size:1.3rem;
+color:#777;
+">
+
+Thank You For Being Part Of These Memories
+
+</p>
 
 <div
-class="page right"
-id="rightPage">
+style="
+text-align:center;
+margin-top:50px;
+font-size:3rem;
+">
+
+📖✨
+
+</div>
+
+<div class="page-number">
+09
 </div>
 
 </div>
@@ -513,20 +978,26 @@ id="rightPage">
 
 <button
 class="ctrl"
-onclick="goCover()">
-⌂ COVER
-</button>
+id="prevBtn">
 
-<button
-class="ctrl"
-onclick="prevPage()">
 ◀ PREV
+
 </button>
 
 <button
 class="ctrl"
-onclick="nextPage()">
+onclick="location.reload()">
+
+⌂ HOME
+
+</button>
+
+<button
+class="ctrl"
+id="nextBtn">
+
 NEXT ▶
+
 </button>
 
 </div>
@@ -534,281 +1005,408 @@ NEXT ▶
 </div>
 
 <script>
-const spreads = [
-
-[
-{
-chapter:"CHAPTER I",
-title:"English International Day",
-date:"December 2025",
-desc:"The beginning of our memories.",
-link:"https://drive.google.com/drive/folders/1b0pN4rgcnerd5DFi5lPQHMJyp-Pslpiq?usp=sharing"
-},
-{
-chapter:"CHAPTER II",
-title:"Day At PPW • 16/12/25",
-date:"December 2025",
-desc:"Simple moments become lasting stories.",
-link:"https://drive.google.com/drive/folders/1eTO8RQqp250LG7Ow5BOOrd8mkiCJx0Yq?usp=sharing"
-}
-],
-
-[
-{
-chapter:"CHAPTER III",
-title:"Day At PPW • 17/12/25",
-date:"December 2025",
-desc:"Another beautiful page.",
-link:"https://drive.google.com/drive/folders/1hxKpXYnQ_kJ1OWg7bPnOXUWAFsBNBc5B?usp=sharing"
-},
-{
-chapter:"CHAPTER IV",
-title:"Before Sports Day",
-date:"December 2025",
-desc:"The calm before excitement.",
-link:"https://drive.google.com/drive/folders/1-jCuNTxAlDgR7c3J3ogjCA7m4WZ8CUo9?usp=sharing"
-}
-],
-
-[
-{
-chapter:"CHAPTER V",
-title:"Sports Day",
-date:"December 2025",
-desc:"Cheers and unforgettable moments.",
-link:"https://drive.google.com/drive/folders/1B89pXjvvEyqvbDZlFeE2UNmYFyHxFeKE?usp=sharing"
-},
-{
-chapter:"CHAPTER VI",
-title:"Digital Camera Collection",
-date:"December 2025",
-desc:"Captured through another lens.",
-link:"https://drive.google.com/drive/folders/1CXBKXep3nwNxPdSWGU9Vm8oWhOzxlxD9?usp=sharing"
-}
-],
-
-[
-{
-chapter:"CHAPTER VII",
-title:"New Collection",
-date:"December 2025",
-desc:"A new page in our story.",
-link:"https://drive.google.com/drive/folders/1HkuLjY5-h7VIT_rWovjI-oOA_43akMmG?usp=sharing"
-},
-{
-chapter:"THE END",
-title:"Thank You",
-date:"2WAY Memories",
-desc:"Every photo tells a story worth remembering.",
-link:"#"
-}
-]
-
-];
-
-let currentSpread = 0;
-
-function pageTemplate(data){
-
-return `
-
-<div class="polaroid">
-<span>${data.date}</span>
-</div>
-
-<div class="chapter">
-${data.chapter}
-</div>
-
-<h2>
-${data.title}
-</h2>
-
-<p>
-${data.desc}
-</p>
-
-${
-data.link !== "#"
-?
-`<a
-class="memory-btn"
-target="_blank"
-href="${data.link}">
-OPEN MEMORY
-</a>`
-:
-""
-}
-
-`;
-
-}
-
-function renderPages(){
-
-const left =
-document.getElementById("leftPage");
-
-const right =
-document.getElementById("rightPage");
-
-left.innerHTML =
-pageTemplate(
-spreads[currentSpread][0]
-);
-
-right.innerHTML =
-pageTemplate(
-spreads[currentSpread][1]
-);
-
-const book =
-document.getElementById("book");
-
-book.classList.remove("flip");
-
-void book.offsetWidth;
-
-book.classList.add("flip");
-
-}
 
 function openBook(){
 
-document.getElementById(
-"cover"
-).style.display = "none";
+const intro =
+document.getElementById("intro");
 
-document.getElementById(
-"app"
-).style.display = "flex";
+const app =
+document.getElementById("app");
 
-renderPages();
+intro.style.opacity = "0";
 
-}
+setTimeout(()=>{
 
-function goCover(){
+intro.style.display = "none";
 
-document.getElementById(
-"app"
-).style.display = "none";
+app.style.display = "flex";
 
-document.getElementById(
-"cover"
-).style.display = "flex";
+initBook();
+
+},500);
 
 }
 
-function nextPage(){
+let pageFlip;
 
-if(
-currentSpread <
-spreads.length - 1
-){
+function initBook(){
 
-currentSpread++;
+if(pageFlip) return;
 
-renderPages();
+pageFlip = new St.PageFlip(
+
+document.getElementById("book"),
+
+{
+
+width:600,
+
+height:760,
+
+size:"stretch",
+
+minWidth:320,
+
+maxWidth:1200,
+
+minHeight:420,
+
+maxHeight:900,
+
+drawShadow:true,
+
+maxShadowOpacity:.35,
+
+flippingTime:1200,
+
+usePortrait:true,
+
+mobileScrollSupport:true,
+
+showCover:true,
+
+swipeDistance:30,
+
+startPage:0,
+
+autoSize:true
+
+}
+
+);
+
+pageFlip.loadFromHTML(
+
+document.querySelectorAll(".page")
+
+);
+
+updateButtons();
+
+pageFlip.on(
+"flip",
+function(){
+
+updateButtons();
+
+}
+);
+
+}
+
+/* Controls */
+
+const prevBtn =
+document.getElementById("prevBtn");
+
+const nextBtn =
+document.getElementById("nextBtn");
+
+prevBtn.addEventListener(
+"click",
+()=>{
+
+if(pageFlip){
+
+pageFlip.flipPrev();
 
 }
 
 }
+);
 
-function prevPage(){
+nextBtn.addEventListener(
+"click",
+()=>{
 
-if(
-currentSpread > 0
-){
+if(pageFlip){
 
-currentSpread--;
+pageFlip.flipNext();
 
-renderPages();
+}
+
+}
+);
+
+function updateButtons(){
+
+if(!pageFlip) return;
+
+const current =
+pageFlip.getCurrentPageIndex();
+
+const total =
+pageFlip.getPageCount();
+
+prevBtn.disabled =
+current === 0;
+
+nextBtn.disabled =
+current >= total - 1;
+
+prevBtn.style.opacity =
+current === 0 ? ".4" : "1";
+
+nextBtn.style.opacity =
+current >= total - 1 ? ".4" : "1";
+
+}
+
+/* Keyboard */
+
+document.addEventListener(
+"keydown",
+(e)=>{
+
+if(!pageFlip) return;
+
+if(e.key === "ArrowRight"){
+
+pageFlip.flipNext();
+
+}
+
+if(e.key === "ArrowLeft"){
+
+pageFlip.flipPrev();
 
 }
 
 }
+);
 
-/* Swipe Support Mobile */
+/* Double Click Flip */
+
+document.addEventListener(
+"dblclick",
+()=>{
+
+if(pageFlip){
+
+pageFlip.flipNext();
+
+}
+
+}
+);
+
+/* Touch Hint */
+
 let touchStartX = 0;
-let touchEndX = 0;
 
 document.addEventListener(
 "touchstart",
 (e)=>{
 
 touchStartX =
-e.changedTouches[0].screenX;
+e.changedTouches[0].clientX;
 
-},
-false
+}
 );
 
 document.addEventListener(
 "touchend",
 (e)=>{
 
-touchEndX =
-e.changedTouches[0].screenX;
+if(!pageFlip) return;
 
-handleSwipe();
+const touchEndX =
+e.changedTouches[0].clientX;
 
-},
-false
-);
-
-function handleSwipe(){
-
-const distance =
+const diff =
 touchEndX - touchStartX;
 
-if(distance < -50){
+if(diff > 80){
 
-nextPage();
-
-}
-
-if(distance > 50){
-
-prevPage();
+pageFlip.flipPrev();
 
 }
 
-}
+if(diff < -80){
 
-/* Keyboard Support */
-
-document.addEventListener(
-"keydown",
-(e)=>{
-
-if(e.key === "ArrowRight"){
-
-nextPage();
-
-}
-
-if(e.key === "ArrowLeft"){
-
-prevPage();
-
-}
-
-if(e.key === "Escape"){
-
-goCover();
+pageFlip.flipNext();
 
 }
 
 }
 );
 
-/* Initial Render */
+/* Floating Effect */
 
-renderPages();
+const cover =
+document.querySelector(".cover");
+
+document.addEventListener(
+"mousemove",
+(e)=>{
+
+if(!cover) return;
+
+const x =
+(e.clientX / window.innerWidth - .5) * 10;
+
+const y =
+(e.clientY / window.innerHeight - .5) * 10;
+
+cover.style.transform =
+`rotateY(${x}deg) rotateX(${-y}deg)`;
+
+}
+);
+
+/* Premium Dust Particles */
+
+const dustContainer =
+document.createElement("div");
+
+dustContainer.style.position = "fixed";
+dustContainer.style.inset = "0";
+dustContainer.style.pointerEvents = "none";
+dustContainer.style.zIndex = "1";
+
+document.body.appendChild(
+dustContainer
+);
+
+for(let i=0;i<35;i++){
+
+const dust =
+document.createElement("div");
+
+dust.style.position = "absolute";
+
+dust.style.width =
+Math.random()*4+2+"px";
+
+dust.style.height =
+dust.style.width;
+
+dust.style.borderRadius =
+"50%";
+
+dust.style.background =
+"rgba(255,255,255,.18)";
+
+dust.style.left =
+Math.random()*100+"vw";
+
+dust.style.top =
+Math.random()*100+"vh";
+
+dust.style.animation =
+`floatDust ${
+Math.random()*15+10
+}s linear infinite`;
+
+dust.style.animationDelay =
+`${Math.random()*10}s`;
+
+dustContainer.appendChild(
+dust
+);
+
+}
+
+/* Dynamic Keyframes */
+
+const style =
+document.createElement("style");
+
+style.innerHTML = `
+
+@keyframes floatDust{
+
+0%{
+
+transform:
+translateY(0)
+translateX(0);
+
+opacity:0;
+}
+
+20%{
+
+opacity:.25;
+}
+
+80%{
+
+opacity:.25;
+}
+
+100%{
+
+transform:
+translateY(-120px)
+translateX(40px);
+
+opacity:0;
+}
+
+}
+
+`;
+
+document.head.appendChild(
+style
+);
+
+/* Warm Ambient Glow */
+
+const glow =
+document.createElement("div");
+
+glow.style.position = "fixed";
+glow.style.width = "800px";
+glow.style.height = "800px";
+
+glow.style.borderRadius =
+"50%";
+
+glow.style.background =
+"radial-gradient(circle, rgba(255,245,220,.15), transparent 70%)";
+
+glow.style.pointerEvents =
+"none";
+
+glow.style.filter =
+"blur(40px)";
+
+glow.style.zIndex =
+"0";
+
+document.body.appendChild(
+glow
+);
+
+document.addEventListener(
+"mousemove",
+(e)=>{
+
+glow.style.left =
+(e.clientX-400)+"px";
+
+glow.style.top =
+(e.clientY-400)+"px";
+
+}
+);
+
+/* Welcome Console */
+
+console.log(
+"%c2WAY MEMORIES V4",
+"font-size:24px;color:#7a5c3e;font-weight:bold;"
+);
+
+console.log(
+"%cScrapbook Edition Loaded",
+"font-size:14px;color:#777;"
+);
 
 </script>
 
 </body>
 </html>
-```
