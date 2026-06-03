@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>2WAY MEMORIES</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Montserrat:wght@300;400;600;700&family=Reenie+Beanie&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Montserrat:wght@300;400;500;600;700&family=Reenie+Beanie&display=swap" rel="stylesheet">
 </head>
 <body>
 
@@ -13,6 +13,7 @@
     <div class="overlay"></div>
     <div class="shadow-overlay"></div>
     <div class="sun-flare"></div>
+    <div class="light-ray"></div>
 
     <div class="left-content">
         <h1>2WAY<br>MEMORIES</h1>
@@ -23,9 +24,10 @@
             Every memory.<br>
             Forever in our hearts.
         </p>
-        <div class="scroll-text">
-            <span>Scroll Down</span>
-            <div class="arrow-down"></div> </div>
+        <div class="scroll-wrapper">
+            <span class="scroll-text">Scroll Down</span>
+            <div class="arrow-down-css"></div>
+        </div>
     </div>
 
     <div class="board-wrapper">
@@ -56,95 +58,103 @@
             </div>
 
             <div class="polaroid-wrapper">
-                <div class="css-flower">
-                    <div class="flower-core"></div>
-                    <div class="petal p1"></div>
-                    <div class="petal p2"></div>
-                    <div class="petal p3"></div>
-                    <div class="petal p4"></div>
-                    <div class="petal p5"></div>
+                <div class="premium-flower">
+                    <div class="flower-center"></div>
+                    <div class="petal pt1"></div>
+                    <div class="petal pt2"></div>
+                    <div class="petal pt3"></div>
+                    <div class="petal pt4"></div>
+                    <div class="petal pt5"></div>
+                    <div class="petal pt6"></div>
+                    <div class="petal pt7"></div>
+                    <div class="petal pt8"></div>
                 </div>
-                <div class="polaroid">
-                    <div class="photo-placeholder"></div>
+                <div class="polaroid-frame">
+                    <div class="inner-photo"></div>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="camera-container">
-        <div class="css-camera">
-            <div class="camera-top">
-                <div class="shutter-btn"></div>
-                <div class="flash-unit"></div>
+    <div class="graphic-camera-zone">
+        <div class="retro-camera">
+            <div class="cam-top">
+                <div class="btn-shutter"></div>
+                <div class="dial-wheel"></div>
+                <div class="view-finder"></div>
             </div>
-            <div class="camera-body">
-                <div class="camera-stripe"></div>
-                <div class="lens-outer">
-                    <div class="lens-inner">
-                        <div class="lens-reflection"></div>
+            <div class="cam-body">
+                <div class="leather-texture"></div>
+                <div class="lens-ring-1">
+                    <div class="lens-ring-2">
+                        <div class="lens-glass">
+                            <div class="lens-glare"></div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="css-film-roll">
-            <div class="film-cap"></div>
-            <div class="film-body">
-                <span class="film-label">FILM</span>
+        <div class="vintage-film-roll">
+            <div class="roll-cap-top"></div>
+            <div class="roll-core">
+                <div class="roll-stripe"></div>
+                <span class="roll-text">35mm</span>
             </div>
+            <div class="roll-cap-bottom"></div>
         </div>
     </div>
 
-    <div class="film-container">
-        <button class="film-btn prev-btn" aria-label="Previous">❮</button>
+    <div class="film-slider-container">
+        <button class="slider-arrow prev-arrow" aria-label="Previous">❮</button>
         
-        <div class="film-strip">
-            <div class="film-holes holes-top"></div>
+        <div class="cinematic-strip">
+            <div class="sprocket-holes holes-top"></div>
             
             <div class="film-track" id="filmTrack">
                 <a class="film-card" href="#">
-                    <span class="card-num">01</span>
+                    <span class="card-id">01</span>
                     <h3>English International Day</h3>
-                    <p class="card-date">DEC 2025</p>
+                    <p class="card-meta">DEC 2025</p>
                 </a>
                 <a class="film-card" href="#">
-                    <span class="card-num">02</span>
+                    <span class="card-id">02</span>
                     <h3>Day At PPW</h3>
-                    <p class="card-date">16/12/25</p>
+                    <p class="card-meta">16/12/25</p>
                 </a>
                 <a class="film-card" href="#">
-                    <span class="card-num">03</span>
+                    <span class="card-id">03</span>
                     <h3>Day At PPW</h3>
-                    <p class="card-date">17/12/25</p>
+                    <p class="card-meta">17/12/25</p>
                 </a>
                 <a class="film-card" href="#">
-                    <span class="card-num">04</span>
+                    <span class="card-id">04</span>
                     <h3>Before Sports Day</h3>
-                    <p class="card-date">COMING SOON</p>
+                    <p class="card-meta">COMING SOON</p>
                 </a>
                 <a class="film-card" href="#">
-                    <span class="card-num">05</span>
+                    <span class="card-id">05</span>
                     <h3>Sports Day</h3>
-                    <p class="card-date">COMING SOON</p>
+                    <p class="card-meta">COMING SOON</p>
                 </a>
                 <a class="film-card" href="#">
-                    <span class="card-num">06</span>
+                    <span class="card-id">06</span>
                     <h3>Digital Camera</h3>
-                    <p class="card-date">GALLERY</p>
+                    <p class="card-meta">GALLERY</p>
                 </a>
                 <a class="film-card" href="#">
-                    <span class="card-num">07</span>
+                    <span class="card-id">07</span>
                     <h3>New Collection</h3>
-                    <p class="card-date">NEW</p>
+                    <p class="card-meta">NEW</p>
                 </a>
             </div>
 
-            <div class="film-holes holes-bottom"></div>
+            <div class="sprocket-holes holes-bottom"></div>
         </div>
 
-        <button class="film-btn next-btn" aria-label="Next">❯</button>
+        <button class="slider-arrow next-arrow" aria-label="Next">❯</button>
     </div>
 
-    <div class="particles"></div>
+    <div class="gold-particles"></div>
 </div>
 
 <script src="script.js"></script>
