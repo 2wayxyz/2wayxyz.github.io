@@ -1,532 +1,393 @@
+/* RESET & BASE */
 *{
-margin:0;
-padding:0;
-box-sizing:border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 html{
-scroll-behavior:smooth;
+    scroll-behavior: smooth;
 }
 
 body{
-font-family:'Montserrat',sans-serif;
-overflow-x:hidden;
-background:#000;
-color:#fff;
+    font-family: 'Montserrat', sans-serif;
+    overflow-x: hidden;
+    background: #0b130c; /* สีเขียวเข้มป่าลึก */
+    color: #fff;
+    user-select: none;
 }
 
-/* HERO */
-
+/* HERO BACKGROUND & OVERLAYS */
 .hero{
-position:relative;
-width:100%;
-min-height:100vh;
-
-background:url("https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=2000&auto=format&fit=crop") center center/cover;
-
-overflow:hidden;
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    /* แนะนำให้เปลี่ยน URL นี้เป็นรูปต้นไม้ใหญ่ในสวนของคุณภายหลังเพื่อให้เหมือนเป๊ะ */
+    background: url("https://images.unsplash.com/photo-1441974231531-c6227db76b6e?q=80&w=2560&auto=format&fit=crop") center center/cover;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 5%;
 }
 
+/* มิติแสงแดดส่องผ่านต้นไม้ (Sunlight Overlay) */
 .overlay{
-position:absolute;
-inset:0;
-
-background:
-linear-gradient(
-to bottom,
-rgba(0,0,0,.25),
-rgba(0,0,0,.55)
-);
-
-backdrop-filter:blur(2px);
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 20% 30%, rgba(255, 235, 180, 0.25) 0%, rgba(0, 0, 0, 0.4) 70%);
+    z-index: 1;
 }
 
-/* NAVBAR */
-
-.navbar{
-position:absolute;
-top:0;
-left:0;
-width:100%;
-
-padding:30px 60px;
-
-display:flex;
-justify-content:space-between;
-align-items:center;
-
-z-index:20;
+.shadow-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0.7) 90%);
+    z-index: 2;
 }
 
-.logo{
-font-size:1.7rem;
-letter-spacing:3px;
-font-weight:600;
-}
-
-.navbar ul{
-display:flex;
-gap:40px;
-list-style:none;
-}
-
-.navbar a{
-color:white;
-text-decoration:none;
-font-size:.95rem;
-letter-spacing:2px;
-transition:.3s;
-}
-
-.navbar a:hover{
-opacity:.6;
-}
-
-/* LEFT CONTENT */
-
+/* LEFT CONTENT (TEXT) */
 .left-content{
-position:absolute;
-left:8%;
-top:50%;
-
-transform:translateY(-50%);
-
-z-index:20;
+    position: relative;
+    z-index: 10;
+    max-width: 400px;
+    margin-top: -80px;
 }
 
 .left-content h1{
-font-family:'Caveat',cursive;
-
-font-size:7rem;
-line-height:0.9;
-
-text-shadow:
-0 0 20px rgba(255,255,255,.3);
+    font-family: 'Caveat', cursive;
+    font-size: 6.5rem;
+    line-height: 0.85;
+    font-weight: 700;
+    color: #ffffff;
+    text-shadow: 3px 3px 15px rgba(0,0,0,0.6);
+    letter-spacing: -2px;
 }
 
 .year{
-margin-top:15px;
-
-font-size:2rem;
-
-letter-spacing:8px;
-
-color:#f4d06f;
+    margin-top: 10px;
+    font-size: 1.8rem;
+    font-weight: 600;
+    letter-spacing: 6px;
+    color: #f4d06f;
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
 }
 
-.left-content p{
-margin-top:30px;
-
-line-height:2;
-
-font-size:1.1rem;
-
-opacity:.95;
+.description{
+    margin-top: 25px;
+    line-height: 1.8;
+    font-size: 1.1rem;
+    font-weight: 300;
+    opacity: 0.9;
+    text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
 }
 
 .scroll-text{
-margin-top:35px;
+    margin-top: 40px;
+    font-family: 'Caveat', cursive;
+    font-size: 2rem;
+    color: #ffd86a;
+    display: inline-block;
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.4);
+}
 
-font-family:'Caveat',cursive;
-
-font-size:2rem;
-
-color:#ffd86a;
-
-animation:floatText 2s infinite;
+.arrow-down {
+    text-align: center;
+    animation: floatText 2s infinite ease-in-out;
+    margin-top: 5px;
 }
 
 @keyframes floatText{
-
-0%{
-transform:translateY(0);
+    0%, 100%{ transform: translateY(0); }
+    50%{ transform: translateY(8px); }
 }
 
-50%{
-transform:translateY(10px);
+/* SUSPENDED CHALKBOARD (บอร์ดกระดานดำแบบแขวน) */
+.board-wrapper {
+    position: relative;
+    z-index: 10;
+    margin-top: -60px;
 }
 
-100%{
-transform:translateY(0);
+/* เชือกแขวนกระดาน */
+.rope {
+    position: absolute;
+    top: -120px;
+    width: 3px;
+    height: 120px;
+    background: #a08058;
+    box-shadow: 2px 0 5px rgba(0,0,0,0.4);
 }
-
-}
-
-/* BOARD */
+.left-rope { left: 80px; transform: rotate(-3deg); }
+.right-rope { right: 80px; transform: rotate(3deg); }
 
 .board{
-
-position:absolute;
-
-right:6%;
-top:50%;
-
-transform:translateY(-50%);
-
-width:700px;
-height:520px;
-
-background:
-linear-gradient(
-145deg,
-#232323,
-#121212
-);
-
-border:14px solid #6d4c2d;
-
-border-radius:12px;
-
-box-shadow:
-0 40px 80px rgba(0,0,0,.6),
-0 0 50px rgba(255,255,255,.06);
-
-z-index:10;
-}
-
-.board::before{
-content:"";
-
-position:absolute;
-
-top:-70px;
-left:50%;
-
-width:4px;
-height:70px;
-
-background:#d4b483;
-
-transform:translateX(-50%);
-}
-
-.board::after{
-content:"";
-
-position:absolute;
-
-top:-70px;
-right:120px;
-
-width:4px;
-height:70px;
-
-background:#d4b483;
+    position: relative;
+    width: 680px;
+    height: 480px;
+    background: #1e2421; /*สีกระดานดำเขียวหม่นคลาสสิก */
+    border: 16px solid #4a3319; /* กรอบไม้เข้ม */
+    border-radius: 4px;
+    box-shadow: 
+        inset 0 0 40px rgba(0,0,0,0.8),
+        0 30px 60px rgba(0,0,0,0.7);
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .board-tag{
-
-position:absolute;
-
-top:20px;
-left:30px;
-
-padding:10px 30px;
-
-background:#b89b75;
-
-color:#222;
-
-font-weight:600;
-
-transform:rotate(-5deg);
+    position: absolute;
+    top: -6px;
+    left: 25px;
+    padding: 6px 20px;
+    background: #d2b48c;
+    color: #2b1d0c;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    transform: rotate(-3deg);
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
 }
 
 .my{
-
-margin-top:70px;
-
-text-align:center;
-
-font-size:4rem;
-
-font-family:'Caveat',cursive;
-
-color:#f2f2f2;
+    font-family: 'Caveat', cursive;
+    font-size: 4rem;
+    color: #f5f5f5;
+    margin-top: 20px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.4);
 }
 
 .precious{
-
-text-align:center;
-
-margin-top:10px;
-
-font-size:7rem;
-
-font-weight:700;
-
-letter-spacing:5px;
+    display: flex;
+    gap: 4px;
+    font-size: 6.5rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    margin-top: -10px;
+    font-family: 'Montserrat', sans-serif;
 }
 
-.p{color:#51e6d5;}
-.r{color:#ff7ca8;}
-.e{color:#ffd54a;}
-.c{color:#67c8ff;}
-.i{color:#ffffff;}
-.o{color:#a6ff8f;}
-.u{color:#ff9a9a;}
-.s{color:#9cf5a0;}
+/* สีชอล์กพาสเทลแบบในรูป */
+.p{ color: #64dfdf; text-shadow: 0 0 10px rgba(100,223,223,0.3); }
+.r{ color: #ff99c8; text-shadow: 0 0 10px rgba(255,153,200,0.3); }
+.e{ color: #fcf6bd; text-shadow: 0 0 10px rgba(252,246,189,0.3); }
+.c{ color: #90dbf4; text-shadow: 0 0 10px rgba(144,219,244,0.3); }
+.i{ color: #ffffff; text-shadow: 0 0 10px rgba(255,255,255,0.3); }
+.o{ color: #b9fbc0; text-shadow: 0 0 10px rgba(185,251,192,0.3); }
+.u{ color: #ffcfd2; text-shadow: 0 0 10px rgba(255,207,210,0.3); }
+.s{ color: #98f5a3; text-shadow: 0 0 10px rgba(152,245,163,0.3); }
 
 .board-sub{
-
-text-align:center;
-
-margin-top:20px;
-
-font-size:2rem;
-
-letter-spacing:8px;
-
-color:#f4d06f;
+    font-size: 1.5rem;
+    letter-spacing: 6px;
+    color: #f4d06f;
+    margin-top: 15px;
+    font-weight: 400;
 }
 
-/* CAMERA */
+/* กระดาษโน้ตแฮนด์เมดมุมขวาล่างกระดาน */
+.sticky-note {
+    position: absolute;
+    bottom: 25px;
+    right: 35px;
+    width: 150px;
+    background: #fbf6ef;
+    color: #4a3b2c;
+    padding: 15px;
+    transform: rotate(4deg);
+    box-shadow: 3px 5px 12px rgba(0,0,0,0.3);
+    font-family: 'Reenie Beanie', cursive;
+    font-size: 1.5rem;
+    line-height: 1.1;
+}
 
-.camera{
+/* CLASSIC CAMERA VIBES */
+.camera-wrapper {
+    position: absolute;
+    left: 4%;
+    bottom: 180px;
+    z-index: 15;
+    display: flex;
+    align-items: flex-end;
+    gap: 10px;
+    animation: cameraFloat 5s ease-in-out infinite;
+}
 
-position:absolute;
+.vintage-camera{
+    font-size: 5.5rem;
+    filter: drop-shadow(5px 15px 15px rgba(0,0,0,0.6));
+}
 
-left:50px;
-bottom:160px;
-
-font-size:7rem;
-
-filter:drop-shadow(
-0 20px 25px rgba(0,0,0,.6)
-);
-
-z-index:20;
-
-animation:cameraFloat 4s ease-in-out infinite;
+.film-roll {
+    font-size: 2.5rem;
+    filter: drop-shadow(3px 5px 5px rgba(0,0,0,0.5));
+    transform: rotate(-15deg);
 }
 
 @keyframes cameraFloat{
-
-0%{
-transform:translateY(0);
+    0%, 100%{ transform: translateY(0) rotate(0deg); }
+    50%{ transform: translateY(-10px) rotate(2deg); }
 }
 
-50%{
-transform:translateY(-12px);
+/* FILM STRIP CONTAINER (แกลเลอรีม้วนฟิล์มสไลเดอร์) */
+.film-container {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 30px 4%;
+    background: linear-gradient(to top, rgba(0,0,0,0.95) 70%, transparent);
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    z-index: 25;
 }
-
-100%{
-transform:translateY(0);
-}
-
-}
-
-/* FILM */
 
 .film-strip{
-
-position:absolute;
-
-bottom:0;
-left:0;
-
-width:100%;
-
-padding:25px;
-
-background:
-linear-gradient(
-to top,
-rgba(0,0,0,.85),
-transparent
-);
-
-z-index:20;
+    flex: 1;
+    overflow: hidden;
 }
 
 .film-track{
-
-display:flex;
-gap:18px;
-
-overflow-x:auto;
-
-padding-bottom:10px;
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    padding: 15px 5px;
+    scroll-behavior: smooth;
+    cursor: grab;
 }
 
-.film-track::-webkit-scrollbar{
-height:8px;
+/* ซ่อนแถบ Scrollbar ที่ไม่สวยงาม */
+.film-track::-webkit-scrollbar {
+    display: none;
+}
+.film-track {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
 }
 
-.film-track::-webkit-scrollbar-thumb{
-background:#444;
-border-radius:999px;
+.film-track:active {
+    cursor: grabbing;
 }
 
+/* การ์ดฟิล์มเก็บความทรงจำ */
 .film-card{
-
-min-width:230px;
-height:145px;
-
-padding:18px;
-
-background:
-rgba(255,255,255,.06);
-
-backdrop-filter:blur(10px);
-
-border:1px solid rgba(255,255,255,.15);
-
-border-radius:15px;
-
-color:white;
-
-text-decoration:none;
-
-transition:.35s;
+    min-width: 240px;
+    height: 140px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 12px;
+    color: white;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 .film-card:hover{
-
-transform:
-translateY(-12px)
-scale(1.03);
-
-background:
-rgba(255,255,255,.12);
-
-box-shadow:
-0 20px 35px rgba(0,0,0,.4);
+    transform: translateY(-15px) scale(1.02);
+    background: rgba(255, 255, 255, 0.12);
+    border-color: #ffd86a;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.5);
 }
 
-.film-card span{
-
-font-size:1.7rem;
-
-color:#ffd86a;
+.card-num{
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #ffd86a;
 }
 
 .film-card h3{
-
-margin-top:10px;
-
-font-size:1.2rem;
+    font-size: 1.1rem;
+    font-weight: 400;
+    line-height: 1.3;
+    margin-top: 5px;
+    flex-grow: 1;
 }
 
-.film-card p{
-
-margin-top:8px;
-
-opacity:.8;
+.card-date{
+    font-size: 0.8rem;
+    opacity: 0.6;
+    letter-spacing: 1px;
+    text-transform: uppercase;
 }
 
-/* PARTICLES */
+/* NAVIGATION SLIDER BUTTONS */
+.film-btn {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+    font-size: 1.2rem;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
+}
 
+.film-btn:hover {
+    background: #ffd86a;
+    color: #121212;
+    border-color: #ffd86a;
+    transform: scale(1.1);
+}
+
+/* PARTICLES (เอฟเฟกต์ละอองฝุ่นโรแมนติก) */
 .particles{
-
-position:absolute;
-inset:0;
-
-pointer-events:none;
-
-background-image:
-radial-gradient(
-rgba(255,255,255,.6) 1px,
-transparent 1px
-);
-
-background-size:90px 90px;
-
-opacity:.25;
-
-animation:dustMove 25s linear infinite;
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image: radial-gradient(rgba(255,255,255,0.4) 1px, transparent 1px);
+    background-size: 100px 100px;
+    opacity: 0.3;
+    animation: dustMove 30s linear infinite;
+    z-index: 3;
 }
 
 @keyframes dustMove{
-
-from{
-transform:translateY(0);
+    from{ background-position: 0 0; }
+    to{ background-position: 50px -300px; }
 }
 
-to{
-transform:translateY(-200px);
+/* RESPONSIVE (รองรับมือถือและแท็บเล็ต) */
+@media(max-width: 1150px){
+    .hero {
+        flex-direction: column;
+        justify-content: flex-start;
+        padding-top: 60px;
+        overflow-y: auto;
+    }
+    .left-content {
+        text-align: center;
+        margin-top: 0;
+        margin-bottom: 40px;
+    }
+    .board-wrapper {
+        margin-top: 0;
+        margin-bottom: 220px;
+    }
+    .rope { display: none; }
+    .camera-wrapper { display: none; }
 }
 
-}
-
-/* MOBILE */
-
-@media(max-width:1200px){
-
-.board{
-width:560px;
-height:430px;
-}
-
-.precious{
-font-size:5rem;
-}
-
-.left-content h1{
-font-size:5rem;
-}
-
-}
-
-@media(max-width:900px){
-
-.navbar{
-padding:25px;
-}
-
-.navbar ul{
-display:none;
-}
-
-.left-content{
-
-position:relative;
-
-left:auto;
-top:auto;
-
-transform:none;
-
-padding-top:120px;
-
-text-align:center;
-}
-
-.board{
-
-position:relative;
-
-right:auto;
-top:auto;
-
-transform:none;
-
-margin:40px auto;
-
-width:90%;
-height:auto;
-
-padding-bottom:50px;
-}
-
-.precious{
-font-size:3.5rem;
-}
-
-.my{
-font-size:2.5rem;
-}
-
-.board-sub{
-font-size:1.2rem;
-}
-
-.camera{
-display:none;
-}
-
-.hero{
-padding-bottom:220px;
-}
-
+@media(max-width: 768px){
+    .board {
+        width: 100%;
+        max-width: 550px;
+        height: auto;
+        padding: 30px 20px;
+    }
+    .precious { font-size: 4.5rem; }
+    .left-content h1 { font-size: 4.5rem; }
+    .sticky-note { display: none; }
 }
