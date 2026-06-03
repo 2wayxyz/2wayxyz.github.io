@@ -1,151 +1,121 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
-
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>2WAY MEMORIES</title>
-
-<link rel="stylesheet" href="style.css">
-
-<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2WAY MEMORIES</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Montserrat:wght@300;400;600&family=Reenie+Beanie&display=swap" rel="stylesheet">
 </head>
-
 <body>
 
 <div class="hero">
+    <div class="overlay"></div>
+    <div class="shadow-overlay"></div>
 
-<div class="overlay"></div>
+    <div class="left-content">
+        <h1>2WAY<br>MEMORIES</h1>
+        <div class="year">— 2025 —</div>
+        <p class="description">
+            Every moment.<br>
+            Every smile.<br>
+            Every memory.<br>
+            Forever in our hearts.
+        </p>
+        <div class="scroll-text">
+            <span>Scroll Down</span>
+            <div class="arrow-down">↓</div>
+        </div>
+    </div>
 
-<nav class="navbar">
+    <div class="board-wrapper">
+        <div class="rope left-rope"></div>
+        <div class="rope right-rope"></div>
+        
+        <div class="board">
+            <div class="board-tag">2WAY</div>
+            
+            <div class="my">MY</div>
+            
+            <div class="precious">
+                <span class="p">P</span>
+                <span class="r">R</span>
+                <span class="e">E</span>
+                <span class="c">C</span>
+                <span class="i">I</span>
+                <span class="o">O</span>
+                <span class="u">U</span>
+                <span class="s">S</span>
+            </div>
+            
+            <div class="board-sub">— 2WAY MEMORIES —</div>
+            
+            <div class="sticky-note">
+                <p>Good friends</p>
+                <p>Good memories</p>
+                <p>Good times ♡</p>
+            </div>
+        </div>
+    </div>
 
-<div class="logo">
-2WAY MEMORIES
-</div>
+    <div class="camera-wrapper">
+        <div class="vintage-camera">📷</div>
+        <div class="film-roll">🎞️</div>
+    </div>
 
-<ul>
-<li><a href="#">HOME</a></li>
-<li><a href="#">ALBUMS</a></li>
-<li><a href="#">ABOUT US</a></li>
-<li><a href="#">MUSIC</a></li>
-</ul>
+    <div class="film-container">
+        <button class="film-btn prev-btn" aria-label="Previous">&#10094;</button>
+        
+        <div class="film-strip">
+            <div class="film-track" id="filmTrack">
+                <a class="film-card" href="#">
+                    <span class="card-num">01</span>
+                    <h3>English International Day</h3>
+                    <p class="card-date">DEC 2025</p>
+                </a>
+                <a class="film-card" href="#">
+                    <span class="card-num">02</span>
+                    <h3>Day At PPW</h3>
+                    <p class="card-date">16/12/25</p>
+                </a>
+                <a class="film-card" href="#">
+                    <span class="card-num">03</span>
+                    <h3>Day At PPW</h3>
+                    <p class="card-date">17/12/25</p>
+                </a>
+                <a class="film-card" href="#">
+                    <span class="card-num">04</span>
+                    <h3>Before Sports Day</h3>
+                    <p class="card-date">COMING SOON</p>
+                </a>
+                <a class="film-card" href="#">
+                    <span class="card-num">05</span>
+                    <h3>Sports Day</h3>
+                    <p class="card-date">COMING SOON</p>
+                </a>
+                <a class="film-card" href="#">
+                    <span class="card-num">06</span>
+                    <h3>Digital Camera Collection</h3>
+                    <p class="card-date">MEMORIES</p>
+                </a>
+                <a class="film-card" href="#">
+                    <span class="card-num">07</span>
+                    <h3>New Collection</h3>
+                    <p class="card-date">NEW</p>
+                </a>
+            </div>
+        </div>
 
-</nav>
+        <button class="film-btn next-btn" aria-label="Next">&#10095;</button>
+    </div>
 
-<div class="left-content">
-
-<h1>
-2WAY<br>
-MEMORIES
-</h1>
-
-<div class="year">
-2025
-</div>
-
-<p>
-Every moment.<br>
-Every smile.<br>
-Every memory.<br>
-Forever in our hearts.
-</p>
-
-<div class="scroll-text">
-Scroll Down ↓
-</div>
-
-</div>
-
-<div class="board">
-
-<div class="board-tag">
-2WAY
-</div>
-
-<div class="my">
-MY
-</div>
-
-<div class="precious">
-
-<span class="p">P</span>
-<span class="r">R</span>
-<span class="e">E</span>
-<span class="c">C</span>
-<span class="i">I</span>
-<span class="o">O</span>
-<span class="u">U</span>
-<span class="s">S</span>
-
-</div>
-
-<div class="board-sub">
-2WAY MEMORIES
-</div>
-
-</div>
-
-<div class="camera">
-📷
-</div>
-
-<div class="film-strip">
-
-<div class="film-track">
-
-<a class="film-card" href="#">
-<span>01</span>
-<h3>English Day</h3>
-<p>DEC 2025</p>
-</a>
-
-<a class="film-card" href="#">
-<span>02</span>
-<h3>Day At PPW</h3>
-<p>16/12/25</p>
-</a>
-
-<a class="film-card" href="#">
-<span>03</span>
-<h3>Day At PPW</h3>
-<p>17/12/25</p>
-</a>
-
-<a class="film-card" href="#">
-<span>04</span>
-<h3>Before Sports Day</h3>
-</a>
-
-<a class="film-card" href="#">
-<span>05</span>
-<h3>Sports Day</h3>
-</a>
-
-<a class="film-card" href="#">
-<span>06</span>
-<h3>Digital Camera</h3>
-</a>
-
-<a class="film-card" href="#">
-<span>07</span>
-<h3>New Collection</h3>
-</a>
-
-</div>
-
-</div>
-
-<div class="particles"></div>
-
+    <div class="particles"></div>
 </div>
 
 <audio id="bgMusic" loop>
-<source src="music/bg.mp3" type="audio/mpeg">
+    <source src="music/bg.mp3" type="audio/mpeg">
 </audio>
 
 <script src="script.js"></script>
-
 </body>
 </html>
