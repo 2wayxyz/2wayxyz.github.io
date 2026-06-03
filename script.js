@@ -6,9 +6,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const nextBtn = document.querySelector('.next-btn');
 
     if (filmTrack && prevBtn && nextBtn) {
-        const scrollDistance = 330; // จำนวนพิกเซลในการกดเลื่อนแต่ละครั้ง
+        const scrollDistance = 330; // ระยะเลื่อนพิกเซลต่อการกดปุ่ม 1 ครั้ง
 
-        // ฟังก์ชันเลื่อนเมื่อคลิกปุ่มลูกศร
+        // เลื่อนเมื่อคลิกปุ่มลูกศร
         prevBtn.addEventListener('click', () => {
             filmTrack.scrollBy({ left: -scrollDistance, behavior: 'smooth' });
         });
@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
             filmTrack.scrollBy({ left: scrollDistance, behavior: 'smooth' });
         });
 
-        // === 2. ระบบ Drag-to-Scroll (คลิกเมาส์ค้างแล้วลากซ้าย-ขวา) ===
+        // === 2. ระบบลากด้วยเมาส์ซ้าย-ขวา (Drag-to-Scroll) ===
         let isMousedown = false;
         let startX;
         let scrollLeftVal;
@@ -43,7 +43,7 @@ document.addEventListener("DOMContentLoaded", () => {
             if (!isMousedown) return;
             e.preventDefault();
             const x = e.pageX - filmTrack.offsetLeft;
-            const walk = (x - startX) * 1.6; // ปรับตัวคูณเพื่อเพิ่มความไวในการลากได้ตามชอบ
+            const walk = (x - startX) * 1.6; // ปรับความไวการลากตรงตัวเลขท้ายสุด
             filmTrack.scrollLeft = scrollLeftVal - walk;
         });
     }
