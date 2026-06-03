@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>2WAY MEMORIES</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Montserrat:wght@300;400;600;700&family=Reenie+Beanie&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Montserrat:wght@300;400;600;700&family=Reenie+Beanie&display=swap" rel="stylesheet">
 </head>
 <body>
 
@@ -25,8 +25,7 @@
         </p>
         <div class="scroll-text">
             <span>Scroll Down</span>
-            <div class="arrow-down">↓</div>
-        </div>
+            <div class="arrow-down"></div> </div>
     </div>
 
     <div class="board-wrapper">
@@ -35,7 +34,6 @@
         
         <div class="board">
             <div class="board-tag">2WAY</div>
-            
             <div class="my">MY</div>
             
             <div class="precious">
@@ -58,7 +56,14 @@
             </div>
 
             <div class="polaroid-wrapper">
-                <div class="daisy">🌼</div>
+                <div class="css-flower">
+                    <div class="flower-core"></div>
+                    <div class="petal p1"></div>
+                    <div class="petal p2"></div>
+                    <div class="petal p3"></div>
+                    <div class="petal p4"></div>
+                    <div class="petal p5"></div>
+                </div>
                 <div class="polaroid">
                     <div class="photo-placeholder"></div>
                 </div>
@@ -66,13 +71,31 @@
         </div>
     </div>
 
-    <div class="camera-zone">
-        <div class="vintage-camera">📷</div>
-        <div class="yellow-film">💛 FILM</div>
+    <div class="camera-container">
+        <div class="css-camera">
+            <div class="camera-top">
+                <div class="shutter-btn"></div>
+                <div class="flash-unit"></div>
+            </div>
+            <div class="camera-body">
+                <div class="camera-stripe"></div>
+                <div class="lens-outer">
+                    <div class="lens-inner">
+                        <div class="lens-reflection"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="css-film-roll">
+            <div class="film-cap"></div>
+            <div class="film-body">
+                <span class="film-label">FILM</span>
+            </div>
+        </div>
     </div>
 
     <div class="film-container">
-        <button class="film-btn prev-btn" aria-label="Previous">&#10094;</button>
+        <button class="film-btn prev-btn" aria-label="Previous">❮</button>
         
         <div class="film-strip">
             <div class="film-holes holes-top"></div>
@@ -105,7 +128,7 @@
                 </a>
                 <a class="film-card" href="#">
                     <span class="card-num">06</span>
-                    <h3>Digital Camera Collection</h3>
+                    <h3>Digital Camera</h3>
                     <p class="card-date">GALLERY</p>
                 </a>
                 <a class="film-card" href="#">
@@ -118,7 +141,7 @@
             <div class="film-holes holes-bottom"></div>
         </div>
 
-        <button class="film-btn next-btn" aria-label="Next">&#10095;</button>
+        <button class="film-btn next-btn" aria-label="Next">❯</button>
     </div>
 
     <div class="particles"></div>
