@@ -1,3 +1,6 @@
+/* ==========================================================================
+   GLOBAL RESET & INITIAL SETUP
+   ========================================================================== */
 *{
     margin: 0;
     padding: 0;
@@ -11,395 +14,445 @@ html{
 body{
     font-family: 'Montserrat', sans-serif;
     overflow-x: hidden;
-    background: #090e0a; 
+    background: #040805; 
     color: #fff;
     user-select: none;
+    -webkit-user-select: none;
 }
 
 /* ==========================================================================
-   HERO & CINEMATIC BACKDROP (ผสานรูปภาพพื้นหลังของคุณ)
+   HERO BACKDROP & IMAGE BACKGROUND (แมตช์รูปภาพพื้นหลังป่าไม้ของคุณเรียบร้อย)
    ========================================================================== */
 .hero{
     position: relative;
     width: 100%;
     min-height: 100vh;
-    /* ยัดภาพป่าไม้แฟลร์แสงที่คุณส่งมาเป็น Background หลัก */
+    /* ฝังลิงก์รูปป่าส่องแสงแฟลร์แดดส่องของคุณเป็น Background ตรงๆ */
     background: url("https://i.postimg.cc/44LTfLRq/tww.png") center center/cover no-repeat;
     overflow: hidden;
 }
 
-/* ย้อมสีแสงแดดและสร้าง Vignette มืดรอบขอบจอให้เนื้อหาตรงกลางเด่น */
+/* ควบคุมโทน มิติเงา และส่องสว่างขอบตามรูปตัวอย่าง */
 .overlay{
     position: absolute;
     inset: 0;
-    background: radial-gradient(circle at 50% 40%, rgba(255, 230, 180, 0.05) 0%, rgba(5, 12, 6, 0.45) 60%, rgba(0, 0, 0, 0.9) 100%);
+    background: radial-gradient(circle at 45% 40%, rgba(255, 235, 190, 0.04) 0%, rgba(3, 8, 4, 0.4) 65%, rgba(0, 0, 0, 0.95) 100%);
     z-index: 1;
 }
 
+.sun-flare {
+    position: absolute;
+    top: -25%;
+    left: -15%;
+    width: 70%;
+    height: 80%;
+    background: radial-gradient(circle, rgba(255, 240, 190, 0.15) 0%, transparent 65%);
+    filter: blur(50px);
+    z-index: 2;
+    pointer-events: none;
+}
+
 /* ==========================================================================
-   NAVBAR & SIDEBAR
+   NAVBARS & NAVIGATION SYSTEM (ไร้อิโมจิ ใช้ SVG แทนทั้งหมดเพื่อความหรูหรา)
    ========================================================================== */
 .navbar{
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
-    padding: 30px 60px;
+    padding: 35px 60px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    z-index: 20;
+    z-index: 25;
 }
 
 .logo{
-    font-size: 1.3rem;
-    letter-spacing: 3px;
+    font-size: 1.25rem;
+    letter-spacing: 4px;
     font-weight: 600;
-    text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+    text-shadow: 0 3px 12px rgba(0,0,0,0.6);
 }
 
 .navbar ul{
     display: flex;
-    gap: 40px;
+    gap: 45px;
     list-style: none;
     align-items: center;
 }
 
 .navbar a{
-    color: white;
+    color: rgba(255,255,255,0.7);
     text-decoration: none;
-    font-size: .85rem;
-    letter-spacing: 2px;
-    transition: .3s;
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 2.5px;
+    transition: all 0.3s ease;
 }
 
-.navbar a:hover{
+.navbar a:hover, .navbar a.active{
     color: #ffd86a;
+    text-shadow: 0 0 10px rgba(255,216,106,0.3);
 }
 
-.music-btn {
-    font-size: 1.1rem;
-    background: rgba(255,255,255,0.1);
-    width: 35px;
-    height: 35px;
+.music-toggle-btn {
     display: flex;
     align-items: center;
     justify-content: center;
+    width: 36px;
+    height: 36px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.15);
     border-radius: 50%;
-    border: 1px solid rgba(255,255,255,0.2);
 }
 
-/* แถบเมนูด้านซ้ายแนวตั้ง (ตามรูปตัวอย่าง) */
-.side-nav {
+.music-icon {
+    width: 16px;
+    height: 16px;
+    color: #fff;
+}
+
+/* แถบเมนูไอคอนแนวตั้งด้านซ้ายจอ (Side Navigation) */
+.side-navigation {
     position: absolute;
     left: 0;
-    top: 25%;
+    top: 28%;
     display: flex;
     flex-direction: column;
-    gap: 25px;
-    padding-left: 25px;
-    z-index: 20;
+    gap: 28px;
+    padding-left: 30px;
+    z-index: 25;
 }
 
-.side-item {
+.side-link {
     display: flex;
     flex-direction: column;
     align-items: center;
     text-decoration: none;
-    color: rgba(255,255,255,0.5);
-    font-size: 1.2rem;
-    transition: 0.3s;
+    color: rgba(255,255,255,0.4);
+    transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
-.side-item p {
+.side-icon {
+    width: 20px;
+    height: 20px;
+}
+
+.side-link span {
     font-size: 0.65rem;
-    margin-top: 5px;
+    margin-top: 6px;
     letter-spacing: 1px;
+    font-weight: 500;
 }
 
-.side-item:hover, .side-item.active {
+.side-link:hover, .side-link.active {
     color: #ffd86a;
-    transform: scale(1.05);
+    transform: translateX(3px);
 }
 
 /* ==========================================================================
-   LEFT CONTENT & TYPOGRAPHY
+   LEFT TYPOGRAPHY BLOCK
    ========================================================================== */
 .left-content{
     position: absolute;
-    left: 14%;
-    top: 46%;
+    left: 15%;
+    top: 48%;
     transform: translateY(-50%);
     z-index: 10;
-    max-width: 400px;
+    max-width: 420px;
 }
 
 .left-content h1{
     font-family: 'Caveat', cursive;
-    font-size: 7.5rem;
-    line-height: 0.85;
-    text-shadow: 0 10px 30px rgba(0,0,0,0.6);
+    font-size: 7.8rem;
+    line-height: 0.82;
     font-weight: 700;
+    color: #fff;
+    text-shadow: 0 10px 30px rgba(0,0,0,0.7);
+    letter-spacing: -2px;
 }
 
 .year{
-    margin-top: 10px;
-    font-size: 1.8rem;
-    letter-spacing: 10px;
-    color: #ffd86a;
+    margin-top: 12px;
+    font-size: 1.7rem;
     font-weight: 600;
-    position: relative;
-    display: inline-block;
-}
-
-.year::after {
-    content: '';
-    position: absolute;
-    right: -25px;
-    top: 50%;
-    width: 20px;
-    height: 2px;
-    background: #ffd86a;
+    letter-spacing: 8px;
+    color: #ffd86a;
 }
 
 .left-content p{
     margin-top: 25px;
-    line-height: 1.8;
-    font-size: 1.05rem;
-    opacity: .85;
-    text-shadow: 0 2px 8px rgba(0,0,0,0.5);
+    line-height: 1.9;
+    font-size: 1.1rem;
+    font-weight: 300;
+    opacity: 0.8;
+    text-shadow: 0 3px 10px rgba(0,0,0,0.6);
 }
 
-.scroll-text{
-    margin-top: 35px;
+.scroll-action {
+    margin-top: 40px;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.scroll-lbl{
     font-family: 'Caveat', cursive;
     font-size: 2.2rem;
     color: #ffd86a;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: fit-content;
 }
 
-.arrow-down-css {
+.custom-arrow-css {
     width: 12px;
     height: 12px;
     border-right: 2px solid #ffd86a;
     border-bottom: 2px solid #ffd86a;
     transform: rotate(45deg);
-    margin-top: 5px;
-    animation: smoothBounce 2s infinite ease-in-out;
+    margin-top: 6px;
+    animation: gentleArrow 2s infinite ease-in-out;
 }
 
-@keyframes smoothBounce {
+@keyframes gentleArrow {
     0%, 100% { transform: translateY(0) rotate(45deg); opacity: 0.4; }
     50% { transform: translateY(8px) rotate(45deg); opacity: 1; }
 }
 
 /* ==========================================================================
-   BOARD GRAPHICS 3D (กระดานไม้ชอล์กสีพาสเทลตาม Ref เป๊ะๆ)
+   BOARD GRAPHICS (ดีไซน์กระดานชอล์กพาสเทลและเชือกสลิงแบบพรีเมียมตาม Ref)
    ========================================================================== */
-.board{
+.board-frame-wrapper {
     position: absolute;
     right: 8%;
     top: 45%;
     transform: translateY(-50%);
-    width: 680px;
-    height: 500px;
-    background: radial-gradient(circle, #222a24 0%, #111612 100%); 
-    border: 16px solid #2d1c10; 
-    border-radius: 4px;
-    box-shadow: 
-        inset 0 0 40px rgba(0,0,0,0.9),
-        0 30px 70px rgba(0,0,0,0.8);
     z-index: 10;
 }
 
-/* จำลองเชือกสลิงแขวนกระดานสองฝั่ง */
-.board::before, .board::after {
+.slate-board{
+    position: relative;
+    width: 690px;
+    height: 490px;
+    background: radial-gradient(circle, #202922 0%, #0f1410 100%); 
+    border: 16px solid #28180c; 
+    border-radius: 4px;
+    box-shadow: 
+        inset 0 0 45px rgba(0,0,0,0.95),
+        0 35px 75px rgba(0,0,0,0.8);
+    padding: 30px;
+}
+
+/* สายสลิงแขวนกระดาน */
+.slate-board::before, .slate-board::after {
     content: "";
     position: absolute;
-    top: -120px;
-    width: 4px;
-    height: 120px;
-    background: linear-gradient(to bottom, transparent, #5e4831);
+    top: -140px;
+    width: 3px;
+    height: 140px;
+    background: linear-gradient(to bottom, transparent, #4c3723);
 }
-.board::before { left: 120px; transform: rotate(-5deg); }
-.board::after { right: 120px; transform: rotate(5deg); }
+.slate-board::before { left: 140px; transform: rotate(-4deg); }
+.slate-board::after { right: 140px; transform: rotate(4deg); }
 
-.board-tag{
+.chalk-tag{
     position: absolute;
-    top: 15px;
+    top: 20px;
     left: 25px;
     padding: 6px 22px;
-    background: #c3a276;
-    color: #1a1107;
+    background: #bfa17a;
+    color: #170f07;
     font-weight: 700;
     font-size: 0.8rem;
     letter-spacing: 2px;
-    transform: rotate(-4deg);
+    transform: rotate(-5deg);
     box-shadow: 2px 4px 10px rgba(0,0,0,0.3);
 }
 
 .my{
-    margin-top: 60px;
+    margin-top: 45px;
     text-align: center;
-    font-size: 4.5rem;
+    font-size: 4.4rem;
     font-family: 'Caveat', cursive;
-    color: #f5f5f5;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    color: #fcfcfc;
+    text-shadow: 2px 3px 6px rgba(0,0,0,0.5);
 }
 
 .precious{
     text-align: center;
-    margin-top: -15px;
-    font-size: 7.2rem;
+    margin-top: -20px;
+    font-size: 7rem;
     font-weight: 700;
-    letter-spacing: 2px;
+    letter-spacing: 3px;
 }
 
-/* สีชอล์กพาสเทลเนียนๆ ไล่ตามตัวอักษรแบบโมเดิร์นคลาสสิก */
-.p{color:#57ded2; text-shadow: 0 0 8px rgba(87,222,210,0.2);}
-.r{color:#ff7da7; text-shadow: 0 0 8px rgba(255,125,167,0.2);}
-.e{color:#ffd653; text-shadow: 0 0 8px rgba(255,214,83,0.2);}
-.c{color:#6bcaff; text-shadow: 0 0 8px rgba(107,202,255,0.2);}
-.i{color:#ffffff; text-shadow: 0 0 8px rgba(255,255,255,0.2);}
-.o{color:#a9ff94; text-shadow: 0 0 8px rgba(169,255,148,0.2);}
-.u{color:#ff9e9e; text-shadow: 0 0 8px rgba(255,158,158,0.2);}
-.s{color:#a2f7a6; text-shadow: 0 0 8px rgba(162,247,166,0.2);}
+/* สีชอล์กพาสเทลคลาสสิกระดับสตูดิโอ */
+.p{ color: #52e3d5; text-shadow: 0 0 10px rgba(82,227,213,0.25); }
+.r{ color: #ff7da8; text-shadow: 0 0 10px rgba(255,125,168,0.25); }
+.e{ color: #ffd34e; text-shadow: 0 0 10px rgba(255,211,78,0.25); }
+.c{ color: #62c6ff; text-shadow: 0 0 10px rgba(98,198,255,0.25); }
+.i{ color: #ffffff; text-shadow: 0 0 10px rgba(255,255,255,0.25); }
+.o{ color: #a3ff8d; text-shadow: 0 0 10px rgba(163,255,141,0.25); }
+.u{ color: #ff9696; text-shadow: 0 0 10px rgba(255,150,150,0.25); }
+.s{ color: #9df2a1; text-shadow: 0 0 10px rgba(157,242,161,0.25); }
 
 .board-sub{
     text-align: center;
-    margin-top: 15px;
+    margin-top: 12px;
     font-size: 1.5rem;
-    letter-spacing: 6px;
+    letter-spacing: 7px;
     color: #ffd86a;
 }
 
-/* โน้ตแปะเตือนความจำบนบอร์ด */
-.sticky-note {
+/* กระดาษโน้ตแปะหมุด */
+.vintage-sticky {
     position: absolute;
-    bottom: 40px;
-    left: 230px;
-    width: 140px;
-    background: #faf6eb;
-    color: #332517;
-    padding: 15px;
+    bottom: 35px;
+    left: 240px;
+    width: 145px;
+    background: #fdfaf2;
+    color: #2e2216;
+    padding: 16px;
     transform: rotate(2deg);
-    box-shadow: 3px 6px 15px rgba(0,0,0,0.3);
+    box-shadow: 4px 8px 18px rgba(0,0,0,0.35);
     font-family: 'Reenie Beanie', cursive;
-    font-size: 1.6rem;
-    line-height: 1.2;
+    font-size: 1.65rem;
+    line-height: 1.15;
 }
 
-/* กรอบรูปแบบโพลารอยด์วินเทจมุมขวาบอร์ด */
-.polaroid-frame {
+/* กรอบรูปโพลารอยด์วินเทจ */
+.polaroid-component {
     position: absolute;
-    bottom: 20px;
+    bottom: 15px;
     right: 25px;
     background: #fff;
-    padding: 10px 10px 30px 10px;
-    box-shadow: 5px 12px 25px rgba(0,0,0,0.4);
+    padding: 10px 10px 32px 10px;
+    box-shadow: 6px 14px 28px rgba(0,0,0,0.45);
     transform: rotate(-6deg);
 }
 
-.inner-photo {
-    width: 130px;
-    height: 110px;
+.photo-render {
+    width: 135px;
+    height: 115px;
     background: url("https://images.unsplash.com/photo-1448375240586-882707db888b?q=80&w=400&auto=format&fit=crop") center center/cover;
 }
 
-/* ตกแต่งใบไม้ ดอกไม้ประดับบอร์ดไม้เพื่อให้พรีเมียมมีชีวิตชีวา */
-.board-flowers-decor {
+/* วาดดอกเดซี่ตกแต่งกรอบรูปโพลารอยด์จากโค้ด CSS Pure */
+.css-flower-daisy {
     position: absolute;
-    top: -10px;
-    right: -10px;
-    width: 60px;
-    height: 60px;
-    background: radial-gradient(circle, #fffbdf 20%, transparent 60%);
-    opacity: 0.3;
+    top: -15px;
+    left: -15px;
+    width: 34px;
+    height: 34px;
+    z-index: 5;
+    filter: drop-shadow(2px 3px 5px rgba(0,0,0,0.3));
 }
 
-/* ==========================================================================
-   PURE CSS GRAPHICS (กล้องถ่ายรูปวินเทจและตลับฟิล์ม 3D ไร้อิโมจิ)
-   ========================================================================== */
-.camera-zone-wrapper {
+.daisy-core {
     position: absolute;
-    left: 4%;
-    bottom: 180px;
+    inset: 11px;
+    background: #e2a138;
+    border-radius: 50%;
+    z-index: 2;
+}
+
+.daisy-petal {
+    position: absolute;
+    background: #fff;
+    border-radius: 50% 50% 0 0;
+    width: 8px;
+    height: 15px;
+    top: 2px;
+    left: 13px;
+    transform-origin: bottom center;
+}
+.ptl-1 { transform: rotate(0deg); }
+.ptl-2 { transform: rotate(45deg); }
+.ptl-3 { transform: rotate(90deg); }
+.ptl-4 { transform: rotate(135deg); }
+.ptl-5 { transform: rotate(180deg); }
+.ptl-6 { transform: rotate(225deg); }
+.ptl-7 { transform: rotate(270deg); }
+.ptl-8 { transform: rotate(315deg); }
+
+/* ==========================================================================
+   PURE CSS RETRO CAMERA GRAPHICS (งานวาดกล้องถ่ายรูปและตลับฟิล์มสไตล์ 3D ไร้อิโมจิ)
+   ========================================================================== */
+.camera-assets-group {
+    position: absolute;
+    left: 5%;
+    bottom: 185px;
     display: flex;
     align-items: flex-end;
     gap: 15px;
     z-index: 15;
-    animation: cameraFloat 5s ease-in-out infinite;
+    animation: luxuryFloat 5s ease-in-out infinite;
 }
 
-.retro-camera-css {
-    width: 110px;
-    height: 70px;
+.css-retro-camera {
+    width: 115px;
+    height: 72px;
     position: relative;
 }
 
-.cam-top {
-    width: 90px;
+.cam-top-deck {
+    width: 95px;
     height: 12px;
-    background: linear-gradient(to bottom, #dcdcdc, #aaaaaa);
+    background: linear-gradient(to bottom, #dddddd, #a2a2a2);
     margin: 0 auto;
     border-radius: 4px 4px 0 0;
     position: relative;
 }
 
-.btn-shutter {
+.shutter-trigger {
     width: 12px;
-    height: 6px;
-    background: #777;
+    height: 5px;
+    background: #666;
     position: absolute;
-    top: -6px;
-    left: 10px;
+    top: -5px;
+    left: 12px;
     border-radius: 1px 1px 0 0;
 }
 
-.dial-wheel {
-    width: 15px;
+.mode-dial {
+    width: 14px;
     height: 4px;
-    background: #444;
+    background: #333;
     position: absolute;
     top: -4px;
-    right: 12px;
+    right: 14px;
 }
 
-.view-finder {
+.optical-finder {
     width: 12px;
-    height: 8px;
-    background: #222;
+    height: 7px;
+    background: #151515;
     position: absolute;
-    top: 2px;
-    left: 40px;
-    border: 1px solid #999;
+    top: 3px;
+    left: 42px;
+    border: 1px solid #888;
 }
 
-.cam-body {
+.cam-main-frame {
     width: 100%;
-    height: 58px;
-    background: #2a2a2a;
-    border: 2px solid #aaaaaa;
+    height: 60px;
+    background: #2b2b2b;
+    border: 2px solid #a2a2a2;
     border-radius: 4px;
     position: relative;
     overflow: hidden;
 }
 
-.leather-texture {
+.leather-wrap {
     width: 100%;
-    height: 32px;
-    background: #151515;
+    height: 34px;
+    background: #121212;
     position: absolute;
-    top: 12px;
+    top: 13px;
 }
 
-.lens-ring-1 {
+.outer-lens-mount {
     width: 44px;
     height: 44px;
-    background: linear-gradient(135deg, #eee, #777);
+    background: linear-gradient(135deg, #fff, #666);
     border-radius: 50%;
     position: absolute;
     top: 50%;
@@ -410,25 +463,25 @@ body{
     justify-content: center;
 }
 
-.lens-ring-2 {
+.inner-lens-barrel {
     width: 34px;
     height: 34px;
-    background: #000;
+    background: #050505;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.lens-glass {
+.optics-glass {
     width: 24px;
     height: 24px;
-    background: radial-gradient(circle, #092537 20%, #00111a 80%);
+    background: radial-gradient(circle, #0c2d42 10%, #001521 80%);
     border-radius: 50%;
     position: relative;
 }
 
-.lens-glare {
+.glass-reflection {
     width: 6px;
     height: 6px;
     background: rgba(255,255,255,0.4);
@@ -438,55 +491,55 @@ body{
     left: 4px;
 }
 
-/* ตลับฟิล์ม */
-.vintage-film-roll {
-    width: 30px;
-    height: 46px;
+/* ตลับฟิล์มสีทองเหลืองคลาสสิก */
+.css-film-canister {
+    width: 32px;
+    height: 48px;
     display: flex;
     flex-direction: column;
 }
 
-.roll-cap {
+.canister-rim {
     height: 3px;
-    background: #333;
+    background: #3a3a3a;
     border-radius: 2px;
 }
 
-.roll-body {
+.canister-barrel {
     flex: 1;
     background: #ffd86a;
-    border: 1px solid #333;
+    border: 1px solid #3a3a3a;
     position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.roll-stripe {
+.brand-line {
     position: absolute;
     width: 100%;
     height: 10px;
-    background: #222;
+    background: #252525;
     top: 6px;
 }
 
-.roll-label {
-    font-size: 0.5rem;
+.film-spec {
+    font-size: 0.55rem;
     font-weight: 700;
     color: #fff;
     z-index: 2;
     margin-top: 12px;
 }
 
-@keyframes cameraFloat{
+@keyframes luxuryFloat{
     0%, 100%{ transform: translateY(0); }
-    50%{ transform: translateY(-10px); }
+    50%{ transform: translateY(-8px); }
 }
 
 /* ==========================================================================
-   CINEMATIC FILM STRIP SLIDER (แผงม้วนฟิล์มสไลเดอร์ขอบหนามเตยด้านล่าง)
+   CINEMATIC FILM STRIP CAROUSEL (สไลเดอร์ฟิล์มภาพยนตร์ขอบเจาะรูหนามเตยด้านล่าง)
    ========================================================================== */
-.film-strip-container {
+.cinematic-film-slider {
     position: absolute;
     bottom: 25px;
     left: 0;
@@ -498,28 +551,27 @@ body{
     z-index: 20;
 }
 
-.film-strip {
+.film-negative-strip {
     flex: 1;
-    background: linear-gradient(to bottom, #141915, #080a08);
-    border-top: 2px solid #2d2e2d;
-    border-bottom: 2px solid #2d2e2d;
-    padding: 20px 0;
+    background: linear-gradient(to bottom, #111512, #050705);
+    border-top: 2px solid #282a28;
+    border-bottom: 2px solid #282a28;
+    padding: 22px 0;
     position: relative;
     border-radius: 4px;
 }
 
-/* สร้างรูหนามเตยของแผ่นฟิล์มภาพยนตร์ของจริง */
-.film-strip::before, .film-strip::after {
-    content: '';
+/* เจาะรูหนามเตยของขอบฟิล์มหนังคลาสสิก */
+.sprocket-strip {
     position: absolute;
     left: 0;
     width: 100%;
     height: 6px;
-    background-image: linear-gradient(to right, #000 0px, #000 10px, transparent 10px, transparent 22px);
-    background-size: 22px 6px;
+    background-image: linear-gradient(to right, #000 0px, #000 10px, transparent 10px, transparent 24px);
+    background-size: 24px 6px;
 }
-.film-strip::before { top: 6px; }
-.film-strip::after { bottom: 6px; }
+.sprocket-top { top: 6px; }
+.sprocket-bottom { bottom: 6px; }
 
 .film-track{
     display: flex;
@@ -531,14 +583,14 @@ body{
 
 .film-track::-webkit-scrollbar { display: none; }
 
-/* การ์ดสไลด์เนื้อหาโปร่งแสงกระจกฝ้าหรูหรา */
+/* ดีไซน์หน้าต่างกระจกฝ้าแบบโปร่งใสซ้อนเงาหรูหรา */
 .film-card{
-    min-width: 240px;
-    height: 130px;
-    padding: 18px;
+    min-width: 245px;
+    height: 135px;
+    padding: 20px;
     background: rgba(255, 255, 255, 0.02);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 8px;
     color: white;
@@ -546,17 +598,17 @@ body{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    transition: 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+    transition: all 0.35s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 .film-card:hover{
     transform: translateY(-6px);
     background: rgba(255, 255, 255, 0.08);
     border-color: #ffd86a;
-    box-shadow: 0 15px 30px rgba(0,0,0,0.5);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.6);
 }
 
-.card-num{
+.card-index{
     font-size: 1.3rem;
     font-weight: 700;
     color: #ffd86a;
@@ -569,29 +621,29 @@ body{
     flex-grow: 1;
 }
 
-.card-date{
+.card-timestamp{
     font-size: 0.75rem;
     opacity: 0.5;
     letter-spacing: 1px;
 }
 
-/* ปุ่มควบคุมลูกศรแบบกระจกฝ้าเรืองแสงตามขอบภาพ Ref */
-.film-arrow {
-    background: rgba(255, 255, 255, 0.04);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+/* ปุ่มลูกศรควบคุมสไลเดอร์ซ้าย-ขวา */
+.nav-arrow {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
     color: white;
-    width: 42px;
-    height: 42px;
+    width: 44px;
+    height: 44px;
     border-radius: 50%;
     cursor: pointer;
     display: flex;
     justify-content: center;
     align-items: center;
-    transition: 0.3s;
+    transition: all 0.3s ease;
     backdrop-filter: blur(5px);
 }
 
-.film-arrow:hover {
+.nav-arrow:hover {
     background: #ffd86a;
     color: #000;
     border-color: #ffd86a;
@@ -599,64 +651,64 @@ body{
 }
 
 /* ==========================================================================
-   EFFECTS & PARTICLES (เอฟเฟกต์ละอองแดดตามรูป Reference)
+   AMBIENT PARTICLES & FOOTER
    ========================================================================== */
-.particles{
+.magic-dust-particles{
     position: absolute;
     inset: 0;
     pointer-events: none;
-    background-image: radial-gradient(rgba(255, 222, 120, 0.25) 1px, transparent 1px);
-    background-size: 100px 100px;
-    opacity: 0.4;
-    animation: dustMove 30s linear infinite;
+    background-image: radial-gradient(rgba(255, 225, 130, 0.25) 1px, transparent 1px);
+    background-size: 110px 110px;
+    opacity: 0.45;
+    animation: goldDust 28s linear infinite;
     z-index: 2;
 }
 
-@keyframes dustMove{
+@keyframes goldDust{
     from { background-position: 0 0; }
-    to { background-position: 50px -300px; }
+    to { background-position: 40px -280px; }
 }
 
-.footer-credits {
+.bottom-credit {
     position: absolute;
-    bottom: 5px;
+    bottom: 6px;
     left: 50%;
     transform: translateX(-50%);
     font-size: 0.65rem;
-    letter-spacing: 4px;
-    opacity: 0.4;
+    letter-spacing: 5px;
+    opacity: 0.35;
     z-index: 21;
 }
 
 /* ==========================================================================
-   RESPONSIVE DESIGN (ปรับหน้าจออัตโนมัติเมื่อเปิดในมือถือ)
+   RESPONSIVE DESIGN (จัดการการแสดงผลบนอุปกรณ์พกพาและแท็บเล็ตอัตโนมัติ)
    ========================================================================== */
 @media(max-width: 1300px){
-    .board{ width: 550px; height: 430px; }
-    .precious{ font-size: 5.5rem; }
-    .left-content h1{ font-size: 5.5rem; }
+    .slate-board{ width: 560px; height: 430px; }
+    .precious{ font-size: 5.6rem; }
+    .left-content h1{ font-size: 5.8rem; }
 }
 
 @media(max-width: 991px){
-    .navbar ul, .side-nav, .camera-zone-wrapper, .sticky-note, .polaroid-frame { display: none; }
+    .navbar ul, .side-navigation, .camera-assets-group, .vintage-sticky, .polaroid-component { display: none; }
     .left-content {
         position: relative;
         left: auto; top: auto;
         transform: none;
-        padding: 120px 20px 20px 20px;
+        padding: 130px 20px 20px 20px;
         text-align: center;
         margin: 0 auto;
     }
-    .scroll-text { margin: 20px auto 0 auto; }
-    .board {
+    .scroll-action { margin: 20px auto 0 auto; }
+    .slate-board {
         position: relative;
         right: auto; top: auto;
         transform: none;
         margin: 40px auto 180px auto;
-        width: 90%;
+        width: 92%;
         height: auto;
-        padding: 40px 10px;
+        padding: 40px 15px;
     }
-    .precious { font-size: 4rem; }
+    .precious { font-size: 4.2rem; }
     .board-sub { font-size: 1.2rem; }
 }
