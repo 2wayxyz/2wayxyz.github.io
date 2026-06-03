@@ -1,51 +1,50 @@
 document.addEventListener("DOMContentLoaded", () => {
     
-    // === 1. ระบบควบคุมแถบม้วนฟิล์มสไลเดอร์ (Film Slider Controls) ===
+    // === 1. ระบบจัดการสไลเดอร์ม้วนฟิล์ม (Film Strip Slider Logic) ===
     const filmTrack = document.getElementById('filmTrack');
     const prevBtn = document.querySelector('.prev-btn');
     const nextBtn = document.querySelector('.next-btn');
 
     if (filmTrack && prevBtn && nextBtn) {
-        const scrollStep = 320; // ระยะการเลื่อนพิกเซลต่อการกด 1 ครั้ง
+        const scrollDistance = 330; // จำนวนพิกเซลในการกดเลื่อนแต่ละครั้ง
 
-        // คลิกเลื่อนไปทางซ้าย
+        // ฟังก์ชันเลื่อนเมื่อคลิกปุ่มลูกศร
         prevBtn.addEventListener('click', () => {
-            filmTrack.scrollBy({ left: -scrollStep, behavior: 'smooth' });
+            filmTrack.scrollBy({ left: -scrollDistance, behavior: 'smooth' });
         });
 
-        // คลิกเลื่อนไปทางขวา
         nextBtn.addEventListener('click', () => {
-            filmTrack.scrollBy({ left: scrollStep, behavior: 'smooth' });
+            filmTrack.scrollBy({ left: scrollDistance, behavior: 'smooth' });
         });
 
-        // === 2. ฟังก์ชันคลิกเมาส์ค้างแล้วลากซ้าย-ขวาเพื่อเลื่อน (Drag-to-Scroll) ===
-        let isPressed = false;
-        let startXPosition;
-        let initialScrollLeft;
+        // === 2. ระบบ Drag-to-Scroll (คลิกเมาส์ค้างแล้วลากซ้าย-ขวา) ===
+        let isMousedown = false;
+        let startX;
+        let scrollLeftVal;
 
         filmTrack.addEventListener('mousedown', (e) => {
-            isPressed = true;
+            isMousedown = true;
             filmTrack.style.cursor = 'grabbing';
-            startXPosition = e.pageX - filmTrack.offsetLeft;
-            initialScrollLeft = filmTrack.scrollLeft;
+            startX = e.pageX - filmTrack.offsetLeft;
+            scrollLeftVal = filmTrack.scrollLeft;
         });
 
         filmTrack.addEventListener('mouseleave', () => {
-            isPressed = false;
+            isMousedown = false;
             filmTrack.style.cursor = 'grab';
         });
 
         filmTrack.addEventListener('mouseup', () => {
-            isPressed = false;
+            isMousedown = false;
             filmTrack.style.cursor = 'grab';
         });
 
         filmTrack.addEventListener('mousemove', (e) => {
-            if (!isPressed) return;
+            if (!isMousedown) return;
             e.preventDefault();
-            const currentX = e.pageX - filmTrack.offsetLeft;
-            const distanceMoved = (currentX - startXPosition) * 1.5; // ปรับความเร็วลากตรงคูณตัวเลขท้าย
-            filmTrack.scrollLeft = initialScrollLeft - distanceMoved;
+            const x = e.pageX - filmTrack.offsetLeft;
+            const walk = (x - startX) * 1.6; // ปรับตัวคูณเพื่อเพิ่มความไวในการลากได้ตามชอบ
+            filmTrack.scrollLeft = scrollLeftVal - walk;
         });
     }
 
