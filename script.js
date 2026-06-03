@@ -1,32 +1,33 @@
 document.addEventListener("DOMContentLoaded", () => {
     
-    // === 1. ระบบจัดการสไลเดอร์ม้วนฟิล์ม (Film Strip Slider Logic) ===
+    // === 1. ระบบควบคุมการเลื่อนม้วนฟิล์มสไลเดอร์ (Film Slide Click Controls) ===
     const filmTrack = document.getElementById('filmTrack');
-    const prevBtn = document.querySelector('.prev-btn');
-    const nextBtn = document.querySelector('.next-btn');
+    const prevArrow = document.querySelector('.prev-arrow');
+    const nextArrow = document.querySelector('.next-arrow');
 
-    if (filmTrack && prevBtn && nextBtn) {
-        const scrollDistance = 330; // ระยะเลื่อนพิกเซลต่อการกดปุ่ม 1 ครั้ง
+    if (filmTrack && prevArrow && nextArrow) {
+        const scrollDistance = 340; // ระยะการเลื่อนพิกเซลต่อการคลิก 1 ครั้ง
 
-        // เลื่อนเมื่อคลิกปุ่มลูกศร
-        prevBtn.addEventListener('click', () => {
+        // คลิกปุ่มลูกศรซ้าย
+        prevArrow.addEventListener('click', () => {
             filmTrack.scrollBy({ left: -scrollDistance, behavior: 'smooth' });
         });
 
-        nextBtn.addEventListener('click', () => {
+        // คลิกปุ่มลูกศรขวา
+        nextArrow.addEventListener('click', () => {
             filmTrack.scrollBy({ left: scrollDistance, behavior: 'smooth' });
         });
 
-        // === 2. ระบบลากด้วยเมาส์ซ้าย-ขวา (Drag-to-Scroll) ===
+        // === 2. ระบบ Drag-to-Scroll (คลิกเมาส์ค้างแล้วลากซ้าย-ขวาเพื่อเลื่อนดูฟิล์ม) ===
         let isMousedown = false;
-        let startX;
-        let scrollLeftVal;
+        let startXPosition;
+        let currentScrollLeft;
 
         filmTrack.addEventListener('mousedown', (e) => {
             isMousedown = true;
             filmTrack.style.cursor = 'grabbing';
-            startX = e.pageX - filmTrack.offsetLeft;
-            scrollLeftVal = filmTrack.scrollLeft;
+            startXPosition = e.pageX - filmTrack.offsetLeft;
+            currentScrollLeft = filmTrack.scrollLeft;
         });
 
         filmTrack.addEventListener('mouseleave', () => {
@@ -43,8 +44,8 @@ document.addEventListener("DOMContentLoaded", () => {
             if (!isMousedown) return;
             e.preventDefault();
             const x = e.pageX - filmTrack.offsetLeft;
-            const walk = (x - startX) * 1.6; // ปรับความไวการลากตรงตัวเลขท้ายสุด
-            filmTrack.scrollLeft = scrollLeftVal - walk;
+            const walkDistance = (x - startXPosition) * 1.6; // ปรับตัวคูณเพื่อเพิ่มความไวตอนลากเมาส์
+            filmTrack.scrollLeft = currentScrollLeft - walkDistance;
         });
     }
 
