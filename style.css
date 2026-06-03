@@ -21,13 +21,12 @@ body{
 }
 
 /* ==========================================================================
-   HERO BACKDROP & IMAGE BACKGROUND (แมตช์รูปภาพพื้นหลังป่าไม้ของคุณเรียบร้อย)
+   HERO BACKDROP & IMAGE BACKGROUND (เชื่อมภาพป่าไม้ให้มู้ดโทนอบอุ่นพรีเมียม)
    ========================================================================== */
 .hero{
     position: relative;
     width: 100%;
     min-height: 100vh;
-    /* ฝังลิงก์รูปป่าส่องแสงแฟลร์แดดส่องของคุณเป็น Background ตรงๆ */
     background: url("https://i.postimg.cc/44LTfLRq/tww.png") center center/cover no-repeat;
     overflow: hidden;
 }
@@ -53,7 +52,7 @@ body{
 }
 
 /* ==========================================================================
-   NAVBARS & NAVIGATION SYSTEM (ไร้อิโมจิ ใช้ SVG แทนทั้งหมดเพื่อความหรูหรา)
+   NAVBARS & NAVIGATION SYSTEM (ใช้ไอคอนเวกเตอร์คุณภาพสูงแทนอิโมจิ)
    ========================================================================== */
 .navbar{
     position: absolute;
@@ -218,7 +217,7 @@ body{
 }
 
 /* ==========================================================================
-   BOARD GRAPHICS (ดีไซน์กระดานชอล์กพาสเทลและเชือกสลิงแบบพรีเมียมตาม Ref)
+   BOARD GRAPHICS (ดีไซน์กระดานชอล์กพาสเทลและเชือกสลิงแขวน 3D)
    ========================================================================== */
 .board-frame-wrapper {
     position: absolute;
@@ -284,7 +283,7 @@ body{
     letter-spacing: 3px;
 }
 
-/* สีชอล์กพาสเทลคลาสสิกระดับสตูดิโอ */
+/* สีชอล์กพาสเทลระดับสตูดิโอตรงตามรูป Reference เป๊ะๆ */
 .p{ color: #52e3d5; text-shadow: 0 0 10px rgba(82,227,213,0.25); }
 .r{ color: #ff7da8; text-shadow: 0 0 10px rgba(255,125,168,0.25); }
 .e{ color: #ffd34e; text-shadow: 0 0 10px rgba(255,211,78,0.25); }
@@ -302,7 +301,7 @@ body{
     color: #ffd86a;
 }
 
-/* กระดาษโน้ตแปะหมุด */
+/* กระดาษโน้ตแปะมุม */
 .vintage-sticky {
     position: absolute;
     bottom: 35px;
@@ -335,7 +334,7 @@ body{
     background: url("https://images.unsplash.com/photo-1448375240586-882707db888b?q=80&w=400&auto=format&fit=crop") center center/cover;
 }
 
-/* วาดดอกเดซี่ตกแต่งกรอบรูปโพลารอยด์จากโค้ด CSS Pure */
+/* ดอกเดซี่ตกแต่งกรอบรูปสร้างจาก CSS Pure */
 .css-flower-daisy {
     position: absolute;
     top: -15px;
@@ -374,7 +373,7 @@ body{
 .ptl-8 { transform: rotate(315deg); }
 
 /* ==========================================================================
-   PURE CSS RETRO CAMERA GRAPHICS (งานวาดกล้องถ่ายรูปและตลับฟิล์มสไตล์ 3D ไร้อิโมจิ)
+   PURE CSS RETRO CAMERA GRAPHICS (โมเดลกล้องถ่ายรูปเรโทรและตลับฟิล์ม 3D ไร้อิโมจิ)
    ========================================================================== */
 .camera-assets-group {
     position: absolute;
@@ -491,7 +490,7 @@ body{
     left: 4px;
 }
 
-/* ตลับฟิล์มสีทองเหลืองคลาสสิก */
+/* ตลับฟิล์มสีทองเหลืองเรโทรด้านข้างกล้อง */
 .css-film-canister {
     width: 32px;
     height: 48px;
@@ -537,7 +536,7 @@ body{
 }
 
 /* ==========================================================================
-   CINEMATIC FILM STRIP CAROUSEL (สไลเดอร์ฟิล์มภาพยนตร์ขอบเจาะรูหนามเตยด้านล่าง)
+   CINEMATIC FILM STRIP CAROUSEL (สไลเดอร์ฟิล์มสไตล์กระจกฝ้าหรูหราเจาะรูหนามเตยจริง)
    ========================================================================== */
 .cinematic-film-slider {
     position: absolute;
@@ -561,7 +560,7 @@ body{
     border-radius: 4px;
 }
 
-/* เจาะรูหนามเตยของขอบฟิล์มหนังคลาสสิก */
+/* รูหนามเตยขอบฟิล์ม */
 .sprocket-strip {
     position: absolute;
     left: 0;
@@ -583,7 +582,6 @@ body{
 
 .film-track::-webkit-scrollbar { display: none; }
 
-/* ดีไซน์หน้าต่างกระจกฝ้าแบบโปร่งใสซ้อนเงาหรูหรา */
 .film-card{
     min-width: 245px;
     height: 135px;
@@ -627,7 +625,7 @@ body{
     letter-spacing: 1px;
 }
 
-/* ปุ่มลูกศรควบคุมสไลเดอร์ซ้าย-ขวา */
+/* ปุ่มลูกศรซ้าย-ขวา */
 .nav-arrow {
     background: rgba(255, 255, 255, 0.03);
     border: 1px solid rgba(255, 255, 255, 0.08);
@@ -681,7 +679,7 @@ body{
 }
 
 /* ==========================================================================
-   RESPONSIVE DESIGN (จัดการการแสดงผลบนอุปกรณ์พกพาและแท็บเล็ตอัตโนมัติ)
+   RESPONSIVE DESIGN (ปรับเลย์เอาต์หน้าจออัตโนมัติบนมือถือและแท็บเล็ต)
    ========================================================================== */
 @media(max-width: 1300px){
     .slate-board{ width: 560px; height: 430px; }
