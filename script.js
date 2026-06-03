@@ -1,20 +1,32 @@
 document.addEventListener("DOMContentLoaded", () => {
     
-    // ระบบคลิกเลื่อนม้วนฟิล์มสไลเดอร์ซ้าย-ขวา (Film Carousel Slider)
+    // ระบบคลิกที่ลูกศรเพื่อเลื่อนแถบม้วนฟิล์มสไลเดอร์ซ้าย-ขวา
     const filmTrack = document.getElementById('filmTrack');
-    const prevArrow = document.querySelector('.prev-arrow');
-    const nextArrow = document.querySelector('.next-arrow');
+    const leftArrow = document.querySelector('.left-arrow');
+    const rightArrow = document.querySelector('.right-arrow');
 
-    if (filmTrack && prevArrow && nextArrow) {
+    if (filmTrack && leftArrow && rightArrow) {
         const scrollAmount = 300; 
 
-        prevArrow.addEventListener('click', () => {
+        leftArrow.addEventListener('click', () => {
             filmTrack.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
         });
 
-        nextArrow.addEventListener('click', () => {
+        rightArrow.addEventListener('click', () => {
             filmTrack.scrollBy({ left: scrollAmount, behavior: 'smooth' });
         });
     }
 
 });
+
+// ฟังชั่นสลับเปิด-ปิดเพลงสำหรับปุ่มบนเมนูบาร์
+function toggleMusic() {
+    const audio = document.getElementById('bgMusic');
+    if (audio) {
+        if (audio.paused) {
+            audio.play().catch(err => console.log("Audio playback waiting for user interaction."));
+        } else {
+            audio.pause();
+        }
+    }
+}
