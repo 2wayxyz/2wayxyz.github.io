@@ -14,40 +14,38 @@ html{
 body{
     font-family: 'Montserrat', sans-serif;
     overflow-x: hidden;
-    background: #0f1811; /* โทนสีเขียวป่ามืดลึก */
+    background: #0a110c; 
     color: #fff;
     user-select: none;
     -webkit-user-select: none;
 }
 
 /* ==========================================================================
-   HERO CONTAINER & SUNLIGHT EFFECTS
+   HERO BACKGROUND & LIGHTING EFFECTS
    ========================================================================== */
 .hero{
     position: relative;
     width: 100%;
     min-height: 100vh;
-    /* แนะนำเปลี่ยนรูปนี้เป็นภาพต้นไม้ใหญ่ในปาร์คของคุณเพื่อให้ฟีลตรงเป๊ะตามต้องการ */
     background: url("https://images.unsplash.com/photo-1502082553048-f009c37129b9?q=80&w=2560&auto=format&fit=crop") center center/cover;
     overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 6% 120px 6%;
+    padding: 0 6% 140px 6%;
 }
 
-/* ชั้นเลเยอร์เกลี่ยสีและสร้างมิติแสงแดด */
 .overlay{
     position: absolute;
     inset: 0;
-    background: radial-gradient(circle at 15% 25%, rgba(255, 240, 200, 0.2) 0%, rgba(10, 25, 15, 0.45) 80%);
+    background: radial-gradient(circle at 15% 25%, rgba(255, 242, 204, 0.22) 0%, rgba(8, 20, 12, 0.5) 80%);
     z-index: 1;
 }
 
 .shadow-overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(to bottom, rgba(0,0,0,0) 40%, rgba(5, 15, 8, 0.85) 100%);
+    background: linear-gradient(to bottom, rgba(0,0,0,0) 30%, rgba(4, 12, 6, 0.9) 100%);
     z-index: 2;
 }
 
@@ -57,29 +55,29 @@ body{
     left: -5%;
     width: 50%;
     height: 60%;
-    background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, transparent 70%);
-    filter: blur(40px);
+    background: radial-gradient(circle, rgba(255,255,255,0.12) 0%, transparent 65%);
+    filter: blur(50px);
     z-index: 2;
     pointer-events: none;
 }
 
 /* ==========================================================================
-   LEFT TYPOGRAPHY
+   LEFT CONTENT & TYPOGRAPHY
    ========================================================================== */
 .left-content{
     position: relative;
     z-index: 10;
     max-width: 420px;
-    margin-top: -40px;
+    margin-top: -50px;
 }
 
 .left-content h1{
     font-family: 'Caveat', cursive;
-    font-size: 6.8rem;
+    font-size: 7rem;
     line-height: 0.85;
     font-weight: 700;
     color: #ffffff;
-    text-shadow: 0 4px 20px rgba(0,0,0,0.6);
+    text-shadow: 0 10px 25px rgba(0,0,0,0.5);
     letter-spacing: -2px;
 }
 
@@ -88,8 +86,8 @@ body{
     font-size: 1.8rem;
     font-weight: 600;
     letter-spacing: 8px;
-    color: #f4d06f; /* สีเหลืองอบอุ่น */
-    text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+    color: #f4d06f;
+    text-shadow: 0 4px 10px rgba(0,0,0,0.4);
 }
 
 .description{
@@ -97,8 +95,8 @@ body{
     line-height: 1.9;
     font-size: 1.15rem;
     font-weight: 300;
-    opacity: 0.95;
-    text-shadow: 0 2px 8px rgba(0,0,0,0.6);
+    opacity: 0.9;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.5);
 }
 
 .scroll-text{
@@ -111,48 +109,51 @@ body{
 }
 
 .arrow-down {
-    text-align: center;
-    animation: floatArrow 2.2s infinite ease-in-out;
-    margin-top: 5px;
-    font-weight: bold;
+    width: 14px;
+    height: 14px;
+    border-right: 3px solid #ffd86a;
+    border-bottom: 3px solid #ffd86a;
+    transform: rotate(45deg);
+    margin: 15px auto 0 auto;
+    animation: bounceArrow 2s infinite ease-in-out;
 }
 
-@keyframes floatArrow {
-    0%, 100% { transform: translateY(0); opacity: 0.7; }
-    50% { transform: translateY(10px); opacity: 1; }
+@keyframes bounceArrow {
+    0%, 100% { transform: translateY(0) rotate(45deg); opacity: 0.6; }
+    50% { transform: translateY(8px) rotate(45deg); opacity: 1; }
 }
 
 /* ==========================================================================
-   CHALKBOARD & PROPS (บอร์ดกระดานดำสุดแจ่ม)
+   SUSPENDED CHALKBOARD (บอร์ดไม้กระดานดำคุณภาพสูง)
    ========================================================================== */
 .board-wrapper {
     position: relative;
     z-index: 10;
-    margin-top: -30px;
+    margin-top: -20px;
 }
 
-/* เชือกห้อยกระดาน */
 .rope {
     position: absolute;
-    top: -150px;
+    top: -160px;
     width: 4px;
-    height: 160px;
-    background: #8b6c46;
-    box-shadow: 3px 0 8px rgba(0,0,0,0.5);
+    height: 170px;
+    background: linear-gradient(to bottom, #5a452e, #7c5f3f);
+    box-shadow: 4px 0 10px rgba(0,0,0,0.5);
 }
-.left-rope { left: 90px; transform: rotate(-4deg); }
-.right-rope { right: 90px; transform: rotate(4deg); }
+.left-rope { left: 95px; transform: rotate(-3.5deg); }
+.right-rope { right: 95px; transform: rotate(3.5deg); }
 
 .board{
     position: relative;
-    width: 690px;
+    width: 700px;
     height: 500px;
-    background: #1d2520; /* สีกระดานชอล์กเขียวเข้มสไตล์สากล */
-    border: 18px solid #3d2511; /* กรอบไม้หนาหรูหรา */
+    background: #19221d; /* สีเนื้อกระดานชนวนเขียวเข้มวินเทจ */
+    border: 18px solid #36200e; /* ขอบกรอบไม้แท้หนาและมีมิติ */
+    outline: 2px solid #221307;
     border-radius: 4px;
     box-shadow: 
-        inset 0 0 50px rgba(0,0,0,0.85),
-        0 35px 70px rgba(0,0,0,0.7);
+        inset 0 0 60px rgba(0,0,0,0.9),
+        0 30px 60px rgba(0,0,0,0.6);
     padding: 40px;
     display: flex;
     flex-direction: column;
@@ -161,44 +162,44 @@ body{
 
 .board-tag{
     position: absolute;
-    top: -8px;
-    left: 30px;
-    padding: 6px 22px;
-    background: #c3a37a;
-    color: #211408;
+    top: -10px;
+    left: 35px;
+    padding: 6px 24px;
+    background: #bfa07a;
+    color: #1f1207;
     font-size: 0.85rem;
     font-weight: 700;
     letter-spacing: 3px;
-    transform: rotate(-4deg);
-    box-shadow: 2px 3px 6px rgba(0,0,0,0.3);
+    transform: rotate(-3deg);
+    box-shadow: 2px 4px 8px rgba(0,0,0,0.3);
 }
 
 .my{
     font-family: 'Caveat', cursive;
-    font-size: 4.2rem;
-    color: #f0f0f0;
+    font-size: 4.5rem;
+    color: #eaeaea;
     margin-top: 15px;
-    text-shadow: 2px 3px 4px rgba(0,0,0,0.5);
+    text-shadow: 2px 4px 6px rgba(0,0,0,0.5);
 }
 
 .precious{
     display: flex;
-    gap: 5px;
-    font-size: 7rem;
+    gap: 6px;
+    font-size: 7.2rem;
     font-weight: 700;
-    letter-spacing: 2px;
-    margin-top: -15px;
+    letter-spacing: 1px;
+    margin-top: -20px;
 }
 
-/* สีชอล์กพาสเทลแยกทีละตัวอักษรตามภาพบรีฟ */
-.p{ color: #52e3d4; text-shadow: 0 0 8px rgba(82,227,212,0.25); }
-.r{ color: #ff8fa3; text-shadow: 0 0 8px rgba(255,143,163,0.25); }
-.e{ color: #fff3b0; text-shadow: 0 0 8px rgba(255,243,176,0.25); }
-.c{ color: #7cd6ff; text-shadow: 0 0 8px rgba(124,214,255,0.25); }
-.i{ color: #ffffff; text-shadow: 0 0 8px rgba(255,255,255,0.25); }
-.o{ color: #b7ffb1; text-shadow: 0 0 8px rgba(183,255,177,0.25); }
-.u{ color: #ffbbf1; text-shadow: 0 0 8px rgba(255,187,241,0.25); }
-.s{ color: #9bee9e; text-shadow: 0 0 8px rgba(155,238,158,0.25); }
+/* สีชอล์กแนววินเทจพาสเทล ละมุนสายตา */
+.p{ color: #4ecdc4; text-shadow: 0 0 8px rgba(78,205,196,0.2); }
+.r{ color: #ff6b6b; text-shadow: 0 0 8px rgba(255,107,107,0.2); }
+.e{ color: #ffe66d; text-shadow: 0 0 8px rgba(255,230,109,0.2); }
+.c{ color: #64b5f6; text-shadow: 0 0 8px rgba(100,181,246,0.2); }
+.i{ color: #ffffff; text-shadow: 0 0 8px rgba(255,255,255,0.2); }
+.o{ color: #81c784; text-shadow: 0 0 8px rgba(129,199,132,0.2); }
+.u{ color: #f06292; text-shadow: 0 0 8px rgba(240,98,146,0.2); }
+.s{ color: #aed581; text-shadow: 0 0 8px rgba(174,213,129,0.2); }
 
 .board-sub{
     font-size: 1.6rem;
@@ -206,63 +207,86 @@ body{
     color: #f4d06f;
     margin-top: 15px;
     font-weight: 400;
-    opacity: 0.9;
 }
 
-/* กระดาษโน้ต Good times */
+/* กระดาษโน้ตที่แปะบนบอร์ด */
 .sticky-note {
     position: absolute;
-    bottom: 35px;
-    right: 220px;
+    bottom: 40px;
+    right: 230px;
     width: 145px;
-    background: #fdfaf4;
-    color: #4a3826;
+    background: #faf6ee;
+    color: #403224;
     padding: 15px;
-    transform: rotate(3deg);
-    box-shadow: 3px 6px 15px rgba(0,0,0,0.35);
+    transform: rotate(4deg);
+    box-shadow: 3px 6px 15px rgba(0,0,0,0.3);
     font-family: 'Reenie Beanie', cursive;
-    font-size: 1.5rem;
+    font-size: 1.6rem;
     line-height: 1.1;
-    border-left: 2px solid #e0d5c1;
+    border-left: 3px solid #ded3be;
 }
 
-/* รูปโพลารอยด์ขวาล่างพร้อมดอกไม้แปะทับ */
+/* ==========================================================================
+   CSS POLAROID & FLOWER (วาดกราฟิกโพลารอยด์และดอกไม้ด้วยโค้ด)
+   ========================================================================== */
 .polaroid-wrapper {
     position: absolute;
-    bottom: 15px;
-    right: 30px;
-    transform: rotate(-6deg);
+    bottom: 20px;
+    right: 35px;
+    transform: rotate(-5deg);
     z-index: 5;
 }
 
 .polaroid {
-    background: #fff;
+    background: #ffffff;
     padding: 12px 12px 35px 12px;
-    box-shadow: 5px 10px 25px rgba(0,0,0,0.4);
-    border-radius: 2px;
+    box-shadow: 6px 12px 25px rgba(0,0,0,0.4);
+    border-radius: 1px;
 }
 
 .photo-placeholder {
-    width: 130px;
-    height: 110px;
-    /* แนะนำเปลี่ยนภาพย่อยตรงนี้เป็นภาพวิวสวยๆ ของคุณ */
+    width: 135px;
+    height: 115px;
     background: url("https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?q=80&w=400&auto=format&fit=crop") center center/cover;
-    border: 1px solid #ddd;
+    border: 1px solid #e5e5e5;
 }
 
-.daisy {
+/* ดอกไม้โมเดิร์นจาก CSS */
+.css-flower {
     position: absolute;
     top: -15px;
     left: -15px;
-    font-size: 2.2rem;
+    width: 35px;
+    height: 35px;
+    z-index: 10;
     filter: drop-shadow(2px 3px 4px rgba(0,0,0,0.3));
-    z-index: 6;
 }
 
+.flower-core {
+    position: absolute;
+    inset: 10px;
+    background: #ffb703;
+    border-radius: 50%;
+    z-index: 2;
+}
+
+.petal {
+    position: absolute;
+    background: #ffffff;
+    border-radius: 50%;
+    width: 14px;
+    height: 14px;
+}
+.p1 { top: 0; left: 10.5px; }
+.p2 { top: 10.5px; right: 0; }
+.p3 { bottom: 0; left: 10.5px; }
+.p4 { top: 10.5px; left: 0; }
+.p5 { top: 7px; left: 7px; width: 21px; height: 21px; border-radius: 50%; background: transparent; }
+
 /* ==========================================================================
-   CAMERA ZONE (ซ้ายล่าง)
+   CSS VINTAGE CAMERA (วาดกล้องและม้วนฟิล์มจากโครงสร้างเหลี่ยม/มน)
    ========================================================================== */
-.camera-zone {
+.camera-container {
     position: absolute;
     left: 4%;
     bottom: 195px;
@@ -273,31 +297,135 @@ body{
     animation: cameraFloat 5s ease-in-out infinite;
 }
 
-.vintage-camera{
-    font-size: 5.8rem;
-    filter: drop-shadow(5px 15px 18px rgba(0,0,0,0.65));
+.css-camera {
+    width: 100px;
+    height: 65px;
+    position: relative;
+    filter: drop-shadow(5px 12px 15px rgba(0,0,0,0.5));
 }
 
-.yellow-film {
-    background: #ffd86a;
-    color: #000;
-    padding: 5px 12px;
-    font-size: 0.75rem;
-    font-weight: 700;
-    letter-spacing: 1px;
+.camera-top {
+    width: 80px;
+    height: 12px;
+    background: #cccccc;
+    margin: 0 auto;
+    border-radius: 4px 4px 0 0;
+    position: relative;
+}
+
+.shutter-btn {
+    width: 12px;
+    height: 6px;
+    background: #999;
+    position: absolute;
+    top: -6px;
+    left: 10px;
+    border-radius: 2px 2px 0 0;
+}
+
+.flash-unit {
+    width: 16px;
+    height: 8px;
+    background: #f1f1f1;
+    position: absolute;
+    top: 2px;
+    right: 12px;
+    border: 1px solid #999;
+}
+
+.camera-body {
+    width: 100%;
+    height: 53px;
+    background: #2b2b2b;
+    border-radius: 4px;
+    border: 2px solid #cccccc;
+    position: relative;
+    overflow: hidden;
+}
+
+.camera-stripe {
+    width: 100%;
+    height: 12px;
+    background: #1a1a1a;
+    position: absolute;
+    top: 15px;
+}
+
+.lens-outer {
+    width: 40px;
+    height: 40px;
+    background: #cccccc;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.lens-inner {
+    width: 28px;
+    height: 28px;
+    background: radial-gradient(circle, #111 40%, #001f3f 100%);
+    border-radius: 50%;
+    position: relative;
+}
+
+.lens-reflection {
+    width: 6px;
+    height: 6px;
+    background: rgba(255,255,255,0.4);
+    border-radius: 50%;
+    position: absolute;
+    top: 4px;
+    left: 4px;
+}
+
+/* ม้วนฟิล์มตลับเหลือง */
+.css-film-roll {
+    width: 34px;
+    height: 48px;
+    position: relative;
+    transform: rotate(-12deg);
+    filter: drop-shadow(3px 6px 8px rgba(0,0,0,0.4));
+}
+
+.film-cap {
+    width: 28px;
+    height: 4px;
+    background: #333;
+    margin: 0 auto;
+    border-radius: 2px 2px 0 0;
+}
+
+.film-body {
+    width: 100%;
+    height: 44px;
+    background: #ffcc00;
+    border: 2px solid #333;
     border-radius: 3px;
-    transform: rotate(-10deg);
-    box-shadow: 2px 4px 10px rgba(0,0,0,0.4);
-    border: 2px solid #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.film-label {
+    font-size: 0.65rem;
+    font-weight: 800;
+    color: #000;
+    font-family: 'Montserrat', sans-serif;
+    transform: scale(0.9);
 }
 
 @keyframes cameraFloat{
     0%, 100%{ transform: translateY(0) rotate(0deg); }
-    50%{ transform: translateY(-12px) rotate(1.5deg); }
+    50%{ transform: translateY(-10px) rotate(1.5deg); }
 }
 
 /* ==========================================================================
-   FILM CAROUSEL SLIDER (ม้วนฟิล์มเก็บรูปภาพสุดพรีเมียม)
+   FILM STRIP SLIDER (แถบม้วนฟิล์มสไลด์ระดับพรีเมียม)
    ========================================================================== */
 .film-container {
     position: absolute;
@@ -305,7 +433,7 @@ body{
     left: 0;
     width: 100%;
     padding: 25px 4%;
-    background: linear-gradient(to top, rgba(0,0,0,0.95) 75%, transparent);
+    background: linear-gradient(to top, rgba(0,0,0,0.96) 75%, transparent);
     display: flex;
     align-items: center;
     gap: 15px;
@@ -316,14 +444,13 @@ body{
     flex: 1;
     overflow: hidden;
     position: relative;
-    background: rgba(15, 15, 15, 0.75);
+    background: rgba(14, 14, 14, 0.82);
     border-radius: 4px;
-    padding: 15px 0;
-    border-top: 1px solid rgba(255,255,255,0.07);
-    border-bottom: 1px solid rgba(255,255,255,0.07);
+    padding: 18px 0;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
 }
 
-/* สร้างรูหนามเตยม้วนฟิล์มสไตล์ภาพยนตร์ */
 .film-holes {
     position: absolute;
     left: 0;
@@ -333,8 +460,8 @@ body{
     background-size: 24px 8px;
     opacity: 0.6;
 }
-.holes-top { top: 4px; }
-.holes-bottom { bottom: 4px; }
+.holes-top { top: 5px; }
+.holes-bottom { bottom: 5px; }
 
 .film-track{
     display: flex;
@@ -345,16 +472,14 @@ body{
     cursor: grab;
 }
 
-/* ซ่อนแถบ Scrollbar ประจำเบราว์เซอร์ */
 .film-track::-webkit-scrollbar { display: none; }
 .film-track { -ms-overflow-style: none; scrollbar-width: none; }
 .film-track:active { cursor: grabbing; }
 
-/* ดีไซน์ช่องกรอบสไลด์เก็บรูปภาพ */
 .film-card{
     min-width: 250px;
     height: 135px;
-    padding: 18px;
+    padding: 20px;
     background: rgba(255, 255, 255, 0.04);
     backdrop-filter: blur(15px);
     -webkit-backdrop-filter: blur(15px);
@@ -369,10 +494,10 @@ body{
 }
 
 .film-card:hover{
-    transform: translateY(-10px);
+    transform: translateY(-8px);
     background: rgba(255, 255, 255, 0.12);
     border-color: #ffd86a;
-    box-shadow: 0 12px 25px rgba(0,0,0,0.6);
+    box-shadow: 0 12px 25px rgba(0,0,0,0.5);
 }
 
 .card-num{
@@ -395,14 +520,13 @@ body{
     letter-spacing: 1px;
 }
 
-/* ปุ่มเลื่อนสไลด์สไตล์กระจกฝ้าทรงกลม */
 .film-btn {
-    background: rgba(255, 255, 255, 0.07);
+    background: rgba(255, 255, 255, 0.06);
     border: 1px solid rgba(255, 255, 255, 0.15);
     color: white;
     font-size: 1.1rem;
-    width: 45px;
-    height: 45px;
+    width: 46px;
+    height: 46px;
     border-radius: 50%;
     cursor: pointer;
     display: flex;
@@ -415,13 +539,13 @@ body{
 
 .film-btn:hover {
     background: #ffd86a;
-    color: #0b130c;
+    color: #0a110c;
     border-color: #ffd86a;
     transform: scale(1.1);
 }
 
 /* ==========================================================================
-   PARTICLES (ฝุ่นละอองแสงระยับ)
+   PARTICLES & RESPONSIVE
    ========================================================================== */
 .particles{
     position: absolute;
@@ -429,7 +553,7 @@ body{
     pointer-events: none;
     background-image: radial-gradient(rgba(255,255,255,0.3) 1px, transparent 1px);
     background-size: 110px 110px;
-    opacity: 0.4;
+    opacity: 0.35;
     animation: dustMove 28s linear infinite;
     z-index: 3;
 }
@@ -439,26 +563,23 @@ body{
     to{ background-position: 60px -330px; }
 }
 
-/* ==========================================================================
-   RESPONSIVE DESIGN (ปรับหน้าจออัตโนมัติ)
-   ========================================================================== */
-@media(max-width: 1200px){
+@media(max-width: 1240px){
     .hero {
         flex-direction: column;
         justify-content: flex-start;
-        padding-top: 50px;
+        padding-top: 60px;
         overflow-y: auto;
     }
     .left-content {
         text-align: center;
         margin-top: 0;
-        margin-bottom: 30px;
+        margin-bottom: 40px;
     }
     .board-wrapper {
         margin-top: 0;
-        margin-bottom: 200px;
+        margin-bottom: 220px;
     }
-    .rope, .camera-zone { display: none; }
+    .rope, .camera-container { display: none; }
 }
 
 @media(max-width: 768px){
