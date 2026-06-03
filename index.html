@@ -5,13 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>2WAY MEMORIES</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Montserrat:wght@300;400;600&family=Reenie+Beanie&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Montserrat:wght@300;400;600;700&family=Reenie+Beanie&display=swap" rel="stylesheet">
 </head>
 <body>
 
 <div class="hero">
     <div class="overlay"></div>
     <div class="shadow-overlay"></div>
+    <div class="sun-flare"></div>
 
     <div class="left-content">
         <h1>2WAY<br>MEMORIES</h1>
@@ -55,18 +56,27 @@
                 <p>Good memories</p>
                 <p>Good times ♡</p>
             </div>
+
+            <div class="polaroid-wrapper">
+                <div class="daisy">🌼</div>
+                <div class="polaroid">
+                    <div class="photo-placeholder"></div>
+                </div>
+            </div>
         </div>
     </div>
 
-    <div class="camera-wrapper">
+    <div class="camera-zone">
         <div class="vintage-camera">📷</div>
-        <div class="film-roll">🎞️</div>
+        <div class="yellow-film">💛 FILM</div>
     </div>
 
     <div class="film-container">
         <button class="film-btn prev-btn" aria-label="Previous">&#10094;</button>
         
         <div class="film-strip">
+            <div class="film-holes holes-top"></div>
+            
             <div class="film-track" id="filmTrack">
                 <a class="film-card" href="#">
                     <span class="card-num">01</span>
@@ -96,7 +106,7 @@
                 <a class="film-card" href="#">
                     <span class="card-num">06</span>
                     <h3>Digital Camera Collection</h3>
-                    <p class="card-date">MEMORIES</p>
+                    <p class="card-date">GALLERY</p>
                 </a>
                 <a class="film-card" href="#">
                     <span class="card-num">07</span>
@@ -104,6 +114,8 @@
                     <p class="card-date">NEW</p>
                 </a>
             </div>
+
+            <div class="film-holes holes-bottom"></div>
         </div>
 
         <button class="film-btn next-btn" aria-label="Next">&#10095;</button>
@@ -111,10 +123,6 @@
 
     <div class="particles"></div>
 </div>
-
-<audio id="bgMusic" loop>
-    <source src="music/bg.mp3" type="audio/mpeg">
-</audio>
 
 <script src="script.js"></script>
 </body>
