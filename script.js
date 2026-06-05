@@ -1,367 +1,273 @@
-// =========================
-// 2WAY MEMORIES V9
-// =========================
+// =======================
+// 2WAY MEMORIES V10
+// =======================
 
-// LOADER
-
-window.addEventListener("load", () => {
-
-    const loader = document.getElementById("loader");
-
-    setTimeout(() => {
-
-        loader.style.opacity = "0";
-
-        loader.style.visibility = "hidden";
-
-    }, 1200);
-
-});
-
-// =========================
 // MUSIC
-// =========================
 
-const music = document.getElementById("bgMusic");
-const musicBtn = document.getElementById("musicBtn");
+const musicBtn =
+document.getElementById("musicBtn");
 
-let playing = false;
+const bgMusic =
+document.getElementById("bgMusic");
 
-if (musicBtn && music) {
+let isPlaying = false;
 
-    musicBtn.addEventListener("click", () => {
+if(musicBtn && bgMusic){
 
-        if (!playing) {
+musicBtn.addEventListener(
+"click",
+()=>{
 
-            music.volume = 0.4;
+if(!isPlaying){
 
-            music.play();
+bgMusic.volume = 0.4;
 
-            musicBtn.innerHTML =
-                '<i class="fa-solid fa-pause"></i>';
+bgMusic.play();
 
-            playing = true;
+musicBtn.innerHTML = "❚❚";
 
-        } else {
+isPlaying = true;
 
-            music.pause();
+}else{
 
-            musicBtn.innerHTML =
-                '<i class="fa-solid fa-music"></i>';
+bgMusic.pause();
 
-            playing = false;
+musicBtn.innerHTML = "♫";
 
-        }
-
-    });
+isPlaying = false;
 
 }
 
-// =========================
-// HERO PARALLAX
-// =========================
-
-const hero = document.querySelector(".hero");
-
-document.addEventListener("mousemove", (e) => {
-
-    if (!hero) return;
-
-    const x =
-        (window.innerWidth / 2 - e.clientX) / 80;
-
-    const y =
-        (window.innerHeight / 2 - e.clientY) / 80;
-
-    hero.style.backgroundPosition =
-        `${50 + x}% ${50 + y}%`;
-
 });
 
-// =========================
+}
+
+// =======================
 // CURSOR GLOW
-// =========================
+// =======================
 
-const cursor =
-document.getElementById("cursorGlow");
+const cursorGlow =
+document.getElementById(
+"cursorGlow"
+);
 
-document.addEventListener("mousemove", (e) => {
+document.addEventListener(
+"mousemove",
+(e)=>{
 
-    if (!cursor) return;
+if(!cursorGlow) return;
 
-    cursor.style.left =
-        e.clientX + "px";
+cursorGlow.style.left =
+e.clientX + "px";
 
-    cursor.style.top =
-        e.clientY + "px";
+cursorGlow.style.top =
+e.clientY + "px";
 
-});
+}
+);
 
-// =========================
-// SCROLL PROGRESS
-// =========================
+// =======================
+// PARALLAX BACKGROUND
+// =======================
 
-const progress =
-document.getElementById("scrollProgress");
+document.addEventListener(
+"mousemove",
+(e)=>{
 
-window.addEventListener("scroll", () => {
+const x =
 
-    if (!progress) return;
+(window.innerWidth/2
+- e.clientX) / 80;
 
-    const totalHeight =
+const y =
 
-        document.documentElement.scrollHeight -
-        window.innerHeight;
+(window.innerHeight/2
+- e.clientY) / 80;
 
-    const progressWidth =
+document.body.style.backgroundPosition =
 
-        (window.scrollY / totalHeight) * 100;
+`${50+x}% ${50+y}%`;
 
-    progress.style.width =
-        progressWidth + "%";
+}
+);
 
-});
-
-// =========================
-// FILM CARD TILT
-// =========================
+// =======================
+// CARD HOVER 3D
+// =======================
 
 const cards =
-document.querySelectorAll(".film-card");
-
-cards.forEach(card => {
-
-    card.addEventListener("mousemove", (e) => {
-
-        const rect =
-            card.getBoundingClientRect();
-
-        const x =
-            e.clientX - rect.left;
-
-        const y =
-            e.clientY - rect.top;
-
-        const rotateY =
-            ((x / rect.width) - 0.5) * 12;
-
-        const rotateX =
-            ((y / rect.height) - 0.5) * -12;
-
-        card.style.transform =
-
-            `
-            perspective(1000px)
-            rotateX(${rotateX}deg)
-            rotateY(${rotateY}deg)
-            translateY(-8px)
-            scale(1.03)
-            `;
-
-    });
-
-    card.addEventListener("mouseleave", () => {
-
-        card.style.transform =
-
-            `
-            perspective(1000px)
-            rotateX(0deg)
-            rotateY(0deg)
-            translateY(0px)
-            scale(1)
-            `;
-
-    });
-
-});
-
-// =========================
-// REVEAL EFFECT
-// =========================
-
-const revealElements =
 document.querySelectorAll(
-
-".timeline-card, .about-image, .about-content, .gallery-item"
-
+".album-card"
 );
 
-const observer = new IntersectionObserver(
+cards.forEach(card=>{
 
-(entries) => {
+card.addEventListener(
+"mousemove",
+(e)=>{
 
-    entries.forEach(entry => {
+const rect =
+card.getBoundingClientRect();
 
-        if (entry.isIntersecting) {
+const x =
+e.clientX - rect.left;
 
-            entry.target.style.opacity = "1";
+const y =
+e.clientY - rect.top;
 
-            entry.target.style.transform =
-                "translateY(0px)";
+const rotateY =
 
-        }
+((x / rect.width)
+- 0.5) * 14;
 
-    });
+const rotateX =
 
-},
+((y / rect.height)
+- 0.5) * -14;
 
-{
-    threshold: 0.15
-}
+card.style.transform =
 
+`
+perspective(1000px)
+rotateX(${rotateX}deg)
+rotateY(${rotateY}deg)
+translateY(-10px)
+scale(1.04)
+`;
+
+});
+
+card.addEventListener(
+"mouseleave",
+()=>{
+
+card.style.transform =
+
+`
+perspective(1000px)
+rotateX(0deg)
+rotateY(0deg)
+translateY(0px)
+scale(1)
+`;
+
+});
+
+});
+
+// =======================
+// HERO FADE IN
+// =======================
+
+const heroContent =
+document.querySelector(
+".hero-content"
 );
 
-revealElements.forEach(el => {
+if(heroContent){
 
-    el.style.opacity = "0";
+heroContent.style.opacity = "0";
 
-    el.style.transform =
-        "translateY(50px)";
+heroContent.style.transform =
+"translateY(40px)";
 
-    el.style.transition =
-        "all 1s ease";
+heroContent.style.transition =
+"all 1.2s ease";
 
-    observer.observe(el);
+window.addEventListener(
+"load",
+()=>{
 
-});
+setTimeout(()=>{
 
-// =========================
-// CAMERA FLOAT
-// =========================
+heroContent.style.opacity = "1";
 
-const camera =
-document.querySelector(".camera");
+heroContent.style.transform =
+"translateY(0px)";
 
-if (camera) {
-
-    let t = 0;
-
-    setInterval(() => {
-
-        t += 0.03;
-
-        camera.style.transform =
-
-            `
-            translateY(${Math.sin(t) * 12}px)
-            rotate(-6deg)
-            `;
-
-    }, 20);
-
-}
-
-// =========================
-// CHALKBOARD GLOW
-// =========================
-
-const board =
-document.querySelector(".chalk-board");
-
-if (board) {
-
-    let glow = 0;
-
-    setInterval(() => {
-
-        glow += 0.04;
-
-        const blur =
-
-            25 + Math.sin(glow) * 15;
-
-        board.style.boxShadow =
-
-            `
-            0 30px 90px rgba(0,0,0,.5),
-            0 0 ${blur}px rgba(255,255,180,.12)
-            `;
-
-    }, 40);
-
-}
-
-// =========================
-// BACK TO TOP
-// =========================
-
-const backTop =
-document.getElementById("backTop");
-
-window.addEventListener("scroll", () => {
-
-    if (!backTop) return;
-
-    if (window.scrollY > 500) {
-
-        backTop.style.opacity = "1";
-        backTop.style.visibility = "visible";
-
-    } else {
-
-        backTop.style.opacity = "0";
-        backTop.style.visibility = "hidden";
-
-    }
+},300);
 
 });
 
-if (backTop) {
-
-    backTop.addEventListener("click", () => {
-
-        window.scrollTo({
-
-            top: 0,
-
-            behavior: "smooth"
-
-        });
-
-    });
-
 }
 
-// =========================
-// FLOATING LIGHTS
-// =========================
+// =======================
+// ALBUM FADE IN
+// =======================
 
-const lights =
-document.querySelectorAll(".light");
+cards.forEach((card,index)=>{
 
-lights.forEach((light, index) => {
+card.style.opacity = "0";
 
-    let move = index * 100;
+card.style.transform =
+"translateY(50px)";
 
-    setInterval(() => {
+card.style.transition =
+"all .8s ease";
 
-        move += 0.5;
+setTimeout(()=>{
 
-        light.style.transform =
+card.style.opacity = "1";
 
-            `
-            translateY(${Math.sin(move * 0.02) * 30}px)
-            translateX(${Math.cos(move * 0.015) * 20}px)
-            `;
+card.style.transform =
+"translateY(0px)";
 
-    }, 30);
+},500 + (index * 200));
 
 });
 
-// =========================
-// AUTO HIDE SIDEBAR MOBILE
-// =========================
+// =======================
+// PRELOAD IMAGES
+// =======================
 
-if (window.innerWidth < 700) {
+const imgs =
+document.querySelectorAll(
+"img"
+);
 
-    const sidebar =
-    document.querySelector(".sidebar");
+imgs.forEach(img=>{
 
-    if (sidebar) {
+const image =
+new Image();
 
-        sidebar.style.display = "none";
+image.src = img.src;
 
-    }
+});
+
+// =======================
+// SMOOTH OPEN LINKS
+// =======================
+
+document.querySelectorAll(
+".album-card"
+).forEach(link=>{
+
+link.addEventListener(
+"click",
+()=>{
+
+link.style.opacity = ".8";
+
+});
+
+});
+
+// =======================
+// MOBILE OPTIMIZATION
+// =======================
+
+if(window.innerWidth < 768){
+
+document.body.classList.add(
+"mobile"
+);
 
 }
+
+// =======================
+// CONSOLE
+// =======================
+
+console.log(
+"2WAY MEMORIES V10 Loaded"
+);
