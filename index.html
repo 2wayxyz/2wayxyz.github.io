@@ -8,17 +8,15 @@
 
 <title>2WAY Memories</title>
 
-<meta name="theme-color" content="#1f1f1f">
-
 <link rel="stylesheet" href="style.css">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Playfair+Display:wght@600;700;800&family=Noto+Sans+Thai:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
 </head>
 
@@ -28,12 +26,12 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
 
 <div id="loader">
 
-<div class="loader-content">
+<div class="loader-logo">
+2WAY
+</div>
 
-<h1>2WAY</h1>
-
-<p>Loading Memories...</p>
-
+<div class="loader-text">
+Loading Memories...
 </div>
 
 </div>
@@ -42,17 +40,63 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
 
 <audio id="bgMusic" loop>
 
-<source src="music/bg.mp3" type="audio/mpeg">
+<source
+src="music/bg.mp3"
+type="audio/mpeg">
 
 </audio>
 
-<!-- MUSIC BUTTON -->
+<!-- SIDEBAR -->
 
-<button id="musicBtn">
+<div class="sidebar">
 
+<a href="#">
+<i class="fa-solid fa-house"></i>
+</a>
+
+<a href="#albums">
+<i class="fa-solid fa-images"></i>
+</a>
+
+<a href="#timeline">
+<i class="fa-solid fa-heart"></i>
+</a>
+
+<a href="#about">
+<i class="fa-solid fa-user"></i>
+</a>
+
+<a id="musicBtn">
 <i class="fa-solid fa-music"></i>
+</a>
 
-</button>
+</div>
+
+<!-- NAVBAR -->
+
+<nav class="navbar">
+
+<div class="logo">
+2WAY MEMORIES
+</div>
+
+<div class="menu">
+
+<a href="#albums">
+Albums
+</a>
+
+<a href="#timeline">
+Timeline
+</a>
+
+<a href="#about">
+About
+</a>
+
+</div>
+
+</nav>
 
 <!-- HERO -->
 
@@ -60,49 +104,24 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
 
 <div class="hero-overlay"></div>
 
-<div class="sun-rays"></div>
+<div class="left-content">
 
-<!-- NAVBAR -->
-
-<header class="navbar">
-
-<div class="logo">
-
-2WAY MEMORIES
-
-</div>
-
-<nav>
-
-<a href="#albums">Albums</a>
-
-<a href="#timeline">Timeline</a>
-
-<a href="#about">About</a>
-
-</nav>
-
-</header>
-
-<!-- LEFT CONTENT -->
-
-<div class="hero-text">
-
-<div class="small-title">
-
+<div class="story">
 OUR STORY
-
 </div>
 
-<h1>
+<h1 class="main-title">
 
-2WAY
-
+2WAY<br>
 MEMORIES
 
 </h1>
 
-<p>
+<div class="year">
+2025
+</div>
+
+<p class="hero-text">
 
 Every photograph tells a story.<br>
 Every smile becomes a memory.<br>
@@ -110,52 +129,46 @@ Every memory lasts forever.
 
 </p>
 
-<div class="scroll-indicator">
+<div class="scroll-text">
 
-SCROLL TO BEGIN
-
-↓
+BEGIN ↓
 
 </div>
 
 </div>
 
-<!-- BOARD -->
+<div class="right-content">
 
 <div class="chalk-board">
 
-<div class="board-label">
-
+<div class="tape">
 2WAY
-
 </div>
 
-<div class="chalk-small">
-
+<div class="my-text">
 MY
+</div>
+
+<div class="precious">
+
+<span>P</span>
+<span>R</span>
+<span>E</span>
+<span>C</span>
+<span>I</span>
+<span>O</span>
+<span>U</span>
+<span>S</span>
 
 </div>
 
-<div class="chalk-big">
-
-<span class="c1">P</span>
-<span class="c2">R</span>
-<span class="c3">E</span>
-<span class="c4">C</span>
-<span class="c5">I</span>
-<span class="c6">O</span>
-<span class="c7">U</span>
-<span class="c8">S</span>
-
-</div>
-
-<div class="chalk-sub">
+<div class="memory-sub">
 
 MEMORIES
 
 </div>
 
-<div class="chalk-footer">
+<div class="board-bottom">
 
 Good Friends<br>
 Good Memories<br>
@@ -165,157 +178,98 @@ Good Times
 
 </div>
 
-<!-- CAMERA -->
-
-<div class="camera-wrap">
+</div>
 
 <img
-src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?q=80&w=1000&auto=format&fit=crop"
-alt="camera">
+class="camera"
+src="https://pngimg.com/d/photo_camera_PNG101601.png">
+
+<!-- FILM STRIP -->
+
+<div
+class="film-strip"
+id="albums">
+
+<div class="film-card">
+
+<div class="film-number">
+01
+</div>
+
+<div class="film-title">
+English Day
+</div>
+
+<div class="film-date">
+DEC 2025
+</div>
 
 </div>
 
-<!-- FLOWERS -->
+<div class="film-card">
 
-<div class="flower flower1">🌼</div>
-<div class="flower flower2">🌸</div>
-<div class="flower flower3">🌻</div>
+<div class="film-number">
+02
+</div>
 
-</section>
+<div class="film-title">
+Day At PPW
+</div>
 
-<!-- FILM SECTION -->
-
-<section id="albums" class="film-section">
-
-<div class="section-title">
-
-Albums Collection
+<div class="film-date">
+16/12/25
+</div>
 
 </div>
 
-<div class="film-track">
+<div class="film-card">
 
-<a href="https://drive.google.com/drive/folders/1b0pN4rgcnerd5DFi5lPQHMJyp-Pslpiq?usp=sharing" target="_blank" class="film-card">
+<div class="film-number">
+03
+</div>
 
-<div class="film-number">01</div>
+<div class="film-title">
+Sports Day
+</div>
 
-<h3>English Day</h3>
+<div class="film-date">
+17/12/25
+</div>
 
-<p>International Day</p>
+</div>
 
-</a>
+<div class="film-card">
 
-<a href="https://drive.google.com/drive/folders/1eTO8RQqp250LG7Ow5BOOrd8mkiCJx0Yq?usp=sharing" target="_blank" class="film-card">
+<div class="film-number">
+04
+</div>
 
-<div class="film-number">02</div>
+<div class="film-title">
+Graduation
+</div>
 
-<h3>Day At PPW</h3>
+<div class="film-date">
+2025
+</div>
 
-<p>16/12/25</p>
+</div>
 
-</a>
+<div class="film-card">
 
-<a href="https://drive.google.com/drive/folders/1hxKpXYnQ_kJ1OWg7bPnOXUWAFsBNBc5B?usp=sharing" target="_blank" class="film-card">
+<div class="film-number">
+05
+</div>
 
-<div class="film-number">03</div>
+<div class="film-title">
+Our Story
+</div>
 
-<h3>Day At PPW</h3>
+<div class="film-date">
+Forever
+</div>
 
-<p>17/12/25</p>
-
-</a>
-
-<a href="https://drive.google.com/drive/folders/1-jCuNTxAlDgR7c3J3ogjCA7m4WZ8CUo9?usp=sharing" target="_blank" class="film-card">
-
-<div class="film-number">04</div>
-
-<h3>Before Sports Day</h3>
-
-<p>PPW</p>
-
-</a>
-
-<a href="https://drive.google.com/drive/folders/1B89pXjvvEyqvbDZlFeE2UNmYFyHxFeKE?usp=sharing" target="_blank" class="film-card">
-
-<div class="film-number">05</div>
-
-<h3>Sports Day</h3>
-
-<p>PPW</p>
-
-</a>
-
-<a href="https://drive.google.com/drive/folders/1CXBKXep3nwNxPdSWGU9Vm8oWhOzxlxD9?usp=sharing" target="_blank" class="film-card">
-
-<div class="film-number">06</div>
-
-<h3>Digital Camera</h3>
-
-<p>Collection</p>
-
-</a>
-
-<a href="https://drive.google.com/drive/folders/1HkuLjY5-h7VIT_rWovjI-oOA_43akMmG?usp=sharing" target="_blank" class="film-card">
-
-<div class="film-number">07</div>
-
-<h3>New Collection</h3>
-
-<p>30/12/2568</p>
-
-</a>
+</div>
 
 </div>
 
 </section>
-
-<!-- TIMELINE -->
-
-<section id="timeline" class="timeline">
-
-<h2>2025 Timeline</h2>
-
-<div class="timeline-line">
-
-<div>English Day</div>
-
-<div>PPW 16/12</div>
-
-<div>PPW 17/12</div>
-
-<div>Sports Day</div>
-
-<div>Digital Camera</div>
-
-<div>New Collection</div>
-
-</div>
-
-</section>
-
-<!-- ABOUT -->
-
-<section id="about" class="about">
-
-<h2>2WAY Memories</h2>
-
-<p>
-
-A collection of unforgettable moments,
-friendships, laughter and memories
-captured throughout the year.
-
-</p>
-
-</section>
-
-<footer>
-
-© 2025 2WAY MEMORIES
-
-</footer>
-
-<script src="script.js"></script>
-
-</body>
-</html>
