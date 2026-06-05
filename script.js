@@ -1,50 +1,9 @@
-// =======================
-// 2WAY MEMORIES V10
-// =======================
+```javascript
+// =========================
+// 2WAY MEMORIES V11
+// =========================
 
-// MUSIC
-
-const musicBtn =
-document.getElementById("musicBtn");
-
-const bgMusic =
-document.getElementById("bgMusic");
-
-let isPlaying = false;
-
-if(musicBtn && bgMusic){
-
-musicBtn.addEventListener(
-"click",
-()=>{
-
-if(!isPlaying){
-
-bgMusic.volume = 0.4;
-
-bgMusic.play();
-
-musicBtn.innerHTML = "❚❚";
-
-isPlaying = true;
-
-}else{
-
-bgMusic.pause();
-
-musicBtn.innerHTML = "♫";
-
-isPlaying = false;
-
-}
-
-});
-
-}
-
-// =======================
 // CURSOR GLOW
-// =======================
 
 const cursorGlow =
 document.getElementById(
@@ -66,39 +25,124 @@ e.clientY + "px";
 }
 );
 
-// =======================
-// PARALLAX BACKGROUND
-// =======================
+// =========================
+// MUSIC PLAYER
+// =========================
 
-document.addEventListener(
-"mousemove",
-(e)=>{
+const musicBtn =
+document.getElementById(
+"musicBtn"
+);
 
-const x =
+const bgMusic =
+document.getElementById(
+"bgMusic"
+);
 
-(window.innerWidth/2
-- e.clientX) / 80;
+let isPlaying = false;
 
-const y =
+if(musicBtn && bgMusic){
 
-(window.innerHeight/2
-- e.clientY) / 80;
+musicBtn.addEventListener(
+"click",
+()=>{
 
-document.body.style.backgroundPosition =
+if(!isPlaying){
 
-`${50+x}% ${50+y}%`;
+bgMusic.volume = 0.4;
+
+bgMusic.play();
+
+musicBtn.innerHTML =
+"❚❚";
+
+isPlaying = true;
+
+}else{
+
+bgMusic.pause();
+
+musicBtn.innerHTML =
+"♫";
+
+isPlaying = false;
+
+}
+
+});
+
+}
+
+// =========================
+// HERO FADE IN
+// =========================
+
+window.addEventListener(
+"load",
+()=>{
+
+const hero =
+document.querySelector(
+".hero-content"
+);
+
+if(hero){
+
+hero.style.opacity = "0";
+
+hero.style.transform =
+"translateY(40px)";
+
+hero.style.transition =
+"all 1.2s ease";
+
+setTimeout(()=>{
+
+hero.style.opacity = "1";
+
+hero.style.transform =
+"translateY(0px)";
+
+},300);
+
+}
 
 }
 );
 
-// =======================
-// CARD HOVER 3D
-// =======================
+// =========================
+// ALBUM CARD EFFECT
+// =========================
 
 const cards =
 document.querySelectorAll(
 ".album-card"
 );
+
+cards.forEach((card,index)=>{
+
+card.style.opacity = "0";
+
+card.style.transform =
+"translateY(40px)";
+
+card.style.transition =
+"all .8s ease";
+
+setTimeout(()=>{
+
+card.style.opacity = "1";
+
+card.style.transform =
+"translateY(0px)";
+
+},500 + (index * 150));
+
+});
+
+// =========================
+// 3D HOVER
+// =========================
 
 cards.forEach(card=>{
 
@@ -118,12 +162,12 @@ e.clientY - rect.top;
 const rotateY =
 
 ((x / rect.width)
-- 0.5) * 14;
+- 0.5) * 10;
 
 const rotateX =
 
 ((y / rect.height)
-- 0.5) * -14;
+- 0.5) * -10;
 
 card.style.transform =
 
@@ -131,8 +175,7 @@ card.style.transform =
 perspective(1000px)
 rotateX(${rotateX}deg)
 rotateY(${rotateY}deg)
-translateY(-10px)
-scale(1.04)
+translateY(-6px)
 `;
 
 });
@@ -148,126 +191,49 @@ perspective(1000px)
 rotateX(0deg)
 rotateY(0deg)
 translateY(0px)
-scale(1)
 `;
 
 });
 
 });
 
-// =======================
-// HERO FADE IN
-// =======================
+// =========================
+// PARALLAX BACKGROUND
+// =========================
 
-const heroContent =
-document.querySelector(
-".hero-content"
+document.addEventListener(
+"mousemove",
+(e)=>{
+
+const x =
+
+(window.innerWidth / 2
+- e.clientX) / 120;
+
+const y =
+
+(window.innerHeight / 2
+- e.clientY) / 120;
+
+document.body.style.backgroundPosition =
+
+`${50 + x}% ${50 + y}%`;
+
+}
 );
 
-if(heroContent){
-
-heroContent.style.opacity = "0";
-
-heroContent.style.transform =
-"translateY(40px)";
-
-heroContent.style.transition =
-"all 1.2s ease";
+// =========================
+// PRELOAD
+// =========================
 
 window.addEventListener(
 "load",
 ()=>{
 
-setTimeout(()=>{
-
-heroContent.style.opacity = "1";
-
-heroContent.style.transform =
-"translateY(0px)";
-
-},300);
-
-});
-
-}
-
-// =======================
-// ALBUM FADE IN
-// =======================
-
-cards.forEach((card,index)=>{
-
-card.style.opacity = "0";
-
-card.style.transform =
-"translateY(50px)";
-
-card.style.transition =
-"all .8s ease";
-
-setTimeout(()=>{
-
-card.style.opacity = "1";
-
-card.style.transform =
-"translateY(0px)";
-
-},500 + (index * 200));
-
-});
-
-// =======================
-// PRELOAD IMAGES
-// =======================
-
-const imgs =
-document.querySelectorAll(
-"img"
-);
-
-imgs.forEach(img=>{
-
-const image =
-new Image();
-
-image.src = img.src;
-
-});
-
-// =======================
-// SMOOTH OPEN LINKS
-// =======================
-
-document.querySelectorAll(
-".album-card"
-).forEach(link=>{
-
-link.addEventListener(
-"click",
-()=>{
-
-link.style.opacity = ".8";
-
-});
-
-});
-
-// =======================
-// MOBILE OPTIMIZATION
-// =======================
-
-if(window.innerWidth < 768){
-
-document.body.classList.add(
-"mobile"
-);
-
-}
-
-// =======================
-// CONSOLE
-// =======================
-
 console.log(
-"2WAY MEMORIES V10 Loaded"
+"2WAY MEMORIES V11 Loaded"
 );
+
+}
+);
+```
