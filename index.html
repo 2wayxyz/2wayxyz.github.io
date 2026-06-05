@@ -1,166 +1,186 @@
+
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 
 <meta charset="UTF-8">
-
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>2WAY MEMORIES</title>
 
-<link rel="stylesheet"
-href="style.css">
+<link rel="stylesheet" href="style.css">
 
-<link rel="preconnect"
-href="https://fonts.googleapis.com">
-
-<link rel="preconnect"
-href="https://fonts.gstatic.com"
-crossorigin>
-
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Montserrat:wght@200;300;400;500&display=swap"
-rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 </head>
 
 <body>
 
-<div class="bg-overlay"></div>
+<div class="overlay"></div>
+
+<div id="cursorGlow"></div>
+
+<audio id="bgMusic" loop>
+<source src="music/bg.mp3" type="audio/mpeg">
+</audio>
 
 <section class="hero">
 
 <div class="hero-content">
 
-<div class="small-text">
-
+<p class="story-label">
 OUR STORY
+</p>
 
-</div>
-
-<h1 class="title">
-
+<h1>
 2WAY<br>
 MEMORIES
-
 </h1>
 
 <div class="year">
-
 2025
-
 </div>
 
 <p class="description">
-
 Every photograph tells a story.<br>
 Every smile becomes a memory.<br>
 Every memory lasts forever.
-
 </p>
 
 </div>
 
-<div class="album-container">
-<a class="album-card"
-href="YOUR_DRIVE_LINK_1"
-target="_blank">
+</section>
 
-<img
-src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1200&q=80"
-alt="Album">
+<section class="albums">
+
+<div class="album-grid">
+
+<a
+href="YOUR_DRIVE_LINK_1"
+target="_blank"
+class="album-card"
+>
 
 <div class="album-info">
 
-<div class="album-number">
-01
-</div>
+<span>01</span>
 
 <h3>
 English Day
 </h3>
 
 <p>
-December 2025
+Open Album →
 </p>
 
 </div>
 
 </a>
 
-<a class="album-card"
+<a
 href="YOUR_DRIVE_LINK_2"
-target="_blank">
-
-<img
-src="https://images.unsplash.com/photo-1502082553048-f009c37129b9?auto=format&fit=crop&w=1200&q=80"
-alt="Album">
+target="_blank"
+class="album-card"
+>
 
 <div class="album-info">
 
-<div class="album-number">
-02
-</div>
+<span>02</span>
 
 <h3>
 Sports Day
 </h3>
 
 <p>
-Memories Collection
+Open Album →
 </p>
 
 </div>
 
 </a>
 
-<a class="album-card"
+<a
 href="YOUR_DRIVE_LINK_3"
-target="_blank">
-
-<img
-src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=80"
-alt="Album">
+target="_blank"
+class="album-card"
+>
 
 <div class="album-info">
 
-<div class="album-number">
-03
-</div>
+<span>03</span>
 
 <h3>
 Graduation
 </h3>
 
 <p>
-Special Moments
+Open Album →
 </p>
 
 </div>
 
 </a>
 
-<a class="album-card"
+<a
 href="YOUR_DRIVE_LINK_4"
-target="_blank">
-
-<img
-src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=1200&q=80"
-alt="Album">
+target="_blank"
+class="album-card"
+>
 
 <div class="album-info">
 
-<div class="album-number">
-04
-</div>
+<span>04</span>
 
 <h3>
 2WAY Memories
 </h3>
 
 <p>
-Forever Together
+Open Album →
+</p>
+
+</div>
+
+</a>
+
+<a
+href="YOUR_DRIVE_LINK_5"
+target="_blank"
+class="album-card"
+>
+
+<div class="album-info">
+
+<span>05</span>
+
+<h3>
+Special Collection
+</h3>
+
+<p>
+Open Album →
+</p>
+
+</div>
+
+</a>
+
+<a
+href="YOUR_DRIVE_LINK_6"
+target="_blank"
+class="album-card"
+>
+
+<div class="album-info">
+
+<span>06</span>
+
+<h3>
+Our Story
+</h3>
+
+<p>
+Open Album →
 </p>
 
 </div>
@@ -171,32 +191,32 @@ Forever Together
 
 </section>
 
-<audio
-id="bgMusic"
-loop>
-
-<source
-src="music/bg.mp3"
-type="audio/mpeg">
-
-</audio>
-
 <button
-id="musicBtn">
+id="musicBtn"
+class="music-btn"
+>
 
 ♫
 
 </button>
 
-<div
-id="cursorGlow">
+<footer>
 
-</div>
+<p>
+© 2025 2WAY MEMORIES
+</p>
 
-<script
-src="script.js">
+</footer>
 
-</script>
+<script src="script.js"></script>
 
 </body>
 </html>
+
+
+
+
+
+
+
+  
