@@ -1,710 +1,1165 @@
-/* ==========================================================================
-   RESET & BASE STYLES
-   ========================================================================== */
+/* ==========================
+   RESET
+========================== */
+
 *{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+margin:0;
+padding:0;
+box-sizing:border-box;
 }
 
 html{
-    scroll-behavior: smooth;
+scroll-behavior:smooth;
 }
 
 body{
-    font-family: 'Montserrat', sans-serif;
-    overflow-x: hidden;
-    background: #040805; 
-    color: #fff;
-    user-select: none;
-    -webkit-user-select: none;
+
+font-family:'Noto Sans Thai',sans-serif;
+
+background:#f5f2ea;
+
+overflow-x:hidden;
+
+color:#fff;
+
 }
 
-/* ==========================================================================
-   HERO CONTAINER & VISUAL OVERLAYS (เปลี่ยนรูปพื้นหลังตรงตามเรฟเป๊ะๆ)
-   ========================================================================== */
+/* ==========================
+   LOADER
+========================== */
+
+#loader{
+
+position:fixed;
+
+inset:0;
+
+background:#111;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+z-index:99999;
+
+transition:1s;
+
+}
+
+.loader-content{
+
+text-align:center;
+
+}
+
+.loader-content h1{
+
+font-family:'Playfair Display',serif;
+
+font-size:5rem;
+
+letter-spacing:10px;
+
+}
+
+.loader-content p{
+
+margin-top:15px;
+
+opacity:.7;
+
+}
+
+/* ==========================
+   MUSIC BUTTON
+========================== */
+
+#musicBtn{
+
+position:fixed;
+
+right:25px;
+bottom:25px;
+
+width:60px;
+height:60px;
+
+border:none;
+
+border-radius:50%;
+
+background:rgba(255,255,255,.15);
+
+backdrop-filter:blur(12px);
+
+color:white;
+
+font-size:1.3rem;
+
+cursor:pointer;
+
+z-index:9999;
+
+transition:.3s;
+
+}
+
+#musicBtn:hover{
+
+transform:scale(1.1);
+
+}
+
+/* ==========================
+   HERO
+========================== */
+
 .hero{
-    position: relative;
-    width: 100%;
-    min-height: 100vh;
-    background: url("https://i.postimg.cc/44LTfLRq/tww.png") center center/cover no-repeat;
-    overflow: hidden;
+
+position:relative;
+
+min-height:100vh;
+
+background:
+
+url("https://images.unsplash.com/photo-1511497584788-876760111969?q=80&w=2200&auto=format&fit=crop")
+
+center center/cover;
+
+overflow:hidden;
+
 }
 
-.overlay{
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(circle at 45% 40%, rgba(255, 235, 190, 0.04) 0%, rgba(3, 8, 4, 0.38) 65%, rgba(0, 0, 0, 0.92) 100%);
-    z-index: 1;
+.hero-overlay{
+
+position:absolute;
+
+inset:0;
+
+background:
+
+linear-gradient(
+to bottom,
+rgba(0,0,0,.15),
+rgba(0,0,0,.45)
+);
+
 }
 
-.sun-flare {
-    position: absolute;
-    top: -20%;
-    left: -10%;
-    width: 65%;
-    height: 75%;
-    background: radial-gradient(circle, rgba(255, 242, 200, 0.18) 0%, transparent 65%);
-    filter: blur(40px);
-    z-index: 2;
-    pointer-events: none;
+/* ==========================
+   SUN RAYS
+========================== */
+
+.sun-rays{
+
+position:absolute;
+
+top:-20%;
+left:-10%;
+
+width:1000px;
+height:1000px;
+
+background:
+
+radial-gradient(
+circle,
+rgba(255,255,255,.35),
+transparent 65%
+);
+
+filter:blur(70px);
+
+animation:rayMove 8s ease-in-out infinite;
+
 }
 
-/* ==========================================================================
-   NAVIGATION & LINKS (เปลี่ยนจากอิโมจิขยะเป็นงาน SVG วาดสดดูแพง)
-   ========================================================================== */
+@keyframes rayMove{
+
+0%,100%{
+transform:translateX(0);
+}
+
+50%{
+transform:translateX(60px);
+}
+
+}
+
+/* ==========================
+   NAVBAR
+========================== */
+
 .navbar{
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    padding: 35px 60px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    z-index: 25;
+
+position:absolute;
+
+top:0;
+
+left:0;
+
+width:100%;
+
+padding:35px 60px;
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+z-index:50;
+
 }
 
 .logo{
-    font-size: 1.25rem;
-    letter-spacing: 4px;
-    font-weight: 600;
-    text-shadow: 0 3px 12px rgba(0,0,0,0.6);
+
+font-size:1.6rem;
+
+letter-spacing:4px;
+
+font-weight:600;
+
 }
 
-.navbar ul{
-    display: flex;
-    gap: 45px;
-    list-style: none;
-    align-items: center;
+nav{
+
+display:flex;
+
+gap:40px;
+
 }
 
-.navbar a{
-    color: rgba(255,255,255,0.7);
-    text-decoration: none;
-    font-size: 0.85rem;
-    font-weight: 500;
-    letter-spacing: 2.5px;
-    transition: all 0.3s ease;
+nav a{
+
+text-decoration:none;
+
+color:white;
+
+font-size:.95rem;
+
+letter-spacing:2px;
+
+transition:.3s;
+
 }
 
-.navbar a:hover, .navbar a.active{
-    color: #ffd86a;
-    text-shadow: 0 0 10px rgba(255,216,106,0.3);
+nav a:hover{
+
+opacity:.6;
+
 }
 
-.music-toggle-btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 36px;
-    height: 36px;
-    background: rgba(255,255,255,0.06);
-    border: 1px solid rgba(255,255,255,0.15);
-    border-radius: 50%;
+/* ==========================
+   HERO TEXT
+========================== */
+
+.hero-text{
+
+position:absolute;
+
+left:8%;
+
+top:50%;
+
+transform:translateY(-50%);
+
+z-index:20;
+
+max-width:500px;
+
 }
 
-.music-icon {
-    width: 16px;
-    height: 16px;
-    color: #fff;
+.small-title{
+
+letter-spacing:8px;
+
+font-size:.9rem;
+
+margin-bottom:20px;
+
+opacity:.8;
+
 }
 
-/* แถบไอคอนนำทางแนวตั้งชิดขอบซ้ายจอ */
-.side-navigation {
-    position: absolute;
-    left: 0;
-    top: 28%;
-    display: flex;
-    flex-direction: column;
-    gap: 28px;
-    padding-left: 30px;
-    z-index: 25;
+.hero-text h1{
+
+font-family:'Playfair Display',serif;
+
+font-size:6rem;
+
+line-height:.95;
+
 }
 
-.side-link {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-decoration: none;
-    color: rgba(255,255,255,0.4);
-    transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+.hero-text p{
+
+margin-top:30px;
+
+font-size:1.1rem;
+
+line-height:2;
+
+opacity:.95;
+
 }
 
-.side-icon {
-    width: 20px;
-    height: 20px;
+.scroll-indicator{
+
+margin-top:35px;
+
+letter-spacing:4px;
+
+font-size:.9rem;
+
+animation:bounce 2s infinite;
+
 }
 
-.side-link span {
-    font-size: 0.65rem;
-    margin-top: 6px;
-    letter-spacing: 1px;
-    font-weight: 500;
+@keyframes bounce{
+
+0%,100%{
+transform:translateY(0);
 }
 
-.side-link:hover, .side-link.active {
-    color: #ffd86a;
-    transform: translateX(3px);
+50%{
+transform:translateY(10px);
 }
 
-/* ==========================================================================
-   LEFT CONTENT TYPOGRAPHY
-   ========================================================================== */
-.left-content{
-    position: absolute;
-    left: 14%;
-    top: 48%;
-    transform: translateY(-50%);
-    z-index: 10;
-    max-width: 420px;
 }
 
-.left-content h1{
-    font-family: 'Caveat', cursive;
-    font-size: 7.8rem;
-    line-height: 0.82;
-    font-weight: 700;
-    color: #fff;
-    text-shadow: 0 10px 30px rgba(0,0,0,0.7);
-    letter-spacing: -2px;
+/* ==========================
+   CHALK BOARD
+========================== */
+
+.chalk-board{
+
+position:absolute;
+
+right:5%;
+
+top:50%;
+
+transform:translateY(-50%);
+
+width:700px;
+
+height:500px;
+
+background:
+
+linear-gradient(
+135deg,
+#222,
+#0f0f0f
+);
+
+border:14px solid #765133;
+
+border-radius:10px;
+
+box-shadow:
+
+0 30px 80px rgba(0,0,0,.5);
+
+z-index:20;
+
 }
 
-.year{
-    margin-top: 12px;
-    font-size: 1.7rem;
-    font-weight: 600;
-    letter-spacing: 8px;
-    color: #ffd86a;
+.board-label{
+
+position:absolute;
+
+left:20px;
+top:20px;
+
+background:#ceb08a;
+
+color:#222;
+
+padding:8px 22px;
+
+font-weight:700;
+
+transform:rotate(-5deg);
+
 }
 
-.left-content p{
-    margin-top: 25px;
-    line-height: 1.9;
-    font-size: 1.1rem;
-    font-weight: 300;
-    opacity: 0.8;
-    text-shadow: 0 3px 10px rgba(0,0,0,0.6);
+.chalk-small{
+
+margin-top:70px;
+
+text-align:center;
+
+font-size:4rem;
+
+font-family:'Caveat',cursive;
+
 }
 
-.scroll-action {
-    margin-top: 40px;
-    display: inline-flex;
-    flex-direction: column;
-    align-items: center;
+.chalk-big{
+
+margin-top:10px;
+
+font-size:6rem;
+
+font-weight:700;
+
+text-align:center;
+
 }
 
-.scroll-lbl{
-    font-family: 'Caveat', cursive;
-    font-size: 2.2rem;
-    color: #ffd86a;
+.c1{color:#53e6ff;}
+.c2{color:#ff8fc0;}
+.c3{color:#ffe56b;}
+.c4{color:#ffffff;}
+.c5{color:#80ff80;}
+.c6{color:#9cd3ff;}
+.c7{color:#ff9e6f;}
+.c8{color:#d8ff88;}
+
+.chalk-sub{
+
+margin-top:10px;
+
+text-align:center;
+
+font-size:2rem;
+
+letter-spacing:8px;
+
 }
 
-.custom-arrow-css {
-    width: 12px;
-    height: 12px;
-    border-right: 2px solid #ffd86a;
-    border-bottom: 2px solid #ffd86a;
-    transform: rotate(45deg);
-    margin-top: 6px;
-    animation: gentleArrow 2s infinite ease-in-out;
+.chalk-footer{
+
+margin-top:30px;
+
+text-align:center;
+
+line-height:2;
+
+opacity:.8;
+
 }
 
-@keyframes gentleArrow {
-    0%, 100% { transform: translateY(0) rotate(45deg); opacity: 0.4; }
-    50% { transform: translateY(8px) rotate(45deg); opacity: 1; }
+/* ==========================
+   CAMERA
+========================== */
+
+.camera-wrap{
+
+position:absolute;
+
+left:40px;
+
+bottom:120px;
+
+z-index:30;
+
 }
 
-/* ==========================================================================
-   MEMORY SLATE BOARD SYSTEM (จัดแสงเงาขอบบอร์ดไม้และเฉดสีชอล์กพาสเทลสตูดิโอ)
-   ========================================================================== */
-.board-frame-wrapper {
-    position: absolute;
-    right: 8%;
-    top: 45%;
-    transform: translateY(-50%);
-    z-index: 10;
+.camera-wrap img{
+
+width:260px;
+
+height:260px;
+
+object-fit:cover;
+
+border-radius:30px;
+
+box-shadow:
+
+0 25px 50px rgba(0,0,0,.5);
+
+transform:rotate(-8deg);
+
 }
 
-.slate-board{
-    position: relative;
-    width: 690px;
-    height: 490px;
-    background: radial-gradient(circle, #202922 0%, #0f1410 100%); 
-    border: 16px solid #28180c; 
-    border-radius: 4px;
-    box-shadow: 
-        inset 0 0 45px rgba(0,0,0,0.95),
-        0 35px 75px rgba(0,0,0,0.8);
-    padding: 30px;
+/* ==========================
+   FLOWERS
+========================== */
+
+.flower{
+
+position:absolute;
+
+font-size:3rem;
+
+z-index:30;
+
+animation:floatFlower 6s ease-in-out infinite;
+
 }
 
-/* สายเชือกสลิงทำมุมห้อยลงมาจากขอบสกรีนด้านบน */
-.slate-board::before, .slate-board::after {
-    content: "";
-    position: absolute;
-    top: -140px;
-    width: 3px;
-    height: 140px;
-    background: linear-gradient(to bottom, transparent, #4c3723);
-}
-.slate-board::before { left: 140px; transform: rotate(-4deg); }
-.slate-board::after { right: 140px; transform: rotate(4deg); }
-
-.chalk-tag{
-    position: absolute;
-    top: 20px;
-    left: 25px;
-    padding: 6px 22px;
-    background: #bfa17a;
-    color: #170f07;
-    font-weight: 700;
-    font-size: 0.8rem;
-    letter-spacing: 2px;
-    transform: rotate(-5deg);
-    box-shadow: 2px 4px 10px rgba(0,0,0,0.3);
+.flower1{
+right:50px;
+top:140px;
 }
 
-.my{
-    margin-top: 45px;
-    text-align: center;
-    font-size: 4.4rem;
-    font-family: 'Caveat', cursive;
-    color: #fcfcfc;
-    text-shadow: 2px 3px 6px rgba(0,0,0,0.5);
+.flower2{
+right:200px;
+bottom:140px;
 }
 
-.precious{
-    text-align: center;
-    margin-top: -20px;
-    font-size: 7rem;
-    font-weight: 700;
-    letter-spacing: 3px;
+.flower3{
+left:320px;
+bottom:220px;
 }
 
-/* ไล่รหัสสีพาสเทลสดใสตรงตามรูปโจทย์ต้นฉบับเพื่อความสมบูรณ์แบบ */
-.p{ color: #52e3d5; text-shadow: 0 0 10px rgba(82,227,213,0.25); }
-.r{ color: #ff7da8; text-shadow: 0 0 10px rgba(255,125,168,0.25); }
-.e{ color: #ffd34e; text-shadow: 0 0 10px rgba(255,211,78,0.25); }
-.c{ color: #62c6ff; text-shadow: 0 0 10px rgba(98,198,255,0.25); }
-.i{ color: #ffffff; text-shadow: 0 0 10px rgba(255,255,255,0.25); }
-.o{ color: #a3ff8d; text-shadow: 0 0 10px rgba(163,255,141,0.25); }
-.u{ color: #ff9696; text-shadow: 0 0 10px rgba(255,150,150,0.25); }
-.s{ color: #9df2a1; text-shadow: 0 0 10px rgba(157,242,161,0.25); }
+@keyframes floatFlower{
 
-.board-sub{
-    text-align: center;
-    margin-top: 12px;
-    font-size: 1.5rem;
-    letter-spacing: 7px;
-    color: #ffd86a;
+0%,100%{
+transform:translateY(0);
 }
 
-/* โน้ตกระดาษเตือนความจำแปะบนบอร์ด */
-.vintage-sticky {
-    position: absolute;
-    bottom: 35px;
-    left: 240px;
-    width: 145px;
-    background: #fdfaf2;
-    color: #2e2216;
-    padding: 16px;
-    transform: rotate(2deg);
-    box-shadow: 4px 8px 18px rgba(0,0,0,0.35);
-    font-family: 'Reenie Beanie', cursive;
-    font-size: 1.65rem;
-    line-height: 1.15;
+50%{
+transform:translateY(-12px);
 }
 
-/* กรอบรูปแบบโพลารอยด์ขอบหนา */
-.polaroid-component {
-    position: absolute;
-    bottom: 15px;
-    right: 25px;
-    background: #fff;
-    padding: 10px 10px 32px 10px;
-    box-shadow: 6px 14px 28px rgba(0,0,0,0.45);
-    transform: rotate(-6deg);
 }
 
-.photo-render {
-    width: 135px;
-    height: 115px;
-    background: url("https://images.unsplash.com/photo-1448375240586-882707db888b?q=80&w=400&auto=format&fit=crop") center center/cover;
+/* ==========================
+   FILM SECTION
+========================== */
+
+.film-section{
+
+background:#f5f2ea;
+
+padding:120px 40px;
+
+color:#222;
+
 }
 
-/* ดอกไม้เดซี่ประดับมุมรูปที่ประกอบโครงจาก CSS */
-.css-flower-daisy {
-    position: absolute;
-    top: -15px;
-    left: -15px;
-    width: 34px;
-    height: 34px;
-    z-index: 5;
-    filter: drop-shadow(2px 3px 5px rgba(0,0,0,0.3));
-}
+.section-title{
 
-.daisy-core {
-    position: absolute;
-    inset: 11px;
-    background: #e2a138;
-    border-radius: 50%;
-    z-index: 2;
-}
+font-family:'Playfair Display',serif;
 
-.daisy-petal {
-    position: absolute;
-    background: #fff;
-    border-radius: 50% 50% 0 0;
-    width: 8px;
-    height: 15px;
-    top: 2px;
-    left: 13px;
-    transform-origin: bottom center;
-}
-.ptl-1 { transform: rotate(0deg); }
-.ptl-2 { transform: rotate(45deg); }
-.ptl-3 { transform: rotate(90deg); }
-.ptl-4 { transform: rotate(135deg); }
-.ptl-5 { transform: rotate(180deg); }
-.ptl-6 { transform: rotate(225deg); }
-.ptl-7 { transform: rotate(270deg); }
-.ptl-8 { transform: rotate(315deg); }
+font-size:3rem;
 
-/* ==========================================================================
-   PURE CSS CAMERA MODEL (ขึ้นโมเดลกล้องแบบ Mechanical สวยงามแทนสติ๊กเกอร์อีโมจิ)
-   ========================================================================== */
-.camera-assets-group {
-    position: absolute;
-    left: 5%;
-    bottom: 185px;
-    display: flex;
-    align-items: flex-end;
-    gap: 15px;
-    z-index: 15;
-    animation: luxuryFloat 5s ease-in-out infinite;
-}
+text-align:center;
 
-.css-retro-camera {
-    width: 115px;
-    height: 72px;
-    position: relative;
-}
+margin-bottom:50px;
 
-.cam-top-deck {
-    width: 95px;
-    height: 12px;
-    background: linear-gradient(to bottom, #dddddd, #a2a2a2);
-    margin: 0 auto;
-    border-radius: 4px 4px 0 0;
-    position: relative;
 }
-
-.shutter-trigger {
-    width: 12px;
-    height: 5px;
-    background: #666;
-    position: absolute;
-    top: -5px;
-    left: 12px;
-    border-radius: 1px 1px 0 0;
-}
-
-.mode-dial {
-    width: 14px;
-    height: 4px;
-    background: #333;
-    position: absolute;
-    top: -4px;
-    right: 14px;
-}
-
-.optical-finder {
-    width: 12px;
-    height: 7px;
-    background: #151515;
-    position: absolute;
-    top: 3px;
-    left: 42px;
-    border: 1px solid #888;
-}
-
-.cam-main-frame {
-    width: 100%;
-    height: 60px;
-    background: #2b2b2b;
-    border: 2px solid #a2a2a2;
-    border-radius: 4px;
-    position: relative;
-    overflow: hidden;
-}
-
-.leather-wrap {
-    width: 100%;
-    height: 34px;
-    background: #121212;
-    position: absolute;
-    top: 13px;
-}
-
-.outer-lens-mount {
-    width: 44px;
-    height: 44px;
-    background: linear-gradient(135deg, #fff, #666);
-    border-radius: 50%;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.inner-lens-barrel {
-    width: 34px;
-    height: 34px;
-    background: #050505;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.optics-glass {
-    width: 24px;
-    height: 24px;
-    background: radial-gradient(circle, #0c2d42 10%, #001521 80%);
-    border-radius: 50%;
-    position: relative;
-}
-
-.glass-reflection {
-    width: 6px;
-    height: 6px;
-    background: rgba(255,255,255,0.4);
-    border-radius: 50%;
-    position: absolute;
-    top: 3px;
-    left: 4px;
-}
-
-/* โครงตลับฟิล์มสีเหลืองตั้งพื้น */
-.css-film-canister {
-    width: 32px;
-    height: 48px;
-    display: flex;
-    flex-direction: column;
-}
-
-.canister-rim {
-    height: 3px;
-    background: #3a3a3a;
-    border-radius: 2px;
-}
-
-.canister-barrel {
-    flex: 1;
-    background: #ffd86a;
-    border: 1px solid #3a3a3a;
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.brand-line {
-    position: absolute;
-    width: 100%;
-    height: 10px;
-    background: #252525;
-    top: 6px;
-}
-
-.film-spec {
-    font-size: 0.55rem;
-    font-weight: 700;
-    color: #fff;
-    z-index: 2;
-    margin-top: 12px;
-}
-
-@keyframes luxuryFloat{
-    0%, 100%{ transform: translateY(0); }
-    50%{ transform: translateY(-8px); }
-}
-
-/* ==========================================================================
-   CINEMATIC FILM SLIDER (สไลเดอร์ม้วนฟิล์มภาพยนตร์กระจกฝ้าเจาะรูหนามเตยสมจริง)
-   ========================================================================== */
-.cinematic-film-slider {
-    position: absolute;
-    bottom: 25px;
-    left: 0;
-    width: 100%;
-    padding: 0 4%;
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    z-index: 20;
-}
-
-.film-negative-strip {
-    flex: 1;
-    background: linear-gradient(to bottom, #111512, #050705);
-    border-top: 2px solid #282a28;
-    border-bottom: 2px solid #282a28;
-    padding: 22px 0;
-    position: relative;
-    border-radius: 4px;
-}
-
-/* ตกแต่งรูหนามเตยของม้วนฟิล์ม */
-.sprocket-strip {
-    position: absolute;
-    left: 0;
-    width: 100%;
-    height: 6px;
-    background-image: linear-gradient(to right, #000 0px, #000 10px, transparent 10px, transparent 24px);
-    background-size: 24px 6px;
-}
-.sprocket-top { top: 6px; }
-.sprocket-bottom { bottom: 6px; }
 
 .film-track{
-    display: flex;
-    gap: 20px;
-    overflow-x: auto;
-    padding: 5px 15px;
-    scroll-behavior: smooth;
+
+display:flex;
+
+gap:20px;
+
+overflow-x:auto;
+
+padding-bottom:20px;
+
 }
 
-.film-track::-webkit-scrollbar { display: none; }
-
 .film-card{
-    min-width: 245px;
-    height: 135px;
-    padding: 20px;
-    background: rgba(255, 255, 255, 0.02);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 8px;
-    color: white;
-    text-decoration: none;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    transition: all 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+
+min-width:280px;
+
+padding:30px;
+
+border-radius:25px;
+
+background:white;
+
+text-decoration:none;
+
+color:#222;
+
+box-shadow:
+
+0 15px 40px rgba(0,0,0,.08);
+
+transition:.4s;
+
 }
 
 .film-card:hover{
-    transform: translateY(-6px);
-    background: rgba(255, 255, 255, 0.08);
-    border-color: #ffd86a;
-    box-shadow: 0 15px 30px rgba(0,0,0,0.6);
+
+transform:
+translateY(-10px);
+
 }
 
-.card-index{
-    font-size: 1.3rem;
-    font-weight: 700;
-    color: #ffd86a;
+.film-number{
+
+font-size:3rem;
+
+font-family:'Playfair Display',serif;
+
+opacity:.2;
+
 }
 
 .film-card h3{
-    font-size: 1.1rem;
-    font-weight: 400;
-    margin-top: 5px;
-    flex-grow: 1;
+
+margin-top:15px;
+
 }
 
-.card-timestamp{
-    font-size: 0.75rem;
-    opacity: 0.5;
-    letter-spacing: 1px;
+.film-card p{
+
+margin-top:10px;
+
+opacity:.6;
+
 }
 
-.nav-arrow {
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    color: white;
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: all 0.3s ease;
-    backdrop-filter: blur(5px);
+/* ==========================
+   TIMELINE
+========================== */
+
+.timeline{
+
+background:
+
+linear-gradient(
+180deg,
+#f5f2ea,
+#efe8dc
+);
+
+padding:120px 40px;
+
+color:#222;
+
 }
 
-.nav-arrow:hover {
-    background: #ffd86a;
-    color: #000;
-    border-color: #ffd86a;
-    box-shadow: 0 0 15px rgba(255,216,106,0.4);
+.timeline h2{
+
+font-family:'Playfair Display',serif;
+
+font-size:3rem;
+
+text-align:center;
+
+margin-bottom:80px;
+
 }
 
-/* ==========================================================================
-   PARTICLES & DETAILS
-   ========================================================================== */
-.magic-dust-particles{
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    background-image: radial-gradient(rgba(255, 225, 130, 0.25) 1px, transparent 1px);
-    background-size: 110px 110px;
-    opacity: 0.45;
-    animation: goldDust 28s linear infinite;
-    z-index: 2;
+.timeline-line{
+
+display:flex;
+
+justify-content:center;
+
+flex-wrap:wrap;
+
+gap:25px;
+
+max-width:1200px;
+
+margin:auto;
+
 }
 
-@keyframes goldDust{
-    from { background-position: 0 0; }
-    to { background-position: 40px -280px; }
+.timeline-line div{
+
+background:white;
+
+padding:25px 35px;
+
+border-radius:20px;
+
+box-shadow:
+
+0 10px 30px rgba(0,0,0,.08);
+
+font-weight:600;
+
+transition:.4s;
+
+cursor:pointer;
+
 }
 
-.bottom-credit {
-    position: absolute;
-    bottom: 6px;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 0.65rem;
-    letter-spacing: 5px;
-    opacity: 0.35;
-    z-index: 21;
+.timeline-line div:hover{
+
+transform:
+translateY(-8px);
+
 }
 
-/* ==========================================================================
-   RESPONSIVE DESIGN (ปรับหน้าตาเว็บให้จัดตำแหน่งสวยงามอัตโนมัติบนมือถือ)
-   ========================================================================== */
-@media(max-width: 1300px){
-    .slate-board{ width: 560px; height: 430px; }
-    .precious{ font-size: 5.6rem; }
-    .left-content h1{ font-size: 5.8rem; }
+/* ==========================
+   ABOUT
+========================== */
+
+.about{
+
+padding:140px 30px;
+
+text-align:center;
+
+background:white;
+
+color:#222;
+
 }
 
-@media(max-width: 991px){
-    .navbar ul, .side-navigation, .camera-assets-group, .vintage-sticky, .polaroid-component { display: none; }
-    .left-content {
-        position: relative;
-        left: auto; top: auto;
-        transform: none;
-        padding: 130px 20px 20px 20px;
-        text-align: center;
-        margin: 0 auto;
-    }
-    .scroll-action { margin: 20px auto 0 auto; }
-    .slate-board {
-        position: relative;
-        right: auto; top: auto;
-        transform: none;
-        margin: 40px auto 180px auto;
-        width: 92%;
-        height: auto;
-        padding: 40px 15px;
-    }
-    .precious { font-size: 4.2rem; }
-    .board-sub { font-size: 1.2rem; }
+.about h2{
+
+font-family:'Playfair Display',serif;
+
+font-size:4rem;
+
+margin-bottom:30px;
+
+}
+
+.about p{
+
+max-width:850px;
+
+margin:auto;
+
+line-height:2.2;
+
+font-size:1.1rem;
+
+opacity:.8;
+
+}
+
+/* ==========================
+   FOOTER
+========================== */
+
+footer{
+
+background:#181818;
+
+color:white;
+
+padding:40px;
+
+text-align:center;
+
+letter-spacing:3px;
+
+font-size:.9rem;
+
+}
+
+/* ==========================
+   SCROLLBAR
+========================== */
+
+::-webkit-scrollbar{
+
+width:10px;
+height:10px;
+
+}
+
+::-webkit-scrollbar-track{
+
+background:#ece5d8;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+background:#b79d77;
+
+border-radius:999px;
+
+}
+
+::-webkit-scrollbar-thumb:hover{
+
+background:#9f8460;
+
+}
+
+/* ==========================
+   LEAFS
+========================== */
+
+.leaf-container{
+
+position:fixed;
+
+inset:0;
+
+pointer-events:none;
+
+z-index:5;
+
+overflow:hidden;
+
+}
+
+.leaf{
+
+position:absolute;
+
+top:-120px;
+
+opacity:.7;
+
+animation:leafFall linear infinite;
+
+}
+
+@keyframes leafFall{
+
+0%{
+
+transform:
+translateY(-100px)
+translateX(0)
+rotate(0deg);
+
+}
+
+100%{
+
+transform:
+translateY(120vh)
+translateX(200px)
+rotate(360deg);
+
+}
+
+}
+
+/* ==========================
+   SPARKLES
+========================== */
+
+.sparkle{
+
+position:fixed;
+
+width:4px;
+height:4px;
+
+background:white;
+
+border-radius:50%;
+
+pointer-events:none;
+
+opacity:.5;
+
+animation:sparkle 5s infinite;
+
+z-index:4;
+
+}
+
+@keyframes sparkle{
+
+0%,100%{
+
+opacity:0;
+
+transform:scale(0);
+
+}
+
+50%{
+
+opacity:1;
+
+transform:scale(1.6);
+
+}
+
+}
+
+/* ==========================
+   REVEAL
+========================== */
+
+.hidden{
+
+opacity:0;
+
+transform:
+translateY(50px);
+
+transition:
+
+opacity 1s ease,
+transform 1s ease;
+
+}
+
+.show{
+
+opacity:1;
+
+transform:
+translateY(0);
+
+}
+
+/* ==========================
+   FILM CARD PREMIUM
+========================== */
+
+.film-card{
+
+position:relative;
+
+overflow:hidden;
+
+}
+
+.film-card::before{
+
+content:"";
+
+position:absolute;
+
+top:0;
+left:-120%;
+
+width:60%;
+height:100%;
+
+background:
+
+linear-gradient(
+90deg,
+transparent,
+rgba(255,255,255,.5),
+transparent
+);
+
+transform:skewX(-20deg);
+
+transition:1s;
+
+}
+
+.film-card:hover::before{
+
+left:150%;
+
+}
+
+/* ==========================
+   CHALK GLOW
+========================== */
+
+.chalk-big span{
+
+text-shadow:
+
+0 0 10px currentColor,
+0 0 20px currentColor;
+
+}
+
+/* ==========================
+   GLASS EFFECT
+========================== */
+
+#musicBtn{
+
+box-shadow:
+
+0 10px 30px rgba(0,0,0,.2);
+
+}
+
+#musicBtn:hover{
+
+box-shadow:
+
+0 15px 40px rgba(0,0,0,.3);
+
+}
+
+/* ==========================
+   MOBILE
+========================== */
+
+@media(max-width:1200px){
+
+.chalk-board{
+
+width:580px;
+
+height:430px;
+
+}
+
+.chalk-big{
+
+font-size:5rem;
+
+}
+
+.hero-text h1{
+
+font-size:5rem;
+
+}
+
+}
+
+@media(max-width:900px){
+
+.navbar{
+
+padding:25px;
+
+}
+
+nav{
+
+display:none;
+
+}
+
+.hero{
+
+display:flex;
+
+flex-direction:column;
+
+justify-content:flex-start;
+
+}
+
+.hero-text{
+
+position:relative;
+
+left:auto;
+top:auto;
+
+transform:none;
+
+padding-top:140px;
+
+text-align:center;
+
+max-width:90%;
+
+margin:auto;
+
+}
+
+.hero-text h1{
+
+font-size:4rem;
+
+}
+
+.chalk-board{
+
+position:relative;
+
+right:auto;
+top:auto;
+
+transform:none;
+
+margin:50px auto;
+
+width:92%;
+
+height:auto;
+
+padding-bottom:50px;
+
+}
+
+.chalk-big{
+
+font-size:3rem;
+
+}
+
+.chalk-small{
+
+font-size:2.5rem;
+
+}
+
+.chalk-sub{
+
+font-size:1.2rem;
+
+}
+
+.camera-wrap{
+
+display:none;
+
+}
+
+.flower{
+
+font-size:2rem;
+
+}
+
+.timeline h2{
+
+font-size:2.2rem;
+
+}
+
+.about h2{
+
+font-size:2.5rem;
+
+}
+
+}
+
+@media(max-width:600px){
+
+.logo{
+
+font-size:1rem;
+
+letter-spacing:2px;
+
+}
+
+.hero-text h1{
+
+font-size:3rem;
+
+}
+
+.hero-text p{
+
+font-size:.95rem;
+
+}
+
+.section-title{
+
+font-size:2rem;
+
+}
+
+.film-card{
+
+min-width:240px;
+
+}
+
+.timeline-line div{
+
+width:100%;
+
+text-align:center;
+
+}
+
 }
