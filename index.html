@@ -1,197 +1,321 @@
 <!DOCTYPE html>
 <html lang="th">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>2WAY MEMORIES</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Montserrat:wght@300;400;500;600;700&family=Reenie+Beanie&display=swap" rel="stylesheet">
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>2WAY Memories</title>
+
+<meta name="theme-color" content="#1f1f1f">
+
+<link rel="stylesheet" href="style.css">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Playfair+Display:wght@600;700;800&family=Noto+Sans+Thai:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
 </head>
+
 <body>
 
-<div class="hero">
-    <div class="overlay"></div>
-    <div class="sun-flare"></div>
+<!-- LOADER -->
 
-    <nav class="navbar">
-        <div class="logo">2WAY MEMORIES</div>
-        <ul>
-            <li><a href="#" class="active">HOME</a></li>
-            <li><a href="#">ALBUMS</a></li>
-            <li><a href="#">ABOUT US</a></li>
-            <li><a href="#">MUSIC</a></li>
-            <li>
-                <a href="#" class="music-toggle-btn" onclick="toggleMusic()">
-                    <svg class="music-icon" viewBox="0 0 24 24"><path fill="currentColor" d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/></svg>
-                </a>
-            </li>
-        </ul>
-    </nav>
+<div id="loader">
 
-    <div class="side-navigation">
-        <a href="#" class="side-link active">
-            <svg class="side-icon" viewBox="0 0 24 24"><path fill="currentColor" d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
-            <span>Home</span>
-        </a>
-        <a href="#" class="side-link">
-            <svg class="side-icon" viewBox="0 0 24 24"><path fill="currentColor" d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c0 1.1-.9-2-2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>
-            <span>Albums</span>
-        </a>
-        <a href="#" class="side-link">
-            <svg class="side-icon" viewBox="0 0 24 24"><path fill="currentColor" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
-            <span>About Us</span>
-        </a>
-        <a href="#" class="side-link">
-            <svg class="side-icon" viewBox="0 0 24 24"><path fill="currentColor" d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/></svg>
-            <span>Music</span>
-        </a>
-    </div>
+<div class="loader-content">
 
-    <div class="left-content">
-        <h1>2WAY<br>MEMORIES</h1>
-        <div class="year">— 2025 —</div>
-        <p>
-            Every moment.<br>
-            Every smile.<br>
-            Every memory.<br>
-            Forever in our hearts.
-        </p>
-        <div class="scroll-action">
-            <span class="scroll-lbl">Scroll Down</span>
-            <div class="custom-arrow-css"></div>
-        </div>
-    </div>
+<h1>2WAY</h1>
 
-    <div class="board-frame-wrapper">
-        <div class="slate-board">
-            <div class="chalk-tag">2WAY</div>
-            <div class="my">MY</div>
-            
-            <div class="precious">
-                <span class="p">P</span>
-                <span class="r">R</span>
-                <span class="e">E</span>
-                <span class="c">C</span>
-                <span class="i">I</span>
-                <span class="o">O</span>
-                <span class="u">U</span>
-                <span class="s">S</span>
-            </div>
-            
-            <div class="board-sub">— 2WAY MEMORIES —</div>
-            
-            <div class="vintage-sticky">
-                <p>Good friends</p>
-                <p>Good memories</p>
-                <p>Good times ♡</p>
-            </div>
+<p>Loading Memories...</p>
 
-            <div class="polaroid-component">
-                <div class="css-flower-daisy">
-                    <div class="daisy-core"></div>
-                    <div class="daisy-petal ptl-1"></div>
-                    <div class="daisy-petal ptl-2"></div>
-                    <div class="daisy-petal ptl-3"></div>
-                    <div class="daisy-petal ptl-4"></div>
-                    <div class="daisy-petal ptl-5"></div>
-                    <div class="daisy-petal ptl-6"></div>
-                    <div class="daisy-petal ptl-7"></div>
-                    <div class="daisy-petal ptl-8"></div>
-                </div>
-                <div class="polaroid-body">
-                    <div class="photo-render"></div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="camera-assets-group">
-        <div class="css-retro-camera">
-            <div class="cam-top-deck">
-                <div class="shutter-trigger"></div>
-                <div class="mode-dial"></div>
-                <div class="optical-finder"></div>
-            </div>
-            <div class="cam-main-frame">
-                <div class="leather-wrap"></div>
-                <div class="outer-lens-mount">
-                    <div class="inner-lens-barrel">
-                        <div class="optics-glass">
-                            <div class="glass-reflection"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="css-film-canister">
-            <div class="canister-rim"></div>
-            <div class="canister-barrel">
-                <div class="brand-line"></div>
-                <span class="film-spec">35mm</span>
-            </div>
-            <div class="canister-rim"></div>
-        </div>
-    </div>
-
-    <div class="cinematic-film-slider">
-        <button class="nav-arrow left-arrow" aria-label="Previous">❮</button>
-        
-        <div class="film-negative-strip">
-            <div class="sprocket-strip sprocket-top"></div>
-            
-            <div class="film-track" id="filmTrack">
-                <a class="film-card" href="#">
-                    <span class="card-index">01</span>
-                    <h3>English International Day</h3>
-                    <p class="card-timestamp">DEC 2025</p>
-                </a>
-                <a class="film-card" href="#">
-                    <span class="card-index">02</span>
-                    <h3>Day At PPW</h3>
-                    <p class="card-timestamp">16/12/25</p>
-                </a>
-                <a class="film-card" href="#">
-                    <span class="card-index">03</span>
-                    <h3>Day At PPW</h3>
-                    <p class="card-timestamp">17/12/25</p>
-                </a>
-                <a class="film-card" href="#">
-                    <span class="card-index">04</span>
-                    <h3>Before Sports Day</h3>
-                    <p class="card-timestamp">COMING SOON</p>
-                </a>
-                <a class="film-card" href="#">
-                    <span class="card-index">05</span>
-                    <h3>Sports Day</h3>
-                    <p class="card-timestamp">COMING SOON</p>
-                </a>
-                <a class="film-card" href="#">
-                    <span class="card-index">06</span>
-                    <h3>Digital Camera</h3>
-                    <p class="card-timestamp">GALLERY</p>
-                </a>
-                <a class="film-card" href="#">
-                    <span class="card-index">07</span>
-                    <h3>New Collection</h3>
-                    <p class="card-timestamp">NEW</p>
-                </a>
-            </div>
-
-            <div class="sprocket-strip sprocket-bottom"></div>
-        </div>
-
-        <button class="nav-arrow right-arrow" aria-label="Next">❯</button>
-    </div>
-
-    <div class="magic-dust-particles"></div>
-    
-    <footer class="bottom-credit">FOLLOW US</footer>
 </div>
 
+</div>
+
+<!-- MUSIC -->
+
 <audio id="bgMusic" loop>
-    <source src="music/bg.mp3" type="audio/mpeg">
+
+<source src="music/bg.mp3" type="audio/mpeg">
+
 </audio>
 
+<!-- MUSIC BUTTON -->
+
+<button id="musicBtn">
+
+<i class="fa-solid fa-music"></i>
+
+</button>
+
+<!-- HERO -->
+
+<section class="hero">
+
+<div class="hero-overlay"></div>
+
+<div class="sun-rays"></div>
+
+<!-- NAVBAR -->
+
+<header class="navbar">
+
+<div class="logo">
+
+2WAY MEMORIES
+
+</div>
+
+<nav>
+
+<a href="#albums">Albums</a>
+
+<a href="#timeline">Timeline</a>
+
+<a href="#about">About</a>
+
+</nav>
+
+</header>
+
+<!-- LEFT CONTENT -->
+
+<div class="hero-text">
+
+<div class="small-title">
+
+OUR STORY
+
+</div>
+
+<h1>
+
+2WAY
+
+MEMORIES
+
+</h1>
+
+<p>
+
+Every photograph tells a story.<br>
+Every smile becomes a memory.<br>
+Every memory lasts forever.
+
+</p>
+
+<div class="scroll-indicator">
+
+SCROLL TO BEGIN
+
+↓
+
+</div>
+
+</div>
+
+<!-- BOARD -->
+
+<div class="chalk-board">
+
+<div class="board-label">
+
+2WAY
+
+</div>
+
+<div class="chalk-small">
+
+MY
+
+</div>
+
+<div class="chalk-big">
+
+<span class="c1">P</span>
+<span class="c2">R</span>
+<span class="c3">E</span>
+<span class="c4">C</span>
+<span class="c5">I</span>
+<span class="c6">O</span>
+<span class="c7">U</span>
+<span class="c8">S</span>
+
+</div>
+
+<div class="chalk-sub">
+
+MEMORIES
+
+</div>
+
+<div class="chalk-footer">
+
+Good Friends<br>
+Good Memories<br>
+Good Times
+
+</div>
+
+</div>
+
+<!-- CAMERA -->
+
+<div class="camera-wrap">
+
+<img
+src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?q=80&w=1000&auto=format&fit=crop"
+alt="camera">
+
+</div>
+
+<!-- FLOWERS -->
+
+<div class="flower flower1">🌼</div>
+<div class="flower flower2">🌸</div>
+<div class="flower flower3">🌻</div>
+
+</section>
+
+<!-- FILM SECTION -->
+
+<section id="albums" class="film-section">
+
+<div class="section-title">
+
+Albums Collection
+
+</div>
+
+<div class="film-track">
+
+<a href="https://drive.google.com/drive/folders/1b0pN4rgcnerd5DFi5lPQHMJyp-Pslpiq?usp=sharing" target="_blank" class="film-card">
+
+<div class="film-number">01</div>
+
+<h3>English Day</h3>
+
+<p>International Day</p>
+
+</a>
+
+<a href="https://drive.google.com/drive/folders/1eTO8RQqp250LG7Ow5BOOrd8mkiCJx0Yq?usp=sharing" target="_blank" class="film-card">
+
+<div class="film-number">02</div>
+
+<h3>Day At PPW</h3>
+
+<p>16/12/25</p>
+
+</a>
+
+<a href="https://drive.google.com/drive/folders/1hxKpXYnQ_kJ1OWg7bPnOXUWAFsBNBc5B?usp=sharing" target="_blank" class="film-card">
+
+<div class="film-number">03</div>
+
+<h3>Day At PPW</h3>
+
+<p>17/12/25</p>
+
+</a>
+
+<a href="https://drive.google.com/drive/folders/1-jCuNTxAlDgR7c3J3ogjCA7m4WZ8CUo9?usp=sharing" target="_blank" class="film-card">
+
+<div class="film-number">04</div>
+
+<h3>Before Sports Day</h3>
+
+<p>PPW</p>
+
+</a>
+
+<a href="https://drive.google.com/drive/folders/1B89pXjvvEyqvbDZlFeE2UNmYFyHxFeKE?usp=sharing" target="_blank" class="film-card">
+
+<div class="film-number">05</div>
+
+<h3>Sports Day</h3>
+
+<p>PPW</p>
+
+</a>
+
+<a href="https://drive.google.com/drive/folders/1CXBKXep3nwNxPdSWGU9Vm8oWhOzxlxD9?usp=sharing" target="_blank" class="film-card">
+
+<div class="film-number">06</div>
+
+<h3>Digital Camera</h3>
+
+<p>Collection</p>
+
+</a>
+
+<a href="https://drive.google.com/drive/folders/1HkuLjY5-h7VIT_rWovjI-oOA_43akMmG?usp=sharing" target="_blank" class="film-card">
+
+<div class="film-number">07</div>
+
+<h3>New Collection</h3>
+
+<p>30/12/2568</p>
+
+</a>
+
+</div>
+
+</section>
+
+<!-- TIMELINE -->
+
+<section id="timeline" class="timeline">
+
+<h2>2025 Timeline</h2>
+
+<div class="timeline-line">
+
+<div>English Day</div>
+
+<div>PPW 16/12</div>
+
+<div>PPW 17/12</div>
+
+<div>Sports Day</div>
+
+<div>Digital Camera</div>
+
+<div>New Collection</div>
+
+</div>
+
+</section>
+
+<!-- ABOUT -->
+
+<section id="about" class="about">
+
+<h2>2WAY Memories</h2>
+
+<p>
+
+A collection of unforgettable moments,
+friendships, laughter and memories
+captured throughout the year.
+
+</p>
+
+</section>
+
+<footer>
+
+© 2025 2WAY MEMORIES
+
+</footer>
+
 <script src="script.js"></script>
+
 </body>
 </html>
