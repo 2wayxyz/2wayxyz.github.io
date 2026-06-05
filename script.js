@@ -1,32 +1,53 @@
-document.addEventListener("DOMContentLoaded", () => {
-    
-    // จัดการระบบสไลด์การ์ดความทรงจำม้วนฟิล์มซ้าย-ขวาผ่านปุ่มลูกศร
-    const filmTrack = document.getElementById('filmTrack');
-    const leftArrow = document.querySelector('.left-arrow');
-    const rightArrow = document.querySelector('.right-arrow');
+/* Scroll Progress */
 
-    if (filmTrack && leftArrow && rightArrow) {
-        const scrollAmount = 300; // ระยะการเลื่อนพิกเซลต่อการกดหนึ่งครั้ง
+#scrollProgress{
 
-        leftArrow.addEventListener('click', () => {
-            filmTrack.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
-        });
+position:fixed;
 
-        rightArrow.addEventListener('click', () => {
-            filmTrack.scrollBy({ left: scrollAmount, behavior: 'smooth' });
-        });
-    }
+top:0;
+left:0;
 
-});
+height:4px;
 
-// ฟังก์ชันเปิด-ปิดเสียงเพลงพื้นหลังของเว็บไซต์
-function toggleMusic() {
-    const audio = document.getElementById('bgMusic');
-    if (audio) {
-        if (audio.paused) {
-            audio.play().catch(err => console.log("รอการตอบรับจากผู้ใช้เพื่อเล่นเสียง"));
-        } else {
-            audio.pause();
-        }
-    }
+width:0;
+
+background:
+
+linear-gradient(
+90deg,
+#ffd86a,
+#ff8fc0,
+#53e6ff
+);
+
+z-index:999999;
+
+}
+
+/* Cursor Glow */
+
+#cursorGlow{
+
+position:fixed;
+
+width:180px;
+height:180px;
+
+border-radius:50%;
+
+background:
+
+radial-gradient(
+circle,
+rgba(255,255,255,.12),
+transparent 70%
+);
+
+pointer-events:none;
+
+transform:
+translate(-50%,-50%);
+
+z-index:3;
+
 }
